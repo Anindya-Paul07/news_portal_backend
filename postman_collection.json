@@ -31,6 +31,11 @@
       "key": "user_id",
       "value": "",
       "type": "string"
+    },
+    {
+      "key": "reel_id",
+      "value": "",
+      "type": "string"
     }
   ],
   "item": [
@@ -1497,6 +1502,196 @@
               ]
             },
             "description": "Get traffic trends"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reels",
+      "item": [
+        {
+          "name": "Get All Reels (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/reels?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["reels"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Get all active reels (paginated). No authentication required."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Reel (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/reels/{{reel_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["reels", "{{reel_id}}"]
+            },
+            "description": "Get a single reel by its UUID. No authentication required."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Reel (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('reel_id', response.data.id);",
+                  "    console.log('Reel ID saved:', response.data.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Breaking: City Floods\",\n  \"url\": \"https://youtube.com/shorts/abc123xyz\",\n  \"description\": \"Live footage from the flooded areas of the city.\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/reels",
+              "host": ["{{base_url}}"],
+              "path": ["reels"]
+            },
+            "description": "Create a new reel. Requires Admin or Super Admin role. `description` and `isActive` are optional."
+          },
+          "response": []
+        },
+        {
+          "name": "Create Reel - Without Description (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Election Results Live\",\n  \"url\": \"https://youtube.com/shorts/election2025\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/reels",
+              "host": ["{{base_url}}"],
+              "path": ["reels"]
+            },
+            "description": "Create a reel with only the required fields (title and url). Description is optional."
+          },
+          "response": []
+        },
+        {
+          "name": "Update Reel (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated: City Floods - Latest Update\",\n  \"url\": \"https://youtube.com/shorts/updated123\",\n  \"description\": \"Updated footage with rescue operations underway.\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/reels/{{reel_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["reels", "{{reel_id}}"]
+            },
+            "description": "Update an existing reel by ID. All fields are optional — send only what needs to be changed. Requires Admin or Super Admin role."
+          },
+          "response": []
+        },
+        {
+          "name": "Toggle Reel Active Status (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isActive\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/reels/{{reel_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["reels", "{{reel_id}}"]
+            },
+            "description": "Quickly enable or disable a reel by toggling isActive without changing other fields."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Reel (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reels/{{reel_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["reels", "{{reel_id}}"]
+            },
+            "description": "Permanently delete a reel by ID. Requires Admin or Super Admin role."
           },
           "response": []
         }

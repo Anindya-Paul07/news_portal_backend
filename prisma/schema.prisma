@@ -181,3 +181,13 @@ model Media {
   updatedAt    DateTime   @updatedAt
   uploadedBy   User       @relation(fields: [uploadedById], references: [id])
 }
+
+model Reel {
+  id          String   @id @default(uuid())
+  title       String
+  url         String
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

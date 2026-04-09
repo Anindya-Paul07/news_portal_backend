@@ -22,6 +22,7 @@ import advertisementRoutes from './modules/advertisements/advertisement.routes.j
 import mediaRoutes from './modules/media/media.routes.js';
 import dashboardRoutes from './modules/dashboard/dashboard.routes.js';
 import analyticsRoutes from './modules/analytics/analytics.routes.js';
+import reelRoutes from './modules/reels/reel.routes.js';
 
 // Load environment variables
 dotenv.config();
@@ -48,8 +49,6 @@ app.use(hpp()); // Prevent HTTP Parameter Pollution
 
 // CORS Configuration - MUST be before other routes
 const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:3001',
   'https://thecontemporary.news',
   'https://www.thecontemporary.news',
   process.env.FRONTEND_URL,
@@ -115,6 +114,7 @@ app.use(`/api/${API_VERSION}/advertisements`, advertisementRoutes);
 app.use(`/api/${API_VERSION}/media`, mediaRoutes);
 app.use(`/api/${API_VERSION}/dashboard`, dashboardRoutes);
 app.use(`/api/${API_VERSION}/analytics`, analyticsRoutes);
+app.use(`/api/${API_VERSION}/reels`, reelRoutes);
 
 // Static files for uploads (if not using cloud storage)
 app.use('/uploads', express.static('uploads'));
