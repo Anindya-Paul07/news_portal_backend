@@ -24,6 +24,8 @@ services:
       NODE_ENV: production
     ports:
       - "5000:5000"
+    volumes:
+      - backend-uploads:/app/uploads
     depends_on:
       backend-db:
         condition: service_healthy
@@ -32,3 +34,4 @@ services:
 
 volumes:
   backend-postgres-data:
+  backend-uploads:

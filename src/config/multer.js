@@ -1,4 +1,5 @@
 import multer from 'multer';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { AppError } from '../middleware/errorHandler.js';
@@ -11,7 +12,9 @@ const __dirname = path.dirname(__filename);
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(__dirname, '../../uploads');
-    cb(null, uploadPath);
+    fs.mkdir(uploadPath, { recursive: true }, (error) => {
+      cb(error, uploadPath);
+    });
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
