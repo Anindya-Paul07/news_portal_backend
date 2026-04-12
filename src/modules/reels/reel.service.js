@@ -23,7 +23,9 @@ class ReelService {
 
     const where = {};
 
-    if (!isAdmin) {
+    if (isAdmin && query.isActive !== undefined) {
+      where.isActive = query.isActive === 'true';
+    } else if (!isAdmin) {
       where.isActive = true;
     }
 

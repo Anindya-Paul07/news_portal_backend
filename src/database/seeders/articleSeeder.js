@@ -11,6 +11,9 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const uuidRegex =
+  /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+
 const seedArticles = async () => {
   try {
     await connectDB();
@@ -46,29 +49,14 @@ const seedArticles = async () => {
     const articleData = JSON.parse(fs.readFileSync(articleDataPath, 'utf-8'));
     console.log(`📄 Loaded ${articleData.length} articles from article-seed.json\n`);
 
-    // Check if articles already exist
+    // Existing articles are updated by slug so seed fixes, including image URL changes, apply cleanly.
     const existingArticleCount = await prisma.article.count();
     if (existingArticleCount > 0) {
-      console.log(`⚠️  Warning: ${existingArticleCount} articles already exist in database`);
-      const readline = await import('readline');
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-
-      const answer = await new Promise((resolve) => {
-        rl.question('Do you want to continue and add more articles? (y/n): ', resolve);
-      });
-      rl.close();
-
-      if (answer.toLowerCase() !== 'y') {
-        console.log('❌ Article seeding cancelled\n');
-        process.exit(0);
-      }
+      console.log(`ℹ️  ${existingArticleCount} articles already exist; matching seed articles will be updated`);
     }
 
     let successCount = 0;
-    let skippedCount = 0;
+    let updatedCount = 0;
     let errorCount = 0;
 
     console.log('🚀 Starting to seed articles...\n');
@@ -78,21 +66,11 @@ const seedArticles = async () => {
         // Generate slug from English title
         const slug = createSlug(articleItem.title.en);
 
-        // Check if article with same slug already exists
-        const existingArticle = await prisma.article.findUnique({
-          where: { slug },
-        });
-
-        if (existingArticle) {
-          console.log(`⏭️  Skipped: "${articleItem.title.en}" (slug already exists)`);
-          skippedCount++;
-          continue;
-        }
-
-        // Verify category exists
-        const category = await prisma.category.findUnique({
-          where: { id: articleItem.category },
-        });
+        // Verify category exists. Seed files may provide either a category UUID or slug.
+        const categoryIdentifier = articleItem.category;
+        let category = uuidRegex.test(categoryIdentifier)
+          ? await prisma.category.findUnique({ where: { id: categoryIdentifier } })
+          : await prisma.category.findUnique({ where: { slug: categoryIdentifier } });
 
         if (!category) {
           console.log(
@@ -106,7 +84,7 @@ const seedArticles = async () => {
             console.log('ℹ️  Please run: npm run seed:admin first\n');
             process.exit(1);
           }
-          articleItem.category = firstCategory.id;
+          category = firstCategory;
         }
 
         // Calculate read time (average reading speed: 200 words per minute)
@@ -141,19 +119,38 @@ const seedArticles = async () => {
           metaDescriptionBn: articleItem.metaDescription?.bn || articleItem.excerpt?.bn || null,
           metaKeywords: articleItem.metaKeywords || [],
           allowComments: articleItem.allowComments !== false,
-          categoryId: articleItem.category,
+          categoryId: category.id,
           authorId: author.id,
         };
 
-        // Create article
-        const createdArticle = await prisma.article.create({
-          data: articleData,
+        const existingArticle = await prisma.article.findUnique({
+          where: { slug },
         });
 
-        console.log(`✅ Created: "${createdArticle.titleEn}" (${createdArticle.status})`);
-        successCount++;
+        if (existingArticle) {
+          const updatedArticle = await prisma.article.update({
+            where: { slug },
+            data: {
+              ...articleData,
+              // Keep existing engagement counters when refreshing seeded article content.
+              views: existingArticle.views,
+              likes: existingArticle.likes,
+              shares: existingArticle.shares,
+            },
+          });
+
+          console.log(`🔄 Updated: "${updatedArticle.titleEn}" (${updatedArticle.status})`);
+          updatedCount++;
+        } else {
+          const createdArticle = await prisma.article.create({
+            data: articleData,
+          });
+
+          console.log(`✅ Created: "${createdArticle.titleEn}" (${createdArticle.status})`);
+          successCount++;
+        }
       } catch (error) {
-        console.error(`❌ Error creating article "${articleItem.title.en}":`, error.message);
+        console.error(`❌ Error seeding article "${articleItem.title.en}":`, error.message);
         errorCount++;
       }
     }
@@ -162,8 +159,8 @@ const seedArticles = async () => {
     console.log('📊 Article Seeding Summary:');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log(`✅ Successfully created: ${successCount} articles`);
-    if (skippedCount > 0) {
-      console.log(`⏭️  Skipped (duplicates): ${skippedCount} articles`);
+    if (updatedCount > 0) {
+      console.log(`🔄 Updated existing: ${updatedCount} articles`);
     }
     if (errorCount > 0) {
       console.log(`❌ Failed: ${errorCount} articles`);

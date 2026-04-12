@@ -1,6 +1,6 @@
 import express from 'express';
 import reelController from './reel.controller.js';
-import { protect, restrictTo } from '../../middleware/auth.js';
+import { optionalAuth, protect, restrictTo } from '../../middleware/auth.js';
 import { validate } from '../../middleware/validate.js';
 import {
   createReelValidation,
@@ -12,7 +12,7 @@ import { USER_ROLES } from '../../config/constants.js';
 const router = express.Router();
 
 // Public routes
-router.get('/', reelController.getAllReels);
+router.get('/', optionalAuth, reelController.getAllReels);
 router.get('/:id', reelIdParamValidation, validate, reelController.getReel);
 
 // Protected routes - Admin / Super Admin only

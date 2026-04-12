@@ -30,7 +30,7 @@ services:
       backend-db:
         condition: service_healthy
     command: >
-      sh -c "npx prisma migrate deploy && node src/server.js"
+      sh -c "npx prisma generate && npx prisma migrate deploy && node src/server.js"
 
 volumes:
   backend-postgres-data:

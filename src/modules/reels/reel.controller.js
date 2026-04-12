@@ -1,13 +1,15 @@
 import reelService from './reel.service.js';
 import { asyncHandler } from '../../utils/asyncHandler.js';
 import { sendResponse, sendPaginatedResponse } from '../../utils/responseUtils.js';
+import { USER_ROLES } from '../../config/constants.js';
 
 class ReelController {
   // @desc    Get all reels
   // @route   GET /api/v1/reels
   // @access  Public
   getAllReels = asyncHandler(async (req, res) => {
-    const result = await reelService.getAllReels(req.query);
+    const isAdmin = [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN].includes(req.user?.role);
+    const result = await reelService.getAllReels(req.query, isAdmin);
     sendPaginatedResponse(res, 200, result.reels, result.pagination, 'Reels retrieved successfully');
   });
 

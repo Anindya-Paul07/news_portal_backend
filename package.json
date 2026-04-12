@@ -10,6 +10,7 @@
     "seed": "node src/database/seeders/adminSeeder.js",
     "seed:admin": "node src/database/seeders/adminSeeder.js",
     "seed:articles": "node src/database/seeders/articleSeeder.js",
+    "seed:reels": "node src/database/seeders/reelSeeder.js",
     "seed:all": "npm run seed:admin && npm run seed:articles"
   },
   "keywords": [
