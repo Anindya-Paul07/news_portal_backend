@@ -11,7 +11,7 @@ export const createReelValidation = [
   body('url')
     .trim()
     .notEmpty()
-    .withMessage('Reel URL is required')
+    .withMessage('YouTube article URL is required')
     .isURL()
     .withMessage('Invalid URL format'),
 

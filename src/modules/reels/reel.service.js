@@ -50,7 +50,7 @@ class ReelService {
     const reel = await prisma.reel.findUnique({ where: { id } });
 
     if (!reel) {
-      throw new AppError('Reel not found', 404);
+      throw new AppError('YouTube article not found', 404);
     }
 
     return this.mapReel(reel);
@@ -75,7 +75,7 @@ class ReelService {
     const existing = await prisma.reel.findUnique({ where: { id } });
 
     if (!existing) {
-      throw new AppError('Reel not found', 404);
+      throw new AppError('YouTube article not found', 404);
     }
 
     const reel = await prisma.reel.update({
@@ -96,12 +96,12 @@ class ReelService {
     const existing = await prisma.reel.findUnique({ where: { id } });
 
     if (!existing) {
-      throw new AppError('Reel not found', 404);
+      throw new AppError('YouTube article not found', 404);
     }
 
     await prisma.reel.delete({ where: { id } });
 
-    return { message: 'Reel deleted successfully' };
+    return { message: 'YouTube article deleted successfully' };
   }
 }
 

@@ -10,7 +10,7 @@ class ReelController {
   getAllReels = asyncHandler(async (req, res) => {
     const isAdmin = [USER_ROLES.SUPER_ADMIN, USER_ROLES.ADMIN].includes(req.user?.role);
     const result = await reelService.getAllReels(req.query, isAdmin);
-    sendPaginatedResponse(res, 200, result.reels, result.pagination, 'Reels retrieved successfully');
+    sendPaginatedResponse(res, 200, result.reels, result.pagination, 'YouTube articles retrieved successfully');
   });
 
   // @desc    Get single reel
@@ -18,7 +18,7 @@ class ReelController {
   // @access  Public
   getReel = asyncHandler(async (req, res) => {
     const reel = await reelService.getReelById(req.params.id);
-    sendResponse(res, 200, reel, 'Reel retrieved successfully');
+    sendResponse(res, 200, reel, 'YouTube article retrieved successfully');
   });
 
   // @desc    Create a new reel
@@ -26,7 +26,7 @@ class ReelController {
   // @access  Private (Admin, Super Admin)
   createReel = asyncHandler(async (req, res) => {
     const reel = await reelService.createReel(req.body);
-    sendResponse(res, 201, reel, 'Reel created successfully');
+    sendResponse(res, 201, reel, 'YouTube article created successfully');
   });
 
   // @desc    Update a reel
@@ -34,7 +34,7 @@ class ReelController {
   // @access  Private (Admin, Super Admin)
   updateReel = asyncHandler(async (req, res) => {
     const reel = await reelService.updateReel(req.params.id, req.body);
-    sendResponse(res, 200, reel, 'Reel updated successfully');
+    sendResponse(res, 200, reel, 'YouTube article updated successfully');
   });
 
   // @desc    Delete a reel
@@ -42,7 +42,7 @@ class ReelController {
   // @access  Private (Admin, Super Admin)
   deleteReel = asyncHandler(async (req, res) => {
     const result = await reelService.deleteReel(req.params.id);
-    sendResponse(res, 200, result, 'Reel deleted successfully');
+    sendResponse(res, 200, result, 'YouTube article deleted successfully');
   });
 }
 

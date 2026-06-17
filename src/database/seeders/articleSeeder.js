@@ -49,14 +49,14 @@ const seedArticles = async () => {
     const articleData = JSON.parse(fs.readFileSync(articleDataPath, 'utf-8'));
     console.log(`📄 Loaded ${articleData.length} articles from article-seed.json\n`);
 
-    // Existing articles are updated by slug so seed fixes, including image URL changes, apply cleanly.
     const existingArticleCount = await prisma.article.count();
     if (existingArticleCount > 0) {
-      console.log(`ℹ️  ${existingArticleCount} articles already exist; matching seed articles will be updated`);
+      console.log(`🧹 Deleting ${existingArticleCount} existing articles before fresh seed...`);
+      await prisma.article.deleteMany({});
+      console.log('✅ Existing articles deleted\n');
     }
 
     let successCount = 0;
-    let updatedCount = 0;
     let errorCount = 0;
 
     console.log('🚀 Starting to seed articles...\n');
@@ -123,32 +123,12 @@ const seedArticles = async () => {
           authorId: author.id,
         };
 
-        const existingArticle = await prisma.article.findUnique({
-          where: { slug },
+        const createdArticle = await prisma.article.create({
+          data: articleData,
         });
 
-        if (existingArticle) {
-          const updatedArticle = await prisma.article.update({
-            where: { slug },
-            data: {
-              ...articleData,
-              // Keep existing engagement counters when refreshing seeded article content.
-              views: existingArticle.views,
-              likes: existingArticle.likes,
-              shares: existingArticle.shares,
-            },
-          });
-
-          console.log(`🔄 Updated: "${updatedArticle.titleEn}" (${updatedArticle.status})`);
-          updatedCount++;
-        } else {
-          const createdArticle = await prisma.article.create({
-            data: articleData,
-          });
-
-          console.log(`✅ Created: "${createdArticle.titleEn}" (${createdArticle.status})`);
-          successCount++;
-        }
+        console.log(`✅ Created: "${createdArticle.titleEn}" (${createdArticle.status})`);
+        successCount++;
       } catch (error) {
         console.error(`❌ Error seeding article "${articleItem.title.en}":`, error.message);
         errorCount++;
@@ -159,9 +139,6 @@ const seedArticles = async () => {
     console.log('📊 Article Seeding Summary:');
     console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     console.log(`✅ Successfully created: ${successCount} articles`);
-    if (updatedCount > 0) {
-      console.log(`🔄 Updated existing: ${updatedCount} articles`);
-    }
     if (errorCount > 0) {
       console.log(`❌ Failed: ${errorCount} articles`);
     }

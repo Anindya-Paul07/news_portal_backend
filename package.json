@@ -7,11 +7,15 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "seed": "node src/database/seeders/adminSeeder.js",
+    "seed": "node src/database/seeders/universalSeeder.js",
+    "seed:universal": "node src/database/seeders/universalSeeder.js",
     "seed:admin": "node src/database/seeders/adminSeeder.js",
     "seed:articles": "node src/database/seeders/articleSeeder.js",
     "seed:reels": "node src/database/seeders/reelSeeder.js",
-    "seed:all": "npm run seed:admin && npm run seed:articles"
+    "seed:all": "npm run seed:universal"
+  },
+  "prisma": {
+    "seed": "npm run seed"
   },
   "keywords": [
     "news",

@@ -41,7 +41,7 @@ services:
       - backend-node-modules:/app/node_modules
       - backend-uploads:/app/uploads
     command: >
-      sh -c "if [ ! -d node_modules ]; then npm ci; fi && npx prisma generate && npx prisma migrate deploy && npm run dev"
+      sh -c "if [ ! -d node_modules ]; then npm ci; fi && npx prisma generate && npx prisma migrate deploy && npm run seed && npm run dev"
     networks:
       - newsportal-backend-local
 

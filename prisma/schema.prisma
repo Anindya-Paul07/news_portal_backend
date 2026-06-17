@@ -43,109 +43,109 @@ enum MediaType {
 }
 
 model User {
-  id              String          @id @default(uuid())
+  id              String    @id @default(uuid())
   name            String
-  email           String          @unique
+  email           String    @unique
   password        String
-  role            UserRole        @default(editorial)
+  role            UserRole  @default(editorial)
   avatar          String?
   phone           String?
   bio             String?
-  isActive        Boolean         @default(true)
-  isEmailVerified Boolean         @default(false)
+  isActive        Boolean   @default(true)
+  isEmailVerified Boolean   @default(false)
   lastLogin       DateTime?
   refreshToken    String?
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  articles        Article[]       @relation("ArticleAuthor")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  articles        Article[] @relation("ArticleAuthor")
   media           Media[]
 }
 
 model Category {
-  id                 String                    @id @default(uuid())
-  nameEn             String
-  nameBn             String
-  slug               String                    @unique
-  descriptionEn      String?
-  descriptionBn      String?
-  parentId           String?
-  image              String?
-  order              Int                       @default(0)
-  isActive           Boolean                   @default(true)
-  showInMenu         Boolean                   @default(true)
-  metaTitleEn        String?
-  metaTitleBn        String?
-  metaDescriptionEn  String?
-  metaDescriptionBn  String?
-  createdAt          DateTime                  @default(now())
-  updatedAt          DateTime                  @updatedAt
-  parent             Category?                 @relation("CategoryChildren", fields: [parentId], references: [id])
-  children           Category[]                @relation("CategoryChildren")
-  articles           Article[]
-  advertisements     AdvertisementCategory[]
+  id                String                  @id @default(uuid())
+  nameEn            String
+  nameBn            String
+  slug              String                  @unique
+  descriptionEn     String?
+  descriptionBn     String?
+  parentId          String?
+  image             String?
+  order             Int                     @default(0)
+  isActive          Boolean                 @default(true)
+  showInMenu        Boolean                 @default(true)
+  metaTitleEn       String?
+  metaTitleBn       String?
+  metaDescriptionEn String?
+  metaDescriptionBn String?
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  parent            Category?               @relation("CategoryChildren", fields: [parentId], references: [id])
+  children          Category[]              @relation("CategoryChildren")
+  articles          Article[]
+  advertisements    AdvertisementCategory[]
 }
 
 model Article {
-  id                 String           @id @default(uuid())
-  titleEn            String
-  titleBn            String
-  slug               String           @unique
-  excerptEn          String?
-  excerptBn          String?
-  contentEn          String
-  contentBn          String
-  featuredImage      Json?
-  gallery            Json?
-  tags               Json?
-  status             ArticleStatus    @default(draft)
-  publishedAt        DateTime?
-  scheduledAt        DateTime?
-  isFeatured         Boolean          @default(false)
-  isBreaking         Boolean          @default(false)
-  isTrending         Boolean          @default(false)
-  views              Int              @default(0)
-  likes              Int              @default(0)
-  shares             Int              @default(0)
-  readTime           Int              @default(0)
-  metaTitleEn        String?
-  metaTitleBn        String?
-  metaDescriptionEn  String?
-  metaDescriptionBn  String?
-  metaKeywords       String[]         @default([])
-  allowComments      Boolean          @default(true)
-  categoryId         String
-  authorId           String
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
-  category           Category         @relation(fields: [categoryId], references: [id])
-  author             User             @relation("ArticleAuthor", fields: [authorId], references: [id])
-  relatedArticles    Article[]        @relation("RelatedArticles")
-  relatedBy          Article[]        @relation("RelatedArticles")
+  id                String        @id @default(uuid())
+  titleEn           String
+  titleBn           String
+  slug              String        @unique
+  excerptEn         String?
+  excerptBn         String?
+  contentEn         String
+  contentBn         String
+  featuredImage     Json?
+  gallery           Json?
+  tags              Json?
+  status            ArticleStatus @default(draft)
+  publishedAt       DateTime?
+  scheduledAt       DateTime?
+  isFeatured        Boolean       @default(false)
+  isBreaking        Boolean       @default(false)
+  isTrending        Boolean       @default(false)
+  views             Int           @default(0)
+  likes             Int           @default(0)
+  shares            Int           @default(0)
+  readTime          Int           @default(0)
+  metaTitleEn       String?
+  metaTitleBn       String?
+  metaDescriptionEn String?
+  metaDescriptionBn String?
+  metaKeywords      String[]      @default([])
+  allowComments     Boolean       @default(true)
+  categoryId        String
+  authorId          String
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  category          Category      @relation(fields: [categoryId], references: [id])
+  author            User          @relation("ArticleAuthor", fields: [authorId], references: [id])
+  relatedArticles   Article[]     @relation("RelatedArticles")
+  relatedBy         Article[]     @relation("RelatedArticles")
 }
 
 model Advertisement {
-  id             String                   @id @default(uuid())
-  name           String
-  titleEn        String?
-  titleBn        String?
-  descriptionEn  String?
-  descriptionBn  String?
-  type           AdType
-  position       AdPosition
-  image          Json
-  linkUrl        String
-  openInNewTab   Boolean                  @default(true)
-  startDate      DateTime
-  endDate        DateTime
-  isActive       Boolean                  @default(true)
-  priority       Int                      @default(0)
-  displayPages   String[]                 @default([])
-  impressions    Int                      @default(0)
-  clicks         Int                      @default(0)
-  client         Json?
-  createdAt      DateTime                 @default(now())
-  updatedAt      DateTime                 @updatedAt
-  categories     AdvertisementCategory[]
+  id            String                  @id @default(uuid())
+  name          String
+  titleEn       String?
+  titleBn       String?
+  descriptionEn String?
+  descriptionBn String?
+  type          AdType
+  position      AdPosition
+  image         Json
+  linkUrl       String
+  openInNewTab  Boolean                 @default(true)
+  startDate     DateTime
+  endDate       DateTime
+  isActive      Boolean                 @default(true)
+  priority      Int                     @default(0)
+  displayPages  String[]                @default([])
+  impressions   Int                     @default(0)
+  clicks        Int                     @default(0)
+  client        Json?
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+  categories    AdvertisementCategory[]
 }
 
 model AdvertisementCategory {
@@ -158,7 +158,7 @@ model AdvertisementCategory {
 }
 
 model Media {
-  id           String     @id @default(uuid())
+  id           String    @id @default(uuid())
   filename     String
   originalName String
   url          String
@@ -173,13 +173,13 @@ model Media {
   captionEn    String?
   captionBn    String?
   uploadedById String
-  folder       String     @default("general")
-  tags         String[]   @default([])
-  isPublic     Boolean    @default(true)
+  folder       String    @default("general")
+  tags         String[]  @default([])
+  isPublic     Boolean   @default(true)
   cloudinaryId String?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  uploadedBy   User       @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  uploadedBy   User      @relation(fields: [uploadedById], references: [id])
 }
 
 model Reel {
@@ -190,4 +190,12 @@ model Reel {
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model SiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

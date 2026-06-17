@@ -23,6 +23,7 @@ import mediaRoutes from './modules/media/media.routes.js';
 import dashboardRoutes from './modules/dashboard/dashboard.routes.js';
 import analyticsRoutes from './modules/analytics/analytics.routes.js';
 import reelRoutes from './modules/reels/reel.routes.js';
+import settingsRoutes from './modules/settings/settings.routes.js';
 
 // Load environment variables
 dotenv.config();
@@ -115,6 +116,7 @@ app.use(`/api/${API_VERSION}/media`, mediaRoutes);
 app.use(`/api/${API_VERSION}/dashboard`, dashboardRoutes);
 app.use(`/api/${API_VERSION}/analytics`, analyticsRoutes);
 app.use(`/api/${API_VERSION}/reels`, reelRoutes);
+app.use(`/api/${API_VERSION}/settings`, settingsRoutes);
 
 // Static files for uploads (if not using cloud storage)
 app.use('/uploads', express.static('uploads'));
