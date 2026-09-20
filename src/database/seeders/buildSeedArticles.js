@@ -1,0 +1,2213 @@
+import fs from 'fs';
+import path from 'path';
+
+const now = Date.now();
+const hour = 3600 * 1000;
+
+// Helper to stagger dates in the past
+const getPublishedDate = (hoursAgo) => {
+  return new Date(now - (hoursAgo + 0.5) * hour).toISOString();
+};
+
+const articles = [
+  // ==========================================
+  // POLITICS (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "Election Commission Announces Nationwide Roadmap for Upcoming General Elections",
+      bn: "আসন্ন সাধারণ নির্বাচনের জন্য দেশব্যাপী রোডম্যাপ ঘোষণা করল নির্বাচন কমিশন"
+    },
+    slug: "election-commission-announces-nationwide-roadmap-for-upcoming-general-elections",
+    content: {
+      en: "<p>The Election Commission has officially unveiled its comprehensive roadmap for the forthcoming national parliamentary elections, establishing firm deadlines for voter roll updates, delimitation of constituencies, and the deployment of monitoring officers.</p><p>Chief Election Commissioner addressed a crowded press briefing at the commission headquarters, emphasizing transparency, impartiality, and the participation of all political stakeholders. Key measures include digitized polling station monitoring, enhanced training for presiding officers, and stringent oversight of campaign expenditure.</p><p>International observer missions and domestic civil society networks have welcomed the announcement, urging institutional safeguards to guarantee free and peaceful voting across every administrative district.</p>",
+      bn: "<p>আসন্ন জাতীয় সংসদ নির্বাচনের জন্য একটি পূর্ণাঙ্গ রোডম্যাপ আনুষ্ঠানিকভাবে ঘোষণা করেছে নির্বাচন কমিশন। এতে ভোটার তালিকা হালনাগাদ, নির্বাচনী এলাকার সীমানা পুনর্নির্ধারণ এবং পর্যবেক্ষণ কর্মকর্তা মোতায়েনের চূড়ান্ত সময়সীমা নির্ধারণ করা হয়েছে।</p><p>নির্বাচন কমিশন সচিবালয়ে আয়োজিত এক জনাকীর্ণ সংবাদ সম্মেলনে প্রধান নির্বাচন কমিশনার স্বচ্ছতা, নিরপেক্ষতা এবং সকল রাজনৈতিক দলের সক্রিয় অংশগ্রহণের ওপর গুরুত্বারোপ করেন। গৃহীত পদক্ষেপগুলোর মধ্যে রয়েছে ডিজিটাল ভোটকেন্দ্র নজরদারি, প্রিজাইডিং অফিসারদের উন্নত প্রশিক্ষণ এবং নির্বাচনী ব্যয় পর্যবেক্ষণ।</p><p>আন্তর্জাতিক পর্যবেক্ষক দল এবং স্থানীয় সুশীল সমাজের প্রতিনিধিরা এই ঘোষণাকে স্বাগত জানিয়ে প্রতিটি প্রশাসনিক জেলায় অবাধ ও শান্তিপূর্ণ ভোটগ্রহণ নিশ্চিত করতে প্রাতিষ্ঠানিক সুরক্ষার দাবি জানিয়েছেন।</p>"
+    },
+    excerpt: {
+      en: "The Election Commission unveils a structured roadmap with digital monitoring and strict oversight for the upcoming national polls.",
+      bn: "আসন্ন জাতীয় নির্বাচনের জন্য ডিজিটাল নজরদারি ও কঠোর নজরদারিসহ একটি সমন্বিত রোডম্যাপ ঘোষণা করেছে নির্বাচন কমিশন।"
+    },
+    category: "politics",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Official ballot box and election documents in a voting hall",
+        bn: "ভোটকেন্দ্রে ব্যালট বাক্স ও নির্বাচনী নথিপত্র"
+      }
+    },
+    tags: [
+      { en: "Election", bn: "নির্বাচন" },
+      { en: "Politics", bn: "রাজনীতি" },
+      { en: "Democracy", bn: "গণতন্ত্র" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(2),
+    isFeatured: true,
+    isBreaking: true,
+    isTrending: true,
+    views: 1845,
+    likes: 142,
+    shares: 48,
+    metaTitle: {
+      en: "Election Commission Announces Nationwide Roadmap",
+      bn: "নির্বাচন কমিশনের নতুন নির্বাচনী রোডম্যাপ ঘোষণা"
+    },
+    metaDescription: {
+      en: "The national election commission sets timelines for voting, boundary delimitation, and observer deployments.",
+      bn: "নির্বাচন কমিশন ভোটগ্রহণ, সীমানা নির্ধারণ ও পর্যবেক্ষক মোতায়েনের সময়সূচি ঘোষণা করেছে।"
+    },
+    metaKeywords: ["election", "parliament", "roadmap", "democracy"]
+  },
+  {
+    title: {
+      en: "Parliament Opens Debate on Far-Reaching Judicial and Civil Service Reforms",
+      bn: "বিচার বিভাগ ও জনপ্রশাসন সংস্কার নিয়ে সংসদে জোরালো বিতর্ক শুরু"
+    },
+    slug: "parliament-opens-debate-on-far-reaching-judicial-and-civil-service-reforms",
+    content: {
+      en: "<p>Lawmakers convened on Thursday to debate a series of constitutional amendments aimed at strengthening judicial independence and restructuring public administration protocols.</p><p>The reform package proposes greater autonomy for judicial appointments, an independent prosecution service, and performance-based merit evaluations across all civil service tiers. Treasury and opposition frontbenchers engaged in impassioned exchanges over transition timelines and executive checks and balances.</p><p>Public policy analysts suggest that effective implementation could modernize public delivery mechanisms and reduce systemic pendency across appellate courts nationwide.</p>",
+      bn: "<p>বিচার বিভাগের স্বাধীনতা শক্তিশালীকরণ এবং জনপ্রশাসন সংস্কারের লক্ষ্যে প্রস্তাবিত একাধিক সাংবিধানিক সংশোধনী নিয়ে জাতীয় সংসদে বিতর্ক শুরু হয়েছে।</p><p>প্রস্তাবিত সংস্কার প্যাকেজে বিচারক নিয়োগে অধিক স্বায়ত্তশাসন, একটি স্বাধীন প্রসিকিউশন সার্ভিস গঠন এবং সকল স্তরের কর্মকর্তাদের জন্য মেধাভিত্তিক মূল্যায়ন ব্যবস্থার সুপারিশ করা হয়েছে। সরকারি ও বিরোধী দলের সংসদ সদস্যরা পরিবর্তনের সময়সীমা ও ক্ষমতার ভারসাম্য নিয়ে বিস্তারিত বক্তব্য উপস্থাপন করেন।</p><p>জননীতি বিশেষজ্ঞদের মতে, এই সংস্কারগুলো কার্যকরভাবে বাস্তবায়িত হলে জনসেবা প্রদান প্রক্রিয়া আধুনিক হবে এবং আদালতগুলোতে মামলার দীর্ঘসূত্রতা উল্লেখযোগ্যভাবে হ্রাস পাবে।</p>"
+    },
+    excerpt: {
+      en: "Parliamentary session addresses judicial autonomy, prosecutorial independence, and civil service restructuring.",
+      bn: "বিচার বিভাগের পূর্ণ স্বায়ত্তশাসন ও জনপ্রশাসন পুনর্গঠন নিয়ে জাতীয় সংসদে আলোচনা ও বিতর্ক অনুষ্ঠিত হয়েছে।"
+    },
+    category: "politics",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Gavel and law books symbolizing judicial reforms",
+        bn: "বিচার বিভাগীয় সংস্কারের প্রতীক হাতুড়ি ও আইনের বই"
+      }
+    },
+    tags: [
+      { en: "Parliament", bn: "সংসদ" },
+      { en: "Judiciary", bn: "বিচার বিভাগ" },
+      { en: "Governance", bn: "শাসন ব্যবস্থা" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(7),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 1250,
+    likes: 88,
+    shares: 26,
+    metaTitle: {
+      en: "Parliamentary Debate on Judicial and Civil Service Reforms",
+      bn: "সংসদে বিচার বিভাগ ও জনপ্রশাসন সংস্কার বিতর্ক"
+    },
+    metaDescription: {
+      en: "Lawmakers discuss structural reforms for judicial independence and civil service meritocracy.",
+      bn: "আইনপ্রণেতারা বিচার বিভাগের স্বাধীনতা ও সরকারি চাকরির মেধাভিত্তিক কাঠামো নিয়ে আলোচনা করছেন।"
+    },
+    metaKeywords: ["parliament", "judiciary", "reform", "civil service"]
+  },
+  {
+    title: {
+      en: "Local Government Decentralization Bill Gains Bipartisan Consensus",
+      bn: "স্থানীয় সরকার বিকেন্দ্রীকরণ বিলে সর্বদলীয় ঐক্যমত প্রকাশ"
+    },
+    slug: "local-government-decentralization-bill-gains-bipartisan-consensus",
+    content: {
+      en: "<p>In a rare display of inter-party coordination, political factions across the spectrum have endorsed the draft Local Governance Devolution Bill, empowering municipalities and rural councils with fiscal autonomy.</p><p>Under the new statutory framework, city corporations and upazila parishads will retain a higher share of locally generated revenues for municipal healthcare, primary schooling, and rural road networks without requiring central ministry pre-clearance.</p><p>Advocacy groups hailed the legislation as a decisive shift away from administrative centralization, promising faster disaster relief responses and citizen-first governance.</p>",
+      bn: "<p>একটি বিরল রাজনৈতিক ঐক্যের দৃষ্টান্ত স্থাপন করে সব রাজনৈতিক দল প্রস্তাবিত স্থানীয় সরকার বিকেন্দ্রীকরণ বিলে সমর্থন জানিয়েছে। এই বিলটি পৌরসভা ও ইউনিয়ন পরিষদগুলোকে ব্যাপক আর্থিক স্বায়ত্তশাসন প্রদান করবে।</p><p>নতুন আইনি কাঠামোর অধীনে সিটি কর্পোরেশন ও উপজেলা পরিষদগুলো স্থানীয় স্বাস্থ্যসেবা, প্রাথমিক শিক্ষা ও সড়ক রক্ষণাবেক্ষণের জন্য নিজস্ব আয়ের বড় অংশ ব্যয় করতে পারবে, যার জন্য কেন্দ্রীয় মন্ত্রণালয়ের অনুমোদনের প্রয়োজন হবে না।</p><p>নাগরিক অধিকার সংগঠনগুলো এটিকে ক্ষমতার কেন্দ্রীকরণ থেকে বের হয়ে আসার যুগান্তকারী পদক্ষেপ বলে অভিহিত করেছে, যা দ্রুত দুর্যোগ ব্যবস্থাপনা ও জনবান্ধব সেবার দ্বার উন্মোচন করবে।</p>"
+    },
+    excerpt: {
+      en: "New devolution law grants cities and upazila parishads authority over locally collected tax revenues and community projects.",
+      bn: "নতুন আইন পৌরসভা ও গ্রামীণ কাউন্সিলগুলোকে রাজস্ব ব্যবহার ও স্থানীয় প্রকল্প বাস্তবায়নে আর্থিক ক্ষমতা দিচ্ছে।"
+    },
+    category: "politics",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Capitol dome and democratic institution architecture",
+        bn: "গণতান্ত্রিক প্রতিষ্ঠানের আধুনিক স্থাপত্য শৈলী"
+      }
+    },
+    tags: [
+      { en: "Decentralization", bn: "বিকেন্দ্রীকরণ" },
+      { en: "Local Government", bn: "স্থানীয় সরকার" },
+      { en: "Policy", bn: "নীতি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(14),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 890,
+    likes: 64,
+    shares: 19,
+    metaTitle: {
+      en: "Local Governance Devolution Bill Approved",
+      bn: "স্থানীয় সরকার বিকেন্দ্রীকরণ বিল পাশ"
+    },
+    metaDescription: {
+      en: "Decentralization reforms allocate greater budgetary powers to municipal and rural councils.",
+      bn: "স্থানীয় সরকারগুলোর বাজেট ও প্রশাসনিক ক্ষমতা বৃদ্ধির নতুন আইন পাশ হয়েছে।"
+    },
+    metaKeywords: ["local government", "councils", "decentralization"]
+  },
+  {
+    title: {
+      en: "Civic Watchdog Coalition Publishes Annual Transparency and Public Integrity Index",
+      bn: "নাগরিক সমাজের বার্ষিক স্বচ্ছতা ও সততা সূচক প্রতিবেদন প্রকাশ"
+    },
+    slug: "civic-watchdog-coalition-publishes-annual-transparency-and-public-integrity-index",
+    content: {
+      en: "<p>The Citizens Coalition for Accountable Governance has released its comprehensive National Transparency Index, documenting measurable shifts across public procurement, law enforcement responsiveness, and open data access.</p><p>The study highlights notable improvements in digitized land registry records and municipal licensing, while pointing out remaining administrative bottlenecks in state-owned enterprise contracting and audit completions.</p><p>The panel urged state oversight bodies to adopt automated algorithmic auditing tools to ensure taxpayer funding translates into tangible infrastructure achievements.</p>",
+      bn: "<p>সুশাসন ও জবাবদিহিতা নিশ্চিতকারী নাগরিক জোট তাদের বার্ষিক জাতীয় স্বচ্ছতা সূচক প্রতিবেদন প্রকাশ করেছে। এতে সরকারি ক্রয়, জননিরাপত্তা এবং উন্মুক্ত তথ্যের প্রাপ্যতার ক্ষেত্রে সাম্প্রতিক অগ্রগতি তুলে ধরা হয়েছে।</p><p>প্রতিবেদনে ভূমি রেজিস্ট্রেশন ও ট্রেড লাইসেন্স ডিজিটালাইজেশনে বড় অগ্রগতির প্রশংসা করা হলেও রাষ্ট্রায়ত্ত সংস্থাগুলোর দরপত্র ও নিরীক্ষায় বিদ্যমান দীর্ঘসূত্রতার সমালোচনা করা হয়েছে।</p><p>প্যানেলটি সরকারি তহবিলের সঠিক ব্যবহার ও টেকসই অবকাঠামো বাস্তবায়নে স্বয়ংক্রিয় অডিট প্রযুক্তি ব্যবহারের সুপারিশ করেছে।</p>"
+    },
+    excerpt: {
+      en: "Civic coalition study notes digitization gains in land registries while urging deeper fiscal auditing across state enterprises.",
+      bn: "নাগরিক জোটের প্রতিবেদনে ভূমি সেবায় ডিজিটালাইজেশনের প্রশংসা করা হয়েছে এবং রাষ্ট্রায়ত্ত খাতের কঠোর নিরীক্ষার তাগিদ দেওয়া হয়েছে।"
+    },
+    category: "politics",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Diplomatic conference table and legal documents",
+        bn: "সম্মেলন কক্ষ ও গুরুত্বপূর্ণ সরকারি নথিপত্র"
+      }
+    },
+    tags: [
+      { en: "Transparency", bn: "স্বচ্ছতা" },
+      { en: "Accountability", bn: "জবাবদিহিতা" },
+      { en: "Civil Society", bn: "সুশীল সমাজ" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(22),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 650,
+    likes: 42,
+    shares: 11,
+    metaTitle: {
+      en: "National Transparency Index Highlights Governance Progress",
+      bn: "জাতীয় স্বচ্ছতা সূচকে সুশাসনের ইতিবাচক চিত্র"
+    },
+    metaDescription: {
+      en: "Annual report benchmarks public sector efficiency, e-governance, and fiscal accountability.",
+      bn: "বার্ষিক প্রতিবেদনে সরকারি খাতের দক্ষতা ও ডিজিটাল সেবার অগ্রগতি তুলে ধরা হয়েছে।"
+    },
+    metaKeywords: ["transparency", "governance", "procurement"]
+  },
+  {
+    title: {
+      en: "Inter-Party Dialogue Committee Convenes to Finalize Code of Electoral Conduct",
+      bn: "নির্বাচনী আচরণবিধি চূড়ান্ত করতে সর্বদলীয় সংলাপ কমিটির বৈঠক অনুষ্ঠিত"
+    },
+    slug: "inter-party-dialogue-committee-convenes-to-finalize-code-of-electoral-conduct",
+    content: {
+      en: "<p>Senior representatives from leading political organizations gathered in the capital today for high-level consultations on the revised statutory Code of Electoral Conduct.</p><p>Key items under deliberation included digital campaigning protocols, restrictions on hate speech across social media platforms, equitable airtime allocation on public broadcast stations, and safety corridors for rally routes.</p><p>Delegates expressed guarded optimism that an all-party compact would be signed before the conclusion of the legislative session, establishing a constructive tone for upcoming campaigns.</p>",
+      bn: "<p>সংশোধিত নির্বাচনী আচরণবিধি চূড়ান্ত করার লক্ষ্যে আজ রাজধানীতে শীর্ষ রাজনৈতিক দলগুলোর প্রতিনিধিদের নিয়ে একটি উচ্চপর্যায়ের সংলাপ অনুষ্ঠিত হয়েছে।</p><p>বৈঠকে ডিজিটাল প্রচারণার নীতিমালা, সামাজিক যোগাযোগ মাধ্যমে বিদ্বেষমূলক বক্তব্য প্রতিরোধ, রাষ্ট্রীয় সম্প্রচার মাধ্যমে সব দলের সমান সুযোগ এবং সমাবেশস্থলের নিরাপত্তা নিয়ে বিস্তারিত আলোচনা হয়।</p><p>অংশগ্রহণকারী প্রতিনিধিরা আশা প্রকাশ করেন যে চলতি সংসদ অধিবেশন শেষ হওয়ার আগেই একটি ঐক্যমত্যের স্মারক স্বাক্ষরিত হবে, যা সুস্থ ধারার নির্বাচনী পরিবেশ গড়ে তুলবে।</p>"
+    },
+    excerpt: {
+      en: "Political delegations collaborate on regulations covering social media campaigning, public airtime, and rally safety.",
+      bn: "নির্বাচনী প্রচারণা ও সামাজিক যোগাযোগ মাধ্যমের সঠিক ব্যবহার নিয়ে দলগুলোর মধ্যে ফলপ্রসূ আলোচনা অনুষ্ঠিত।"
+    },
+    category: "politics",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Political summit meeting room with delegates discussing governance",
+        bn: "রাজনৈতিক সংলাপ কক্ষ ও উপস্থিত প্রতিনিধিবৃন্দ"
+      }
+    },
+    tags: [
+      { en: "Dialogue", bn: "সংলাপ" },
+      { en: "Elections", bn: "নির্বাচন" },
+      { en: "Code of Conduct", bn: "আচরণবিধি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(30),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 980,
+    likes: 71,
+    shares: 22,
+    metaTitle: {
+      en: "All-Party Talks on Electoral Code of Conduct",
+      bn: "নির্বাচনী আচরণবিধি নিয়ে সর্বদলীয় বৈঠক"
+    },
+    metaDescription: {
+      en: "Political leadership deliberates rules on rally management, speech standards, and campaign spending.",
+      bn: "নির্বাচনী প্রচারণা ও আচরণবিধি নিয়ে দলগুলোর নেতারা একমত হয়েছেন।"
+    },
+    metaKeywords: ["politics", "dialogue", "code of conduct"]
+  },
+  {
+    title: {
+      en: "National Youth Parliament Concludes with Ambitious Youth Policy Manifesto",
+      bn: "তারুণ্যের প্রত্যাশা ও রূপরেখা নিয়ে সমাপ্ত হলো জাতীয় যুব সংসদ অধিবেশন"
+    },
+    slug: "national-youth-parliament-concludes-with-ambitious-youth-policy-manifesto",
+    content: {
+      en: "<p>Three hundred youth delegates representing every administrative division concluded the annual National Youth Parliament session, presenting an actionable charter on green innovation, skills development, and digital entrepreneurship to national leaders.</p><p>The declaration emphasizes youth representation in local economic development councils, expanded public grant funding for rural tech incubators, and student mental health hotlines in all public universities.</p><p>Speaker of the National Assembly praised the participants for their rigorous research and constructive proposals, pledging to present the charter during next week's plenary cabinet review.</p>",
+      bn: "<p>দেশের সব প্রশাসনিক বিভাগের তিন শতাধিক তরুণ প্রতিনিধির অংশগ্রহণে জাতীয় যুব সংসদ অধিবেশন সফলভাবে সমাপ্ত হয়েছে। এতে পরিবেশবান্ধব উদ্ভাবন ও কর্মসংস্থান বিষয়ক একটি রূপরেখা ঘোষণা করা হয়।</p><p>ঘোষণাপত্রে স্থানীয় উন্নয়ন কাউন্সিলে তরুণদের প্রতিনিধিত্ব নিশ্চিত করা, গ্রামীণ প্রযুক্তি উদ্যোক্তাদের জন্য অনুদান বৃদ্ধি এবং বিশ্ববিদ্যালয়গুলোতে মানসিক স্বাস্থ্য সুরক্ষা চালুর সুপারিশ করা হয়েছে।</p><p>জাতীয় সংসদের স্পিকার অংশগ্রহণকারীদের গবেষণাধর্মী বক্তব্যের প্রশংসা করেন এবং আগামী মন্ত্রিসভার বৈঠকে এই সুপারিশগুলো উপস্থাপনের প্রতিশ্রুতি দেন।</p>"
+    },
+    excerpt: {
+      en: "Youth parliament delegates submit comprehensive proposals on tech incubators, job creation, and green innovation to government leadership.",
+      bn: "তরুণ উদ্যোক্তা ও যুব প্রতিনিধিদের তৈরি সুপারিশমালা জাতীয় নীতিনির্ধারকদের কাছে আনুষ্ঠানিকভাবে হস্তান্তর করা হয়েছে।"
+    },
+    category: "politics",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Global connectivity and leadership summit representation",
+        bn: "তারুণ্যের উদ্ভাবন ও নেতৃত্বের আন্তর্জাতিক প্রেক্ষাপট"
+      }
+    },
+    tags: [
+      { en: "Youth", bn: "যুব সংসদ" },
+      { en: "Policy", bn: "নীতিমালা" },
+      { en: "Future", bn: "ভবিষ্যৎ" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(45),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 740,
+    likes: 62,
+    shares: 18,
+    metaTitle: {
+      en: "National Youth Parliament Presents Policy Charter",
+      bn: "জাতীয় যুব সংসদের নীতিমালা চার্টার পেশ"
+    },
+    metaDescription: {
+      en: "Youth delegates deliver forward-looking recommendations on employment, sustainability, and technological progress.",
+      bn: "কর্মসংস্থান ও প্রযুক্তিগত অগ্রগতির ওপর তরুণদের সুপারিশমালা প্রকাশ।"
+    },
+    metaKeywords: ["youth", "manifesto", "innovation", "leadership"]
+  },
+
+  // ==========================================
+  // BUSINESS (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "Central Bank Tightens Monetary Policy as Foreign Exchange Reserves Stabilize",
+      bn: "বৈদেশিক মুদ্রার রিজার্ভ স্থিতিশীল হওয়ায় কেন্দ্রীয় ব্যাংকের মুদ্রানীতিতে ভারসাম্য"
+    },
+    slug: "central-bank-tightens-monetary-policy-as-foreign-exchange-reserves-stabilize",
+    content: {
+      en: "<p>The Central Bank has announced its latest quarterly monetary policy statement, maintaining a steady policy rate while introducing targeted credit windows to curb inflationary pressures in wholesale consumer staples.</p><p>Gross official foreign exchange reserves have rebounded past key buffer benchmarks, bolstered by robust worker remittances, streamlined import verification frameworks, and strong ready-made garment export receipts over the preceding quarter.</p><p>Governor reaffirmed the central bank’s commitment to a market-determined unified exchange rate, forecasting sustained fiscal stabilization heading into the final financial quarter.</p>",
+      bn: "<p>কেন্দ্রীয় ব্যাংক তাদের সাম্প্রতিক ত্রৈমাসিক মুদ্রানীতি ঘোষণা করেছে। এতে সামগ্রিক নীতি সুদহার অপরিবর্তিত রাখার পাশাপাশি নিত্যপণ্যের মূল্যস্ফীতি নিয়ন্ত্রণে বিশেষ ঋণ সুবিধা চালু করা হয়েছে।</p><p>প্রবাসীদের পাঠানো শক্তিশালী রেমিট্যান্স, আমদানির স্বচ্ছতা নিশ্চিতকরণ এবং তৈরি পোশাক খাতের সন্তোষজনক রফতানি আয়ের ফলে বৈদেশিক মুদ্রার রিজার্ভ নির্ভরযোগ্য স্তরে ফিরে এসেছে।</p><p>গভর্নর বাজারভিত্তিক একক বিনিময় হারের ওপর জোর দিয়ে বলেন যে, আগামী প্রান্তিকগুলোতে সামষ্টিক অর্থনীতি আরও স্থিতিশীল হবে এবং বিনিয়োগবান্ধব পরিবেশ তৈরি হবে।</p>"
+    },
+    excerpt: {
+      en: "Central bank maintains policy rate while growing remittances and steady garment receipts reinforce foreign exchange reserves.",
+      bn: "রেমিট্যান্স ও রফতানি বৃদ্ধি পাওয়ায় বৈদেশিক মুদ্রার রিজার্ভ শক্তিশালী হচ্ছে এবং মুদ্রানীতিতে ইতিবাচক প্রভাব পড়ছে।"
+    },
+    category: "business",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Stock market trading charts and economic data monitors",
+        bn: "শেয়ার বাজার ও অর্থনৈতিক চার্ট এবং আর্থিক বিশ্লেষণ"
+      }
+    },
+    tags: [
+      { en: "Economy", bn: "অর্থনীতি" },
+      { en: "Banking", bn: "ব্যাংকিং" },
+      { en: "Forex", bn: "বৈদেশিক মুদ্রা" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(3),
+    isFeatured: true,
+    isBreaking: false,
+    isTrending: true,
+    views: 2410,
+    likes: 195,
+    shares: 62,
+    metaTitle: {
+      en: "Central Bank Monetary Policy & Forex Reserves Update",
+      bn: "কেন্দ্রীয় ব্যাংকের মুদ্রানীতি ও রিজার্ভ সংক্রান্ত তথ্য"
+    },
+    metaDescription: {
+      en: "Central bank reviews policy metrics as remittances push forex reserves past quarterly targets.",
+      bn: "রেমিট্যান্সের প্রবৃদ্ধিতে দেশের বৈদেশিক মুদ্রার রিজার্ভে ইতিবাচক ধারা দেখা গেছে।"
+    },
+    metaKeywords: ["central bank", "reserves", "remittance", "monetary policy"]
+  },
+  {
+    title: {
+      en: "Ready-Made Garment Sector Posts Record High-Value Product Shipments to European Markets",
+      bn: "ইউরোপের বাজারে উচ্চ মূল্যের পোশাকে নতুন রফতানি রেকর্ড তৈরি পোশাক খাতের"
+    },
+    slug: "ready-made-garment-sector-posts-record-high-value-product-shipments-to-european-markets",
+    content: {
+      en: "<p>Exporters in the ready-made garment (RMG) industry reported a 14% year-on-year surge in high-value activewear and sustainable synthetic apparel shipments to member states of the European Union.</p><p>Industry leaders attribute the breakthrough to heavy private sector investments in automated knitting facilities, solar-powered LEED platinum manufacturing hubs, and circular textile recycling capabilities.</p><p>Trade federations emphasized that moving up the value chain from basic cotton tees to technical outerwear will shield domestic manufacturers against global raw material price volatility.</p>",
+      bn: "<p>তৈরি পোশাক শিল্পে ইউরোপীয় ইউনিয়নের দেশগুলোতে টেকসই সিন্থেটিক ও হাই-ভ্যালু অ্যাক্টিভওয়্যার রফতানিতে গত বছরের তুলনায় ১৪ শতাংশ প্রবৃদ্ধি অর্জিত হয়েছে।</p><p>শিল্প উদ্যোক্তারা জানান, আধুনিক স্বয়ংক্রিয় নিটিং কারখানা, সৌরশক্তি চালিত পরিবেশবান্ধব লিড প্ল্যাটিনাম ফ্যাক্টরি এবং টেক্সটাইল পুনর্ব্যবহারযোগ্য প্রযুক্তিতে ব্যাপক বিনিয়োগ এই অর্জনে বড় ভূমিকা রেখেছে।</p><p>ব্যবসায়ী নেতারা আশা প্রকাশ করেন যে, সাধারণ সুতি পোশাকের পাশাপাশি প্রিমিয়াম ও টেকনিক্যাল পোশাকে রূপান্তর আন্তর্জাতিক বাজারে প্রতিযোগিতা সক্ষমতা বাড়াবে।</p>"
+    },
+    excerpt: {
+      en: "Automated green manufacturing and technical fabrics propel 14% increase in premium apparel exports to Europe.",
+      bn: "পরিবেশবান্ধব কারখানা ও আধুনিক প্রযুক্তির সহায়তায় ইউরোপে তৈরি পোশাকের রফতানি ১৪ শতাংশ বৃদ্ধি পেয়েছে।"
+    },
+    category: "business",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Modern glass skyscraper representing corporate enterprise",
+        bn: "আধুনিক করপোরেট প্রতিষ্ঠান ও বাণিজ্যিক ভবন"
+      }
+    },
+    tags: [
+      { en: "RMG", bn: "পোশাক শিল্প" },
+      { en: "Export", bn: "রফতানি" },
+      { en: "Trade", bn: "বাণিজ্য" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(9),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 1650,
+    likes: 124,
+    shares: 38,
+    metaTitle: {
+      en: "RMG Sector Records Strong Export Growth to Europe",
+      bn: "ইউরোপে তৈরি পোশাক রফতানিতে রেকর্ড প্রবৃদ্ধি"
+    },
+    metaDescription: {
+      en: "High-value textile shipments surge as automated and green factories expand manufacturing footprint.",
+      bn: "উচ্চ মূল্যের তৈরি পোশাকে আন্তর্জাতিক রফতানি বাজারে নতুন সাফল্য এসেছে।"
+    },
+    metaKeywords: ["rmg", "export", "europe", "textile"]
+  },
+  {
+    title: {
+      en: "National Stock Exchange Index Rallies Led by Tech and Infrastructure Equities",
+      bn: "প্রযুক্তি ও অবকাঠামো খাতের শেয়ারের হাত ধরে দেশের পুঁজিবাজারে চাঙ্গাভাব"
+    },
+    slug: "national-stock-exchange-index-rallies-led-by-tech-and-infrastructure-equities",
+    content: {
+      en: "<p>The benchmark composite index of the National Stock Exchange registered strong gains for the fifth consecutive trading session, crossing psychological resistance levels on the back of broad institutional buying.</p><p>Technology startups, clean energy utilities, and port logistics firms recorded the highest daily turnovers. Market analysts observed renewed interest from foreign portfolio investors attracted by transparent quarterly disclosures and improved liquidity buffers.</p><p>The securities regulator highlighted ongoing enhancements in trading surveillance software to safeguard retail investor interests and deter speculative price manipulation.</p>",
+      bn: "<p>প্রাতিষ্ঠানিক বিনিয়োগকারীদের সক্রিয় অংশগ্রহণে দেশের প্রধান পুঁজিবাজারের সূচকে টানা পঞ্চম দিনের মতো ঊর্ধ্বমুখী প্রবণতা লক্ষ্য করা গেছে।</p><p>প্রযুক্তি কোম্পানি, পরিবেশবান্ধব জ্বালানি এবং বন্দর পরিবহন খাতের শেয়ারগুলোতে সবচেয়ে বেশি লেনদেন হয়েছে। বাজার বিশ্লেষকদের মতে, আর্থিক তথ্যের স্বচ্ছতা এবং তারল্য সংকট দূর হওয়ায় বিদেশি বিনিয়োগকারীদের আস্থা বৃদ্ধি পাচ্ছে।</p><p>পুঁজিবাজার নিয়ন্ত্রক সংস্থা সাধারণ বিনিয়োগকারীদের স্বার্থ রক্ষায় আধুনিক সার্ভিল্যান্স সফটওয়্যার জোরদার করার কথা পুনর্ব্যক্ত করেছে।</p>"
+    },
+    excerpt: {
+      en: "Stock market index crosses major milestones driven by institutional demand in clean energy, tech, and logistics shares.",
+      bn: "প্রাতিষ্ঠানিক কেনাবেচায় গতি আসায় পুঁজিবাজারের প্রধান সূচক উল্লেখযোগ্য পয়েন্ট বৃদ্ধি পেয়েছে।"
+    },
+    category: "business",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Financial analyst monitoring financial markets on multiple screens",
+        bn: "পুঁজিবাজারের চার্ট ও আর্থিক তথ্যের লাইভ মনিটরিং"
+      }
+    },
+    tags: [
+      { en: "Stock Market", bn: "পুঁজিবাজার" },
+      { en: "Finance", bn: "অর্থায়ন" },
+      { en: "Investment", bn: "বিনিয়োগ" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(16),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1120,
+    likes: 85,
+    shares: 24,
+    metaTitle: {
+      en: "Stock Market Rallies Across Tech and Energy Sectors",
+      bn: "পুঁজিবাজারে প্রযুক্তি ও জ্বালানি খাতের উত্থান"
+    },
+    metaDescription: {
+      en: "Institutional capital inflows lift national stock exchange benchmark across key corporate sectors.",
+      bn: "প্রাতিষ্ঠানিক বিনিয়োগ বৃদ্ধিতে শেয়ার বাজারে ইতিবাচক গতি ফিরে এসেছে।"
+    },
+    metaKeywords: ["stocks", "equities", "exchange", "market"]
+  },
+  {
+    title: {
+      en: "Fintech Venture Seed Funding Hits Milestone with Domestic Digital Payment Innovations",
+      bn: "ডিজিটাল পেমেন্ট উদ্ভাবনে দেশীয় ফিনটেক স্টার্টআপের বড় অঙ্কের বৈশ্বিক বিনিয়োগ লাভ"
+    },
+    slug: "fintech-venture-seed-funding-hits-milestone-with-domestic-digital-payment-innovations",
+    content: {
+      en: "<p>A local financial technology enterprise has secured a landmark $25 million Series-A venture round backed by a consortium of regional venture funds and multinational payment aggregators.</p><p>The company specializes in micro-merchant QR integrations and offline wallet settlements, allowing informal corner store owners to accept instant contactless payments without requiring expensive point-of-sale hardware.</p><p>Economists emphasize that widening micro-merchant financial inclusion directly expands the documented digital economy, fostering broader economic resilience.</p>",
+      bn: "<p>দেশের অন্যতম শীর্ষ ফিনটেক প্রতিষ্ঠান আঞ্চলিক ও আন্তর্জাতিক ভেঞ্চার ক্যাপিটালের সমন্বয়ে ২৫ মিলিয়ন ডলারের নতুন সিরিজ-এ বিনিয়োগ নিশ্চিত করেছে।</p><p>প্রতিষ্ঠানটি ক্ষুদ্র ব্যবসায়ীদের জন্য কিউআর কোড ভিত্তিক ডিজিটাল পেমেন্ট ও অফলাইন ওয়ালেট সল্যুশন নিয়ে কাজ করছে, যা প্রান্তিক দোকানিদের সহজে ক্যাশলেস লেনদেন করতে সহায়তা করে।</p><p>অর্থনীতিবিদদের মতে, ক্ষুদ্র ব্যবসায়ীদের আর্থিক অন্তর্ভুক্তির আওতায় আনার মাধ্যমে ডিজিটাল অর্থনীতির পরিধি দ্রুত বৃদ্ধি পাচ্ছে।</p>"
+    },
+    excerpt: {
+      en: "Fintech startup secures $25M in venture backing to deploy micro-merchant contactless payments nationwide.",
+      bn: "ক্ষুদ্র ব্যবসায়ীদের জন্য সহজ পেমেন্ট সুবিধা নিয়ে আসা ফিনটেক প্রতিষ্ঠান পেল বড় অঙ্কের আন্তর্জাতিক তহবিল।"
+    },
+    category: "business",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Contactless digital transaction on a smartphone screen",
+        bn: "স্মার্টফোনে ডিজিটাল লেনদেনের আধুনিক ইন্টারফেস"
+      }
+    },
+    tags: [
+      { en: "Fintech", bn: "ফিনটেক" },
+      { en: "Startups", bn: "স্টার্টআপ" },
+      { en: "Digital Payment", bn: "ডিজিটাল পেমেন্ট" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(24),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 940,
+    likes: 92,
+    shares: 31,
+    metaTitle: {
+      en: "Fintech Startup Closes $25M Series A Round",
+      bn: "ফিনটেক স্টার্টআপের ২৫ মিলিয়ন ডলারের নতুন বিনিয়োগ"
+    },
+    metaDescription: {
+      en: "Domestic payment innovators secure venture backing to expand merchant acceptance infrastructure.",
+      bn: "ডিজিটাল লেনদেন সেবাকে আরও সহজ ও গতিশীল করতে নতুন বিদেশি বিনিয়োগ পেয়েছে স্টার্টআপটি।"
+    },
+    metaKeywords: ["fintech", "startup", "venture capital", "payments"]
+  },
+  {
+    title: {
+      en: "Green Industrial Parks Attract Significant Foreign Direct Investment in Solar and Recycling",
+      bn: "সৌরশক্তি ও পুনর্ব্যবহার শিল্পে পরিবেশবান্ধব শিল্প পার্কে বড় বিদেশি বিনিয়োগ"
+    },
+    slug: "green-industrial-parks-attract-significant-foreign-direct-investment-in-solar-and-recycling",
+    content: {
+      en: "<p>Special economic zones designated for circular manufacturing have officially finalized leases with four multinational clean tech conglomerates, drawing an estimated $340 million in direct equity.</p><p>The investment focuses on industrial-scale lithium battery recycling facilities and rooftop bifacial photovoltaic component assembly, creating an estimated 8,500 technical manufacturing jobs over the next two years.</p><p>Zone authorities highlighted integrated zero-liquid discharge effluent treatment plants and uninterrupted renewable power grids as key factors winning international investor commitments.</p>",
+      bn: "<p>পরিবেশবান্ধব ও রিসাইক্লিং ভিত্তিক বিশেষ অর্থনৈতিক অঞ্চলে ৪টি বহুজাতিক প্রতিষ্ঠান ৩৪০ মিলিয়ন ডলারের সরাসরি বৈদেশিক বিনিয়োগ চূড়ান্ত করেছে।</p><p>এই বিনিয়োগের মূল ক্ষেত্র হলো ইন্ডাস্ট্রিয়াল লিথিয়াম ব্যাটারি পুনর্ব্যবহার এবং উন্নত রুফটপ সোলার প্যানেল সংযোজন। আগামী দুই বছরে এতে প্রায় ৮,৫০০ দক্ষ কর্মসংস্থান সৃষ্টি হবে বলে আশা করা হচ্ছে।</p><p>অর্থনৈতিক অঞ্চল কর্তৃপক্ষ জানায়, অত্যাধুনিক বর্জ্য শোধনাগার এবং নিরবচ্ছিন্ন সবুজ বিদ্যুৎ সুবিধা বিনিয়োগকারীদের আকর্ষণ করতে সক্ষম হয়েছে।</p>"
+    },
+    excerpt: {
+      en: "Four global clean-tech enterprises commit $340M in green economic zones for clean power manufacturing and battery recycling.",
+      bn: "পরিবেশবান্ধব অর্থনৈতিক অঞ্চলে ৩৪০ মিলিয়ন ডলার বিনিয়োগের চুক্তি সম্পন্ন করেছে আন্তর্জাতিক প্রতিষ্ঠানগুলো।"
+    },
+    category: "business",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Business analytics dashboard and sustainable corporate growth",
+        bn: "ব্যবসায়িক গ্রোথ চার্ট ও পরিবেশবান্ধব উৎপাদনের ডেটা"
+      }
+    },
+    tags: [
+      { en: "FDI", bn: "বিদেশি বিনিয়োগ" },
+      { en: "Clean Energy", bn: "সবুজ শক্তি" },
+      { en: "Industry", bn: "শিল্প" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(36),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 780,
+    likes: 67,
+    shares: 16,
+    metaTitle: {
+      en: "Green Industrial Parks Draw $340M in Clean Tech FDI",
+      bn: "পরিবেশবান্ধব শিল্পাঞ্চলে ৩৪০ মিলিয়ন ডলার বিদেশি বিনিয়োগ"
+    },
+    metaDescription: {
+      en: "Clean technology investors back recycling and solar component production across special economic zones.",
+      bn: "সবুজ শিল্পাঞ্চলে বিদেশি বিনিয়োগ দেশের শিল্প খাতকে আরও আধুনিক করবে।"
+    },
+    metaKeywords: ["fdi", "clean energy", "recycling", "manufacturing"]
+  },
+  {
+    title: {
+      en: "Agricultural Commodity Marketplaces Digitize Supply Chains to Protect Smallholder Incomes",
+      bn: "কৃষিপণ্যের সাপ্লাই চেইনে ডিজিটাল প্ল্যাটফর্ম: ন্যায্যমূল্য পাচ্ছেন প্রান্তিক চাষিরা"
+    },
+    slug: "agricultural-commodity-marketplaces-digitize-supply-chains-to-protect-smallholder-incomes",
+    content: {
+      en: "<p>A collaborative agritech initiative launched across sixteen agricultural clusters is connecting vegetable, fruit, and grain growers directly with metropolitan wholesale buyers via real-time smartphone auction apps.</p><p>By bypassing multiple tiers of middlemen and providing refrigerated freight logistics, participating farmers have reported average income improvements of 22% while city retailers benefit from reduced post-harvest spoilage.</p><p>The Ministry of Agriculture confirmed plans to subsidize solar-powered cold storage depots along major riverine shipping hubs to complement the digital marketplace rollout.</p>",
+      bn: "<p>দেশের ১৬টি কৃষি অঞ্চলে চালু হওয়া নতুন অ্যাগ্রিটেক প্ল্যাটফর্মের মাধ্যমে প্রান্তিক কৃষকেরা সরাসরি বিভাগীয় পাইকারি ক্রেতাদের সাথে যুক্ত হচ্ছেন।</p><p>মধ্যস্বত্বভোগীদের দৌরাত্ম্য হ্রাস এবং শীতাতপ নিয়ন্ত্রিত পরিবহন ব্যবস্থার কারণে কৃষকদের আয় গড়ে ২২ শতাংশ বৃদ্ধি পেয়েছে এবং পণ্যের অপচয় লক্ষণীয় মাত্রায় কমেছে।</p><p>কৃষি মন্ত্রণালয় জানিয়েছে, এই ডিজিটাল মার্কেটপ্লেসকে সহায়তা দিতে প্রধান নদী বন্দরগুলোতে সৌরচালিত আধুনিক হিমাগার স্থাপন করা হবে।</p>"
+    },
+    excerpt: {
+      en: "Direct farm-to-retail smartphone auctions boost growers' revenues by 22% while curbing post-harvest spoilage.",
+      bn: "সরাসরি পাইকারি ক্রেতাদের কাছে বিক্রির ডিজিটাল সুবিধায় কৃষকের আয় ২২ শতাংশ বৃদ্ধি পেয়েছে।"
+    },
+    category: "business",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Currency exchange and agricultural trade financial flow",
+        bn: "কৃষিপণ্যের বাণিজ্য ও ডিজিটাল অর্থনীতির আর্থিক লেনদেন"
+      }
+    },
+    tags: [
+      { en: "Agritech", bn: "কৃষি প্রযুক্তি" },
+      { en: "Supply Chain", bn: "সাপ্লাই চেইন" },
+      { en: "Farming", bn: "কৃষি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(50),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 690,
+    likes: 54,
+    shares: 14,
+    metaTitle: {
+      en: "Agritech Platforms Transform Farm Gate Supply Chains",
+      bn: "ডিজিটাল প্ল্যাটফর্মে কৃষিপণ্যের বাজার রূপান্তর"
+    },
+    metaDescription: {
+      en: "Digital auction platforms reduce intermediaries and enhance agricultural profitability for smallholders.",
+      bn: "কৃষকদের উৎপাদিত পণ্যের ন্যায্যমূল্য নিশ্চিতে ডিজিটাল উদ্যোগ কার্যকর ভূমিকা রাখছে।"
+    },
+    metaKeywords: ["agritech", "supply chain", "agriculture", "economy"]
+  },
+
+  // ==========================================
+  // SPORTS (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "National Cricket Squad Clinches Thrilling Final-Over Victory in Championship Decider",
+      bn: "শ্বাসরুদ্ধকর শেষ ওভারের রোমাঞ্চে চ্যাম্পিয়নশিপ সিরিজ জিতল জাতীয় ক্রিকেট দল"
+    },
+    slug: "national-cricket-squad-clinches-thrilling-final-over-victory-in-championship-decider",
+    content: {
+      en: "<p>In an unforgettable finish under floodlights, the national cricket team secured a dramatic two-wicket victory on the penultimate ball of the final one-day international, sealing the three-match series 2-1.</p><p>Chasing a challenging target of 288 on a turning track, the middle order recovered from early setbacks through a composed 92-run partnership, before a boundary-laden cameo by the tailenders triggered euphoric celebrations among the 35,000 capacity crowd.</p><p>The team captain praised the squad's mental composure during high-pressure overs, highlighting rigorous tactical fielding drills ahead of upcoming international fixtures.</p>",
+      bn: "<p>স্টেডিয়ামের ফ্লাডলাইটের নিচে এক শ্বাসরুদ্ধকর রোমাঞ্চকর ম্যাচে শেষ ওভারের পঞ্চম বলে ২ উইকেটে জয় নিশ্চিত করেছে জাতীয় ক্রিকেট দল। এর মাধ্যমে তিন ম্যাচের ওয়ানডে সিরিজ ২-১ ব্যবধানে নিজেদের করে নিল তারা।</p><p>২৮৮ রানের চ্যালেঞ্জিং লক্ষ্য তাড়া করতে নেমে শুরুতে উইকেট হারালেও মিডল অর্ডারের ৯২ রানের অনবদ্য জুটিতে খেলায় ফেরে দল। শেষ দিকে লোয়ার অর্ডারের আক্রমণাত্মক ব্যাটিংয়ে গ্যালারিভরা ৩৫ হাজার দর্শক উল্লাসে ফেটে পড়েন।</p><p>অধিনায়ক দলের মানসিক দৃঢ়তা ও ফিল্ডারদের চমৎকার পারফরম্যান্সের প্রশংসা করে বলেন, আসন্ন বড় টুর্নামেন্টের আগে এই সিরিজ জয় দলের আত্মবিশ্বাস বাড়িয়ে দেবে।</p>"
+    },
+    excerpt: {
+      en: "Penultimate ball boundary seals a memorable 2-wicket series triumph in front of a capacity home crowd.",
+      bn: "শেষ ওভারের নাটকীয়তায় ২ উইকেটের দুর্দান্ত জয়ে ওয়ানডে সিরিজ নিজেদের করে নিল জাতীয় দল।"
+    },
+    category: "sports",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Soccer ball resting on stadium grass pitch under floodlights",
+        bn: "স্টেডিয়ামের সবুজ ঘাসে ফুটবল ও মাঠের চমৎকার দৃশ্য"
+      }
+    },
+    tags: [
+      { en: "Cricket", bn: "ক্রিকেট" },
+      { en: "Sports", bn: "খেলাধুলা" },
+      { en: "Championship", bn: "চ্যাম্পিয়নশিপ" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(1),
+    isFeatured: true,
+    isBreaking: true,
+    isTrending: true,
+    views: 3450,
+    likes: 310,
+    shares: 115,
+    metaTitle: {
+      en: "National Cricket Team Wins Thrilling Final-Over Series",
+      bn: "শেষ ওভারে শ্বাসরুদ্ধকর ক্রিকেট সিরিজ জয়"
+    },
+    metaDescription: {
+      en: "Dramatic 2-wicket victory caps off three-match international series in unforgettable fashion.",
+      bn: "শেষ ওভারের রোমাঞ্চে সিরিজ জয় নিশ্চিত করল জাতীয় ক্রিকেট দল।"
+    },
+    metaKeywords: ["cricket", "series win", "sports", "match report"]
+  },
+  {
+    title: {
+      en: "Continental Football Tournament: Underdogs Stun Giants to Reach Historic Semi-Final",
+      bn: "মহাদেশীয় ফুটবল: ফেবারিটদের বিদায় করে প্রথমবার সেমিফাইনালে চমক জাগানো দল"
+    },
+    slug: "continental-football-tournament-underdogs-stun-giants-to-reach-historic-semi-final",
+    content: {
+      en: "<p>In one of the most stunning upsets in regional football history, the resilient national under-23 football team dismantled five-time champions with a tactically flawless 2-0 quarter-final triumph.</p><p>Operating with a disciplined high-press and lethal transitional counter-attacks, the underdogs broke the deadlock in the 38th minute before an audacious curling strike from outside the penalty box sealed the historic qualification.</p><p>Thousands of supporters took to city avenues waving team scarves as civic monuments lit up in national colors to honor the squad's relentless work ethic.</p>",
+      bn: "<p>আঞ্চলিক ফুটবলের অন্যতম বড় অঘটন ঘটিয়ে পাঁচবারের চ্যাম্পিয়ন দলকে ২-০ গোলে হারিয়ে প্রথমবারের মতো মহাদেশীয় টুর্নামেন্টের সেমিফাইনালে উঠেছে অনূর্ধ্ব-২৩ দল।</p><p>পরিকল্পিত কাউন্টার অ্যাটাক ও সুশৃঙ্খল রক্ষণভাগ দিয়ে প্রতিপক্ষকে চেপে ধরে ম্যাচের ৩৮ মিনিটে প্রথম গোল আদায় করে নেয় তরুণ দল। এরপর দ্বিতীয়ার্ধে বক্সের বাইরে থেকে চমৎকার দূরপাল্লার শটে দ্বিতীয় গোলটি নিশ্চিত করে জয়।</p><p>ম্যাচ শেষ হতেই হাজারো ফুটবলপ্রেমী রাস্তায় নেমে উল্লাস প্রকাশ করেন এবং দেশজুড়ে ক্রীড়ামোদী মানুষের মাঝে আনন্দের জোয়ার বয়ে যায়।</p>"
+    },
+    excerpt: {
+      en: "Disciplined tactical pressing and a stunning long-range strike send underdog under-23 squad into semi-finals.",
+      bn: "৫ বারের চ্যাম্পিয়নদের ২-০ গোলে হারিয়ে ঐতিহাসিক সেমিফাইনাল নিশ্চিত করল তারুণ্যদীপ্ত ফুটবল দল।"
+    },
+    category: "sports",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Football stadium lights and competitive action on field",
+        bn: "ফুটবল স্টেডিয়ামের ফ্লাডলাইট ও মাঠের রোমাঞ্চকর পরিবেশ"
+      }
+    },
+    tags: [
+      { en: "Football", bn: "ফুটবল" },
+      { en: "Semi-Final", bn: "সেমিফাইনাল" },
+      { en: "Underdogs", bn: "চমক" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(6),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 2890,
+    likes: 240,
+    shares: 88,
+    metaTitle: {
+      en: "Historic Football Semi-Final Qualification",
+      bn: "ফুটবলে ঐতিহাসিক সেমিফাইনাল নিশ্চিত"
+    },
+    metaDescription: {
+      en: "Under-23 football squad achieves historic upset to book place in continental tournament semi-finals.",
+      bn: "অনূর্ধ্ব-২৩ ফুটবল দলের দুর্দান্ত জয় ও সেমিফাইনালে ওঠার খবর।"
+    },
+    metaKeywords: ["football", "soccer", "upset", "tournament"]
+  },
+  {
+    title: {
+      en: "Rising Tennis Prodigy Claims Debut Senior Grand Slam Qualifying Victory",
+      bn: "অভিষেক গ্র্যান্ড স্লামের বাছাই পর্বে তরুণ উদীয়মান টেনিস তারকার চমকপ্রদ জয়"
+    },
+    slug: "rising-tennis-prodigy-claims-debut-senior-grand-slam-qualifying-victory",
+    content: {
+      en: "<p>Nineteen-year-old tennis sensation showcased blistering court coverage and an uncompromising backhand to sweep through the first qualifying round of the prestigious International Grand Slam.</p><p>Facing an experienced world top-100 seeded opponent, the young talent held nerve through consecutive tiebreaks, delivering eleven aces and converting four crucial break points across two intense hours of play.</p><p>Coaching staff attributed the breakthrough to specialized biomechanical conditioning and mental stamina training completed at the national sports academy.</p>",
+      bn: "<p>১৯ বছর বয়সী উদীয়মান টেনিস তারকা আন্তর্জাতিক গ্র্যান্ড স্লামের প্রথম বাছাই পর্বে অসাধারণ নৈপুণ্য দেখিয়ে জয় তুলে নিয়েছেন।</p><p>বিশ্বের শীর্ষ ১০০ জনের মধ্যকার অভিজ্ঞ খেলোয়াড়ের বিপক্ষে লড়াইয়ে টানা দুটি টাইব্রেকারে ধৈর্য ধরে ১১টি এস এবং চারটি ব্রেক পয়েন্ট আদায় করেন তিনি।</p><p>জাতীয় ক্রীড়া একাডেমির কোচিং স্টাফরা জানান, দীর্ঘমেয়াদি শারীরিক ও মানসিক ফিটনেস ট্রেনিংয়ের ফলেই বিশ্বমঞ্চে এমন সাফল্য অর্জন সম্ভব হয়েছে।</p>"
+    },
+    excerpt: {
+      en: "19-year-old athlete defeats seasoned top-100 player in straight-set tiebreak battle to advance in Grand Slam qualifier.",
+      bn: "আন্তর্জাতিক মঞ্চে অভিজ্ঞ প্রতিপক্ষকে হারিয়ে গ্র্যান্ড স্লামের পরবর্তী রাউন্ডে পৌঁছালেন তরুণ টেনিস প্রতিভা।"
+    },
+    category: "sports",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Swimmer diving into competition pool lane",
+        bn: "সাঁতার প্রতিযোগিতায় অংশ নেওয়া ক্রীড়াবিদ"
+      }
+    },
+    tags: [
+      { en: "Tennis", bn: "টেনিস" },
+      { en: "Grand Slam", bn: "গ্র্যান্ড স্লাম" },
+      { en: "Young Talent", bn: "উদীয়মান প্রতিভা" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(18),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1420,
+    likes: 110,
+    shares: 34,
+    metaTitle: {
+      en: "Tennis Prodigy Wins Grand Slam Qualifying Match",
+      bn: "গ্র্যান্ড স্লাম বাছাই পর্বে জয়ী উদীয়মান টেনিস তারকা"
+    },
+    metaDescription: {
+      en: "Sensational straight-sets performance sends teenage star into the next phase of major tournament.",
+      bn: "টেনিস কোর্টে নতুন ইতিহাস রচনার পথে তরুণ খেলোয়াড়।"
+    },
+    metaKeywords: ["tennis", "grand slam", "prodigy", "sports"]
+  },
+  {
+    title: {
+      en: "National Athletics Championship Breaks Three Long-Standing Sprint and Hurdles Records",
+      bn: "জাতীয় অ্যাথলেটিক্সে স্প্রিন্ট ও হার্ডলসে ৩টি দীর্ঘদিনের জাতীয় রেকর্ড ভঙ্গ"
+    },
+    slug: "national-athletics-championship-breaks-three-long-standing-sprint-and-hurdles-records",
+    content: {
+      en: "<p>The opening days of the 48th National Athletics Championships produced extraordinary milestones as sprinters shattered national marks in the men's 100m, women's 400m hurdles, and 4x100m relay.</p><p>The electronic timer clocked a historic sub-10.20 second finish in the blue-riband men's sprint, met by a standing ovation from coaches, officials, and enthusiastic young club runners lining the perimeter.</p><p>The Athletics Federation announced performance grants and overseas high-performance training camps for all podium finishers aiming for Olympic qualification.</p>",
+      bn: "<p>৪৮তম জাতীয় অ্যাথলেটিক্স প্রতিযোগিতার প্রথম দুই দিনেই নতুন ইতিহাসের সৃষ্টি হয়েছে। পুরুষদের ১০০ মিটার স্প্রিন্ট, নারীদের ৪০০ মিটার হার্ডলস এবং ৪ গুণন ১০০ মিটার রিলেতে নতুন জাতীয় রেকর্ড গড়েছেন অ্যাথলেটরা।</p><p>১০০ মিটার স্প্রিন্টে ইলেকট্রনিক টাইমিংয়ে ১০.২০ সেকেন্ডের কম সময়ে ফিনিশিং লাইন স্পর্শ করে নতুন দ্রুততম মানবের খেতাব অর্জন করেন প্রতিযোগী।</p><p>অ্যাথলেটিক্স ফেডারেশন পদকজয়ী সকল ক্রীড়াবিদের জন্য বিশেষ আর্থিক অনুদান এবং অলিম্পিক প্রস্তুতির জন্য আন্তর্জাতিক উন্নত প্রশিক্ষণের ঘোষণা দিয়েছে।</p>"
+    },
+    excerpt: {
+      en: "Sprinters establish new electronic timing benchmarks in 100m and 400m hurdles at national stadium meet.",
+      bn: "জাতীয় স্টেডিয়ামে ১০০ মিটার স্প্রিন্ট ও হার্ডলসে ভেঙে গেল বহু বছরের পুরনো জাতীয় রেকর্ড।"
+    },
+    category: "sports",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Runners sprinting on an all-weather red athletics track",
+        bn: "অ্যাথলেটিক্স ট্র্যাকে দৌড়বিদদের রোমাঞ্চকর স্প্রিন্ট প্রতিযোগিতা"
+      }
+    },
+    tags: [
+      { en: "Athletics", bn: "অ্যাথলেটিক্স" },
+      { en: "Sprint", bn: "স্প্রিন্ট" },
+      { en: "Records", bn: "রেকর্ড" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(26),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 980,
+    likes: 76,
+    shares: 20,
+    metaTitle: {
+      en: "Sprint Records Broken at National Athletics Championship",
+      bn: "জাতীয় অ্যাথলেটিক্সে স্প্রিন্ট রেকর্ড ভঙ্গ"
+    },
+    metaDescription: {
+      en: "Three long-standing national marks fall in electrifying performances at the 48th National Championship.",
+      bn: "জাতীয় ক্রীড়া প্রতিযোগিতায় নতুন টাইমিং গড়ে নজর কেড়েছেন অ্যাথলেটরা।"
+    },
+    metaKeywords: ["athletics", "sprint", "records", "olympics"]
+  },
+  {
+    title: {
+      en: "Grassroots Youth Academy Expands Rural Talent Hunt Program to Sixty-Four Districts",
+      bn: "৬৪ জেলায় বিস্তৃত হচ্ছে তৃণমূল প্রতিভা অন্বেষণের জাতীয় যুব স্পোর্টস একাডেমি"
+    },
+    slug: "grassroots-youth-academy-expands-rural-talent-hunt-program-to-sixty-four-districts",
+    content: {
+      en: "<p>The National Sports Development Trust has commenced an expansive multi-discipline talent identification campaign across every administrative district, testing over 50,000 student athletes.</p><p>Coaching scouts evaluate agility, endurance, hand-eye coordination, and tactical thinking across football, archery, gymnastics, cricket, and swimming, awarding full residential scholarships to top performers.</p><p>Sports scientists and nutritionists are embedded with mobile evaluation vans, providing biomechanical analysis and sports psychology workshops to physical education teachers.</p>",
+      bn: "<p>দেশব্যাপী প্রতিভাবান ক্ষুদে খেলোয়াড় খুঁজে বের করতে ৬৪ জেলায় একযোগে শুরু হয়েছে জাতীয় ক্রীড়া উন্নয়ন ট্রাস্টের প্রতিভা অন্বেষণ কর্মসূচি। এতে ৫০ হাজার শিক্ষার্থী অংশ নিচ্ছে।</p><p>অভিজ্ঞ স্কাউটরা ফুটবল, আরচারি, জিমন্যাস্টিকস, ক্রিকেট ও সাঁতারে শিক্ষার্থীদের শারীরিক সক্ষমতা ও মানসিক একাগ্রতা পর্যবেক্ষণ করে সেরা নির্বাচিতদের আবাসিক বৃত্তি প্রদান করছেন।</p><p>প্রতিটি জেলায় মোবাইল ল্যাবের মাধ্যমে ক্রীড়া বিজ্ঞান ও সঠিক পুষ্টি বিষয়ে শিক্ষকদের প্রশিক্ষণও প্রদান করা হচ্ছে।</p>"
+    },
+    excerpt: {
+      en: "Over 50,000 young athletes tested across 64 districts with residential scholarships for top emerging talents.",
+      bn: "দেশের ৬৪ জেলায় তৃণমূল পর্যায়ে ৫০ হাজার প্রতিভাবান কিশোর-কিশোরীকে প্রশিক্ষণের আওতায় আনা হচ্ছে।"
+    },
+    category: "sports",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Athletic track lanes and finish line ready for competition",
+        bn: "ট্র্যাক অ্যান্ড ফিল্ড প্রতিযোগিতার লাইন ও ফিনিশিং পয়েন্ট"
+      }
+    },
+    tags: [
+      { en: "Grassroots", bn: "তৃণমূল ক্রীড়া" },
+      { en: "Youth", bn: "তরুণ প্রতিভা" },
+      { en: "Training", bn: "প্রশিক্ষণ" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(38),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 820,
+    likes: 68,
+    shares: 19,
+    metaTitle: {
+      en: "Grassroots Talent Hunt Expands Across 64 Districts",
+      bn: "৬৪ জেলায় তৃণমূল ক্রীড়া প্রতিভা অন্বেষণ শুরু"
+    },
+    metaDescription: {
+      en: "National sports academy identifies 50,000 emerging athletes with residential training grants.",
+      bn: "দেশের প্রত্যন্ত অঞ্চল থেকে নতুন ক্রীড়াবিদ গড়ে তোলার মহাপরিকল্পনা বাস্তবায়িত হচ্ছে।"
+    },
+    metaKeywords: ["grassroots", "sports academy", "training", "youth"]
+  },
+  {
+    title: {
+      en: "Premier Basketball League Season Finale Draws Unprecedented Arena Attendance",
+      bn: "প্রিমিয়ার বাস্কেটবল লিগের ফাইনালে উপচে পড়া ভিড় ও উৎসবমুখর সমাপ্তি"
+    },
+    slug: "premier-basketball-league-season-finale-draws-unprecedented-arena-attendance",
+    content: {
+      en: "<p>The grand finale of the National Premier Basketball League delivered an electric spectacle as defending champions held off a fierce fourth-quarter comeback to retain their crown with an 88-85 buzzer victory.</p><p>The indoor gymnasium buzzed with thousands of energetic university students, sporting community banners and matching team colors, reflecting the rapid surge of youth basketball culture.</p><p>League organizers announced plans for expanded televised broadcasts and two new municipal expansion franchises ahead of the upcoming winter season.</p>",
+      bn: "<p>জাতীয় প্রিমিয়ার বাস্কেটবল লিগের ফাইনালে শেষ মুহূর্তের নাটকীয়তায় ডিফেন্ডিং চ্যাম্পিয়নরা ৮৮-৮৫ পয়েন্টে শ্বাসরুদ্ধকর জয় পেয়ে শিরোপা ধরে রেখেছে।</p><p>ইনডোর জিমনেসিয়ামে হাজারো তরুণ শিক্ষার্থীর উপস্থিতি ও উৎসাহ পুরো পরিবেশকে উৎসবমুখর করে তোলে। সাম্প্রতিক সময়ে তরুণদের মাঝে বাস্কেটবলের জনপ্রিয়তা দ্রুত বৃদ্ধি পাচ্ছে।</p><p>আয়োজক কমিটি জানিয়েছে, আগামী মৌসুমে আরও দুটি নতুন ফ্র্যাঞ্চাইজি দল অন্তর্ভুক্ত করার পাশাপাশি সবগুলো ম্যাচ সরাসরি টেলিভিশনে সম্প্রচার করা হবে।</p>"
+    },
+    excerpt: {
+      en: "Defending champions edge rivals 88-85 in front of packed university crowd as basketball gains widespread momentum.",
+      bn: "শেষ মুহূর্তের রোমাঞ্চে ৮৮-৮৫ পয়েন্টে শিরোপা ধরে রাখল প্রিমিয়ার বাস্কেটবল লিগের চ্যাম্পিয়নরা।"
+    },
+    category: "sports",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Gymnasium weight room and athletic physical conditioning equipment",
+        bn: "ক্রীড়াবিদদের ইনডোর ট্রেনিং ও ফিটনেস সেন্টারের দৃশ্য"
+      }
+    },
+    tags: [
+      { en: "Basketball", bn: "বাস্কেটবল" },
+      { en: "League", bn: "লিগ" },
+      { en: "Championship", bn: "ফাইনাল" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(52),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 650,
+    likes: 49,
+    shares: 12,
+    metaTitle: {
+      en: "Basketball League Season Finale Thriller",
+      bn: "প্রিমিয়ার বাস্কেটবল লিগে নাটকীয় ফাইনাল জয়"
+    },
+    metaDescription: {
+      en: "Electric indoor arena witnesses buzzer victory as basketball expands footprint among university youth.",
+      bn: "ইনডোর স্টেডিয়ামে উপভোগ্য ফাইনাল ম্যাচের মাধ্যমে শেষ হলো বাস্কেটবল লিগ।"
+    },
+    metaKeywords: ["basketball", "championship", "finals", "league"]
+  },
+
+  // ==========================================
+  // ENTERTAINMENT (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "Independent Cinema Masterpiece Wins Prestigious Golden Crown at International Film Festival",
+      bn: "আন্তর্জাতিক চলচ্চিত্র উৎসবে দেশের স্বাধীন চলচ্চিত্রের সেরা সম্মাননা 'গোল্ডেন ক্রাউন' লাভ"
+    },
+    slug: "independent-cinema-masterpiece-wins-prestigious-golden-crown-at-international-film-festival",
+    content: {
+      en: "<p>A critically acclaimed domestic independent feature film has secured the coveted Golden Crown Best Picture award at the 34th International Cine Arts Festival, marking a landmark triumph for regional cinema.</p><p>Directed by an innovative young filmmaker and shot entirely on location in the river delta, the film delves into multi-generational migration, community memory, and cultural preservation with poignant visual lyricism.</p><p>International distribution rights were promptly acquired by leading art-house streaming platforms across North America, Europe, and East Asia during festival market screenings.</p>",
+      bn: "<p>৩৪তম আন্তর্জাতিক চলচ্চিত্র উৎসবে দেশের একটি স্বাধীন পূর্ণদৈর্ঘ্য চলচ্চিত্র সেরা চলচ্চিত্র হিসেবে মর্যাদাপূর্ণ 'গোল্ডেন ক্রাউন' পুরস্কার লাভ করেছে। এটি দেশের চলচ্চিত্রের জন্য এক অনন্য গৌরবজনক অর্জন।</p><p>নদীমাতৃক প্রান্তিক জনপদের জীবনযাত্রা, আবহমান সংস্কৃতি ও সম্পর্কের টানাপোড়েন অসাধারণ ক্যামেরার কাজ ও নিখুঁত চিত্রনাট্যের মাধ্যমে পর্দায় ফুটিয়ে তুলেছেন তরুণ নির্মাতা।</p><p>চলচ্চিত্র প্রদর্শনীর পরপরই উত্তর আমেরিকা, ইউরোপ ও এশিয়ার শীর্ষস্থানীয় স্ট্রিমিং প্ল্যাটফর্মগুলো সিনেমাটির আন্তর্জাতিক পরিবেশনা স্বত্ব গ্রহণ করেছে।</p>"
+    },
+    excerpt: {
+      en: "River delta narrative wins Best Picture at international festival and secures multi-continent art-house streaming distribution.",
+      bn: "আন্তর্জাতিক চলচ্চিত্র উৎসবে দেশের স্বাধীন চলচ্চিত্র সেরা ছবির পুরস্কার জিতে বিশ্বমঞ্চে প্রশংসিত হয়েছে।"
+    },
+    category: "entertainment",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Classic movie theatre auditorium cinema seats and screen",
+        bn: "সিনেমা হলের অডিটোরিয়াম ও বড় পর্দার ঐতিহ্যবাহী নান্দনিক রূপ"
+      }
+    },
+    tags: [
+      { en: "Cinema", bn: "চলচ্চিত্র" },
+      { en: "Film Festival", bn: "চলচ্চিত্র উৎসব" },
+      { en: "Awards", bn: "পুরস্কার" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(4),
+    isFeatured: true,
+    isBreaking: false,
+    isTrending: true,
+    views: 2150,
+    likes: 210,
+    shares: 65,
+    metaTitle: {
+      en: "Independent Feature Wins International Film Award",
+      bn: "আন্তর্জাতিক চলচ্চিত্র উৎসবে সেরা ছবির পুরস্কার জয়"
+    },
+    metaDescription: {
+      en: "Domestic independent cinema makes history by claiming the top prize at prestigious global film festival.",
+      bn: "আন্তর্জাতিক উৎসবে স্বর্ণমুকুট জয় করে বিশ্বমঞ্চে সম্মানিত হলো দেশীয় চলচ্চিত্র।"
+    },
+    metaKeywords: ["cinema", "film festival", "award", "independent film"]
+  },
+  {
+    title: {
+      en: "Legendary Classical Maestro Celebrates Jubilee with Masterful Symphony Concert",
+      bn: "৫০ বছরের সুরসাধনা: সুরসম্রাটের বর্ণাঢ্য জয়ন্তী কনসার্টে সুরের মূর্ছনা"
+    },
+    slug: "legendary-classical-maestro-celebrates-jubilee-with-masterful-symphony-concert",
+    content: {
+      en: "<p>Music enthusiasts packed the National Opera House for a spellbinding three-hour jubilee performance celebrating fifty illustrious years of classical sarod and sitar orchestration by the country’s beloved maestro.</p><p>Accompanied by a sixty-piece multicultural orchestra fusing ancient ragas with symphonic brass, the performance earned five standing ovations and was broadcast live to international diaspora networks worldwide.</p><p>During the ceremony, the Ministry of Cultural Affairs conferred the National Living Heritage medal, acknowledging the maestro’s life work establishing free classical music conservatories for underprivileged youth.</p>",
+      bn: "<p>সঙ্গীতপ্রেমীদের উপচে পড়া ভিড়ে জাতীয় অপেরা হাউসে অনুষ্ঠিত হলো সুরের যাদুকর প্রখ্যাত সঙ্গীতজ্ঞের ৫০ বছর পূর্তির সুবর্ণ জয়ন্তী কনসার্ট।</p><p>৬০ সদস্যের বহুমাত্রিক অর্কেস্ট্রার সাথে সরোদ ও সেতারের ঐতিহ্যবাহী রাগ এবং সুরের মেলবন্ধনে মুগ্ধ হন উপস্থিত হাজারো দর্শক। কনসার্টটি সরাসরি সম্প্রচার করা হয় দেশ-বিদেশের নানা প্রান্তে।</p><p>অনুষ্ঠানে সংস্কৃতি বিষয়ক মন্ত্রণালয় থেকে তাঁকে 'জাতীয় জীবন্ত কিংবদন্তি' স্বর্ণপদকে ভূষিত করা হয় এবং তাঁর প্রতিষ্ঠিত সঙ্গীত একাডেমির ভূয়সী প্রশংসা করা হয়।</p>"
+    },
+    excerpt: {
+      en: "National Opera House hosts monumental jubilee concert blending classical ragas with symphonic orchestra to celebrate 50-year career.",
+      bn: "শাস্ত্রীয় সুর ও অর্কেস্ট্রার অপূর্ব সমন্বয়ে সঙ্গীতপ্রেমীদের মুগ্ধ করল সুরসম্রাটের ৫০ বছর পূর্তির কনসার্ট।"
+    },
+    category: "entertainment",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Live concert stage with vibrant lighting and cheering crowd",
+        bn: "কনসার্ট মঞ্চের বর্ণিল আলো ও দর্শক শ্রোতাদের আনন্দঘন মুহূর্ত"
+      }
+    },
+    tags: [
+      { en: "Music", bn: "সঙ্গীত" },
+      { en: "Classical", bn: "শাস্ত্রীয় সঙ্গীত" },
+      { en: "Concert", bn: "কনসার্ট" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(11),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 1780,
+    likes: 165,
+    shares: 44,
+    metaTitle: {
+      en: "Classical Maestro Jubilee Symphony Concert",
+      bn: "শাস্ত্রীয় সঙ্গীতের বর্ণাঢ্য জয়ন্তী কনসার্ট"
+    },
+    metaDescription: {
+      en: "Three-hour masterclass in classical orchestration celebrates five decades of iconic musical contribution.",
+      bn: "৫০ বছরের সঙ্গীত জীবনের স্মরণে সুরসম্রাটের জাদুকরী কনসার্ট।"
+    },
+    metaKeywords: ["music", "classical", "concert", "maestro"]
+  },
+  {
+    title: {
+      en: "National Theatre Festival Opens with Provocative Folk Heritage Drama Adaptations",
+      bn: "ঐতিহ্যবাহী লোকনাট্যের নতুন রূপ নিয়ে শুরু হলো জাতীয় নাট্যোৎসব"
+    },
+    slug: "national-theatre-festival-opens-with-provocative-folk-heritage-drama-adaptations",
+    content: {
+      en: "<p>The two-week National Drama Biennial commenced at the central theater complex, bringing together forty repertory companies presenting reinterpretations of indigenous folk mythology and contemporary social satire.</p><p>Opening night saw an avant-garde physical theater troupe deliver a breathtaking rendition of age-old riverine folklore, utilizing live folk instruments, shadow puppetry, and experimental chorus choreography.</p><p>Organizers noted record online advance ticket sales among younger theatergoers, underscoring growing generational engagement with live dramatic arts.</p>",
+      bn: "<p>কেন্দ্রীয় নাট্যমঞ্চে শুরু হয়েছে দুই সপ্তাহব্যাপী জাতীয় নাট্য উৎসব। এতে দেশের ৪০টি খ্যাতনামা নাট্যদল তাদের নতুন ও ঐতিহ্যবাহী নাটক মঞ্চস্থ করছে।</p><p>উদ্বোধনী সন্ধ্যায় নদীমাতৃক লোকগাথা ও সমকালীন সমাজবাস্তবতার মিশেলে তৈরি একটি পরীক্ষামূলক নাটক দর্শকদের তুমুল প্রশংসা কুড়ায়। এতে ঐতিহ্যবাহী বাদ্যযন্ত্র ও ছায়ানাট্যের আধুনিক মেলবন্ধন ঘটানো হয়।</p><p>আয়োজকরা জানান, অনলাইন টিকিট বিক্রি শুরুর কয়েক ঘণ্টার মধ্যেই প্রথম সপ্তাহের সবগুলো নাটকের টিকিট শেষ হয়ে যায়, যা তরুণদের থিয়েটারপ্রীতির প্রমাণ দেয়।</p>"
+    },
+    excerpt: {
+      en: "Forty dramatic troupes gather for biennial festival showcasing folk mythology, experimental stagecraft, and social commentary.",
+      bn: "লোকগাথা ও আধুনিক নাট্যকৌশলের সমন্বয়ে শুরু হলো জাতীয় নাট্য উৎসবের বর্ণিল আসর।"
+    },
+    category: "entertainment",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Concert DJ and performance lights over illuminated festival audience",
+        bn: "লাইভ স্টেজ শো ও সুরের মূর্ছনায় মেতে ওঠা দর্শক"
+      }
+    },
+    tags: [
+      { en: "Theatre", bn: "নাটক" },
+      { en: "Folk", bn: "লোকসংস্কৃতি" },
+      { en: "Festival", bn: "উৎসব" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(20),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 920,
+    likes: 80,
+    shares: 21,
+    metaTitle: {
+      en: "National Theatre Festival Opens in Capital",
+      bn: "রাজধানীতে শুরু হলো জাতীয় নাট্যোৎসব"
+    },
+    metaDescription: {
+      en: "Two-week dramatic showcase features 40 theater troupes presenting contemporary and heritage productions.",
+      bn: "লোকনাট্য ও আধুনিক মঞ্চের সম্মিলনে নাট্যোৎসব দর্শক সমাগমে জমজমাট।"
+    },
+    metaKeywords: ["theatre", "drama", "arts", "festival"]
+  },
+  {
+    title: {
+      en: "Contemporary Art Biennial Showcases Immersive Multimedia Installations on Climate Resilience",
+      bn: "জলবায়ু সহনশীলতা ও শিল্পকলার মেলবন্ধনে সমকালীন আর্ট বিয়েনাল প্রদর্শনী"
+    },
+    slug: "contemporary-art-biennial-showcases-immersive-multimedia-installations-on-climate-resilience",
+    content: {
+      en: "<p>The National Art Gallery opened its doors to the International Contemporary Art Biennial, featuring works by over eighty visual artists exploring ecological adaptation, urban memory, and coastal preservation.</p><p>Among the standout installations is an interactive sensory pavillion made from reclaimed river silt and recycled solar glass, projecting tidal soundscapes recorded along the vulnerable coastal mangroves.</p><p>Curators emphasized the exhibition's role in translating scientific environmental research into emotive visual dialogues accessible to general citizens and schoolchildren.</p>",
+      bn: "<p>জাতীয় চিত্রশালায় শুরু হয়েছে আন্তর্জাতিক সমকালীন আর্ট বিয়েনাল প্রদর্শনী। এতে দেশ-বিদেশের ৮০ জনের বেশি শিল্পীর চিত্রকর্ম ও ভাস্কর্য স্থান পেয়েছে।</p><p>প্রদর্শনীর অন্যতম মূল আকর্ষণ পুনর্ব্যবহৃত নদীর পলিমাটি ও কাচ দিয়ে তৈরি একটি বিশাল ইন্টারঅ্যাক্টিভ প্যাভিলিয়ন, যা সুন্দরবনের জোয়ারভাটার শব্দতরঙ্গ ও রূপ উপস্থাপন করে।</p><p>কিউরেটররা জানান, জলবায়ু পরিবর্তনের বৈজ্ঞানিক সত্যকে শিল্পকলার মাধ্যমে মানুষের হৃদয়ে পৌঁছে দেওয়াই এই প্রদর্শনীর মূল উদ্দেশ্য।</p>"
+    },
+    excerpt: {
+      en: "Eighty international and domestic visual artists unveil interactive installations exploring coastal ecosystems and memory.",
+      bn: "জলবায়ু পরিবর্তন ও উপকূলীয় জীবনের গল্প নিয়ে জাতীয় চিত্রশালায় শুরু হলো আর্ট বিয়েনাল প্রদর্শনী।"
+    },
+    category: "entertainment",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Abstract colorful art paint palette and fine arts creative tools",
+        bn: "চিত্রশিল্পীর তুলি ও নান্দনিক রঙের ক্যানভাস"
+      }
+    },
+    tags: [
+      { en: "Art", bn: "শিল্পকলা" },
+      { en: "Exhibition", bn: "প্রদর্শনী" },
+      { en: "Culture", bn: "সংস্কৃতি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(28),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 760,
+    likes: 64,
+    shares: 17,
+    metaTitle: {
+      en: "Contemporary Art Biennial on Climate Resilience",
+      bn: "জলবায়ু সহনশীলতা নিয়ে সমকালীন আর্ট প্রদর্শনী"
+    },
+    metaDescription: {
+      en: "Visual artists merge ecological sciences with multimedia installations at the National Art Gallery.",
+      bn: "চিত্রকর্ম ও ভাস্কর্যের মাধ্যমে পরিবেশ সচেতনতার অভিনব প্রদর্শনী।"
+    },
+    metaKeywords: ["art", "biennial", "exhibition", "climate"]
+  },
+  {
+    title: {
+      en: "Streaming Period Drama Series Shatters Domestic Viewership Records in Debut Weekend",
+      bn: "ওটিটি প্ল্যাটফর্মে ইতিহাসভিত্তিক ওয়েব সিরিজের সর্বকালের সেরা ভিউয়ারশিপ রেকর্ড"
+    },
+    slug: "streaming-period-drama-series-shatters-domestic-viewership-records-in-debut-weekend",
+    content: {
+      en: "<p>A lavishly produced eight-episode historical drama chronicling the 19th-century river trade merchants has become the most-streamed domestic original production in platform history within 48 hours of release.</p><p>Featuring high-definition period costumes, painstakingly reconstructed colonial port sets, and compelling multi-layered performances, the series achieved critical praise for historical fidelity and dramatic pacing.</p><p>Industry observers note that high-budget local streaming originals are successfully capturing domestic audiences previously loyal to foreign television imports.</p>",
+      bn: "<p>ঊনবিংশ শতাব্দীর নদীবাণিজ্য ও ঐতিহাসিক পটভূমি নিয়ে নির্মিত নতুন একটি ওয়েব সিরিজ মুক্তির মাত্র ৪৮ ঘণ্টার মধ্যে ওটিটি প্ল্যাটফর্মের সর্বকালের ভিউয়ারশিপ রেকর্ড ভেঙেছে।</p><p>ঐতিহাসিক নিখুঁত কস্টিউম, অসাধারণ সিনেমাটোগ্রাফি এবং শিল্পীদের প্রাণবন্ত অভিনয়ের কারণে সিরিজটি সমালোচক ও সাধারণ দর্শক উভয় মহলেই ব্যাপক সাড়া ফেলেছে।</p><p>বিশ্লেষকদের মতে, মানসম্মত দেশীয় কনটেন্ট নির্মাণের ফলে দর্শকেরা এখন বিদেশি নাটকের চেয়ে দেশি ওয়েব সিরিজের প্রতি বেশি আগ্রহী হচ্ছেন।</p>"
+    },
+    excerpt: {
+      en: "Lavish historical original drama tops regional streaming charts with record-breaking debut weekend engagement.",
+      bn: "মুক্তি পেয়েই রেকর্ড ভিউয়ারশিপ অর্জন করল নদী বাণিজ্যের ইতিহাস নিয়ে নির্মিত ওয়েব সিরিজ।"
+    },
+    category: "entertainment",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Crowd celebrating at an outdoor cultural festival with raised hands",
+        bn: "উৎসবমুখর পরিবেশে সাংস্কৃতিক অনুষ্ঠানে আনন্দিত দর্শক"
+      }
+    },
+    tags: [
+      { en: "Streaming", bn: "ওটিটি" },
+      { en: "Drama", bn: "নাটক" },
+      { en: "History", bn: "ইতিহাস" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(40),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1890,
+    likes: 175,
+    shares: 56,
+    metaTitle: {
+      en: "Historical Streaming Series Breaks Viewership Records",
+      bn: "ওটিটিতে ইতিহাসভিত্তিক সিরিজের রেকর্ড ভিউ"
+    },
+    metaDescription: {
+      en: "High-production-value regional period drama sweeps domestic streaming charts in debut weekend.",
+      bn: "নতুন ওয়েব সিরিজের ব্যাপক সাফল্য দেশীয় বিনোদন জগতে নতুন মাত্রা যোগ করেছে।"
+    },
+    metaKeywords: ["streaming", "drama", "series", "entertainment"]
+  },
+  {
+    title: {
+      en: "Restoration of Century-Old Heritage Cinema Hall Preserves Golden Age Architectural Splendor",
+      bn: "শতবর্ষী ঐতিহ্যবাহী প্রেক্ষাগৃহের সংস্কার: ফিরে এল রূপালী পর্দার গৌরবময় স্মৃতি"
+    },
+    slug: "restoration-of-century-old-heritage-cinema-hall-preserves-golden-age-architectural-splendor",
+    content: {
+      en: "<p>Civil conservationists and cinema lovers celebrated the reopening of the historic 1928 Art Deco movie palace, meticulously restored through public-private cultural heritage grants.</p><p>The restoration revived the iconic hand-carved mahogany banisters, ornate ceiling frescoes, and original brass ticket kiosks, while discreetly installing 4K laser projection and immersive acoustics for contemporary screening comfort.</p><p>The venue will host weekly retrospectives of classic 35mm prints alongside student film screenings and community arts discussions.</p>",
+      bn: "<p>ঐতিহ্য সংরক্ষণবিদ ও চলচ্চিত্রপ্রেমীদের দীর্ঘ প্রতীক্ষার অবসান ঘটিয়ে আনুষ্ঠানিকভাবে পুনরায় চালু হলো ১৯২৮ সালে নির্মিত ঐতিহ্যবাহী আর্ট ডেকো সিনেমা হল।</p><p>হস্তনির্মিত কাঠের কারুকাজ, ছাদের অলঙ্করণ এবং পিতলের পুরনো কাউন্টার অবিকল সংরক্ষণ করার পাশাপাশি এতে অত্যাধুনিক ফোর-কে লেজার প্রজেকশন ও ডলবি সাউন্ড সিস্টেম যুক্ত করা হয়েছে।</p><p>এখানে নিয়মিত পুরনো ক্লাসিক চলচ্চিত্র প্রদর্শনীর পাশাপাশি তরুণ নির্মাতাদের স্বল্পদৈর্ঘ্য চলচ্চিত্র প্রদর্শনী ও আলোচনা সভার আয়োজন করা হবে।</p>"
+    },
+    excerpt: {
+      en: "1928 Art Deco movie palace reopens with restored vintage interiors combined with modern 4K laser projection.",
+      bn: "ঐতিহাসিক স্থাপত্যশৈলী ও আধুনিক প্রযুক্তির সমন্বয়ে সংস্কার শেষে পুনরায় চালু হলো শতবর্ষী সিনেমা হল।"
+    },
+    category: "entertainment",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Auditorium stage spotlight and theatre performance lights",
+        bn: "মঞ্চের স্পটলাইট ও নান্দনিক অডিটোরিয়াম আলো"
+      }
+    },
+    tags: [
+      { en: "Heritage", bn: "ঐতিহ্য" },
+      { en: "Architecture", bn: "স্থাপত্য" },
+      { en: "Cinema", bn: "সিনেমা" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(54),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 710,
+    likes: 58,
+    shares: 15,
+    metaTitle: {
+      en: "Historic Art Deco Cinema Palace Restored",
+      bn: "শতবর্ষী ঐতিহ্যবাহী সিনেমা হলের পুনর্জন্ম"
+    },
+    metaDescription: {
+      en: "Century-old movie palace blends architectural conservation with 4K laser projection capabilities.",
+      bn: "ঐতিহ্যবাহী প্রেক্ষাগৃহের সংস্কার সিনেমা অনুরাগী ও পর্যটকদের আকর্ষণ করছে।"
+    },
+    metaKeywords: ["heritage", "cinema", "restoration", "architecture"]
+  },
+
+  // ==========================================
+  // TECHNOLOGY (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "Researchers Deploy Indigenous AI Diagnostic System Across Thirty District Hospitals",
+      bn: "৩০টি জেলা হাসপাতালে দেশের নিজস্ব এআই ডায়াগনস্টিক প্রযুক্তির সফল পরীক্ষণ শুরু"
+    },
+    slug: "researchers-deploy-indigenous-ai-diagnostic-system-across-thirty-district-hospitals",
+    content: {
+      en: "<p>A pioneering consortium of biomedical engineers and national medical universities has rolled out a breakthrough clinical AI tool capable of screening chest X-rays, retinal scans, and ultrasound imagery within ninety seconds.</p><p>Trained on anonymized multi-demographic local clinical databases, the open-weight diagnostic engine achieves over 97% concordance with senior radiologist evaluations, providing crucial second opinions in rural hospitals with specialist shortages.</p><p>The Ministry of Health announced that the technology runs locally on low-power edge computing devices without requiring high-bandwidth internet connections, safeguarding patient data privacy.</p>",
+      bn: "<p>দেশের শীর্ষ প্রকৌশলী ও চিকিৎসকদের যৌথ উদ্যোগে তৈরি একটি আধুনিক এআই ডায়াগনস্টিক সফটওয়্যার ৩০টি জেলা হাসপাতালে সফলভাবে চালু করা হয়েছে। এটি মাত্র ৯০ সেকেন্ডে বুকের এক্স-রে, রেটিনা ও আল্ট্রাসাউন্ড স্ক্যান নিখুঁতভাবে বিশ্লেষণ করতে পারে।</p><p>স্থানীয় রোগীদের লাখ লাখ তথ্যের ওপর প্রশিক্ষণপ্রাপ্ত এই কৃত্রিম বুদ্ধিমত্তা ব্যবস্থা অভিজ্ঞ রেডিওলজিস্টদের মতামতের সাথে ৯৭ শতাংশ নির্ভুলতা প্রদর্শন করেছে, যা বিশেষজ্ঞ চিকিৎসকের ঘাটতি থাকা গ্রামীণ এলাকায় বড় সহায় হবে।</p><p>স্বাস্থ্য মন্ত্রণালয় জানিয়েছে, এই প্রযুক্তি ইন্টারনেট সংযোগ ছাড়াই সাধারণ কম ক্ষমতার কম্পিউটারে নিরাপদে কাজ করতে পারে এবং রোগীদের তথ্যের শতভাগ গোপনীয়তা নিশ্চিত করে।</p>"
+    },
+    excerpt: {
+      en: "Locally trained medical AI platform provides rapid 90-second radiological screening in rural and district hospitals.",
+      bn: "জেলা হাসপাতালে রোগীর এক্স-রে ও স্ক্যান রিপোর্ট দ্রুত মূল্যায়নে নিজস্ব এআই প্রযুক্তি চালু করল গবেষকরা।"
+    },
+    category: "technology",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Abstract digital neural network and artificial intelligence visualization",
+        bn: "কৃত্রিম বুদ্ধিমত্তা ও ডিজিটাল নিউরাল নেটওয়ার্কের আধুনিক চিত্র"
+      }
+    },
+    tags: [
+      { en: "AI", bn: "কৃত্রিম বুদ্ধিমত্তা" },
+      { en: "HealthTech", bn: "স্বাস্থ্য প্রযুক্তি" },
+      { en: "Innovation", bn: "উদ্ভাবন" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(2),
+    isFeatured: true,
+    isBreaking: false,
+    isTrending: true,
+    views: 2650,
+    likes: 245,
+    shares: 82,
+    metaTitle: {
+      en: "Medical AI Diagnostic Platform Deployed in Hospitals",
+      bn: "হাসপাতালে দেশীয় এআই প্রযুক্তির সফল ব্যবহার"
+    },
+    metaDescription: {
+      en: "Biomedical consortium launches rapid edge-computed radiology screening across 30 public health hubs.",
+      bn: "স্বাস্থ্যসেবায় যুগান্তকারী পরিবর্তন আনছে দেশীয় এআই ডায়াগনস্টিক সিস্টেম।"
+    },
+    metaKeywords: ["artificial intelligence", "healthtech", "radiology", "diagnostics"]
+  },
+  {
+    title: {
+      en: "High-Speed 5G and Deep-Sea Fiber Upgrades Deliver Quadrupled Internet Speeds",
+      bn: "নতুন সাবমেরিন ক্যাবল ও ৫জি সম্প্রসারণে ইন্টারনেটের গতি বাড়ল চার গুণ"
+    },
+    slug: "high-speed-5g-and-deep-sea-fiber-upgrades-deliver-quadrupled-internet-speeds",
+    content: {
+      en: "<p>Telecommunications operators have activated the commercial connection to the third national deep-sea submarine cable system, immediately quadrupling international bandwidth capacity and slashing packet latency by 60%.</p><p>Concurrently, mobile network operators completed the rollout of over 1,200 standalone 5G base stations across major commercial districts, industrial export zones, and universities.</p><p>The milestone is expected to catalyze domestic cloud hosting infrastructure, software testing centers, and automated manufacturing pipelines across the technology ecosystem.</p>",
+      bn: "<p>তৃতীয় সাবমেরিন ক্যাবলের বাণিজ্যিক সংযোগ সফলভাবে সক্রিয় হওয়ায় দেশের আন্তর্জাতিক ব্যান্ডউইথ সক্ষমতা চার গুণ বৃদ্ধি পেয়েছে এবং নেটওয়ার্ক ল্যাটেন্সি ৬০ শতাংশ কমেছে।</p><p>একই সাথে মোবাইল অপারেটরগুলো বাণিজ্যিক এলাকা, ইপিজেড এবং বিশ্ববিদ্যালয়গুলোতে এক হাজারেরও বেশি নতুন ৫জি বেইজ স্টেশন চালু করেছে।</p><p>এই উন্নয়ন দেশের ক্লাউড হোস্টিং, সফটওয়্যার রফতানি এবং স্বয়ংক্রিয় শিল্প কারখানার উন্নয়নে ব্যাপক ইতিবাচক প্রভাব ফেলবে বলে প্রত্যাশা করা হচ্ছে।</p>"
+    },
+    excerpt: {
+      en: "Third submarine cable activation and 1,200 standalone 5G base stations slash internet latency and quadruple bandwidth.",
+      bn: "নতুন সাবমেরিন ক্যাবল ও ৫জি চালুর ফলে দেশের ইন্টারনেটের গতি ও স্থিতিশীলতায় বড় ধরনের অগ্রগতি হয়েছে।"
+    },
+    category: "technology",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Microchip processor and circuitry hardware close-up",
+        bn: "উন্নত মাইক্রোপ্রসেসর ও সার্কিট বোর্ডের ক্লোজ-আপ দৃশ্য"
+      }
+    },
+    tags: [
+      { en: "5G", bn: "৫জি" },
+      { en: "Telecom", bn: "টেলিকম" },
+      { en: "Infrastructure", bn: "অবকাঠামো" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(8),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 1980,
+    likes: 180,
+    shares: 60,
+    metaTitle: {
+      en: "5G Rollout and Third Submarine Cable Link Online",
+      bn: "৫জি ও তৃতীয় সাবমেরিন ক্যাবলের সুবিধা চালু"
+    },
+    metaDescription: {
+      en: "Nationwide connectivity receives major boost as new undersea fiber infrastructure goes live.",
+      bn: "উচ্চগতির ইন্টারনেট সুবিধা নিয়ে এলো নতুন সাবমেরিন ক্যাবল ও ৫জি সংযোগ।"
+    },
+    metaKeywords: ["5g", "submarine cable", "internet", "bandwidth"]
+  },
+  {
+    title: {
+      en: "National Cyber Security Operations Center Unveils Next-Gen Automated Threat Shield",
+      bn: "সাইবার আক্রমণ ঠেকাতে জাতীয় নিরাপত্তা কেন্দ্রের স্বয়ংক্রিয় 'থ্রেট শিল্ড' চালু"
+    },
+    slug: "national-cyber-security-operations-center-unveils-next-gen-automated-threat-shield",
+    content: {
+      en: "<p>The National Computer Emergency Response Agency has inaugurated a state-of-the-art automated cyber defense center designed to shield critical national information infrastructure from sophisticated ransomware and state-sponsored intrusions.</p><p>The platform inspects billions of network packets per second utilizing behavior-anomaly heuristic engines, automatically isolating compromised endpoints across banking gateways, energy grids, and civil registry portals.</p><p>Chief Information Security Officer emphasized that mandatory compliance audits will be conducted across all licensed financial institutions to ensure end-to-end cryptographic integrity.</p>",
+      bn: "<p>গুরুত্বপূর্ণ জাতীয় তথ্য পরিকাঠামো সুরক্ষার লক্ষ্যে জাতীয় সাইবার নিরাপত্তা সংস্থা একটি সর্বাধুনিক স্বয়ংক্রিয় থ্রেট মনিটরিং সেন্টার চালু করেছে।</p><p>এই প্ল্যাটফর্মটি প্রতি সেকেন্ডে শত কোটি নেটওয়ার্ক প্যাকেট পর্যবেক্ষণ করে এবং সন্দেহজনক আচরণ শনাক্ত করামাত্রই স্বয়ংক্রিয়ভাবে ম্যালওয়্যার ও সাইবার আক্রমণ প্রতিহত করতে সক্ষম।</p><p>সাইবার নিরাপত্তা প্রধান জানান, ব্যাংক, বিদ্যুৎ গ্রিড ও সরকারি ডেটা সেন্টারের মতো স্পর্শকাতর খাতগুলোকে এই সার্বক্ষণিক নিরাপত্তা চাদরের আওতায় আনা হয়েছে।</p>"
+    },
+    excerpt: {
+      en: "Cyber defense center deploys behavioral heuristics to guard critical banking, energy, and registry data against intrusions.",
+      bn: "ব্যাংকিং ও জাতীয় গ্রিডের সুরক্ষায় ২৪ ঘণ্টা স্বয়ংক্রিয় নজরদারির সাইবার নিরাপত্তা ব্যবস্থা কার্যকর হলো।"
+    },
+    category: "technology",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Cybersecurity binary data streams and secure encryption concept",
+        bn: "সাইবার নিরাপত্তা ও তথ্যের এনক্রিপশন সিস্টেমের প্রতীকী চিত্র"
+      }
+    },
+    tags: [
+      { en: "Cybersecurity", bn: "সাইবার নিরাপত্তা" },
+      { en: "Defense", bn: "সুরক্ষা" },
+      { en: "Tech", bn: "প্রযুক্তি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(15),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1350,
+    likes: 95,
+    shares: 28,
+    metaTitle: {
+      en: "National Cyber Security Center Launches Threat Shield",
+      bn: "জাতীয় সাইবার নিরাপত্তা কেন্দ্রের নতুন থ্রেট শিল্ড"
+    },
+    metaDescription: {
+      en: "Automated cyber defense apparatus protects critical infrastructure against sophisticated network threats.",
+      bn: "গুরুত্বপূর্ণ সরকারি ও বাণিজ্যিক ডেটা সুরক্ষায় নতুন সাইবার শিল্ড চালু করা হয়েছে।"
+    },
+    metaKeywords: ["cybersecurity", "threat shield", "data protection", "infosec"]
+  },
+  {
+    title: {
+      en: "Domestic Semiconductor Design Firm Secures Global Automotive Microcontroller Contract",
+      bn: "বৈশ্বিক অটোমোবাইল চিপ তৈরিতে বড় চুক্তি পেল দেশীয় সেমিকন্ডাক্টর ডিজাইন প্রতিষ্ঠান"
+    },
+    slug: "domestic-semiconductor-design-firm-secures-global-automotive-microcontroller-contract",
+    content: {
+      en: "<p>In an unprecedented breakthrough for the local high-tech hardware industry, a domestic fabless semiconductor firm has won a multi-million-dollar supply contract with an international electric vehicle manufacturer.</p><p>The engineering team designed a low-power, high-efficiency micro-controller unit (MCU) optimized for battery management systems, outperforming rival designs in thermal durability tests conducted in Germany.</p><p>The Ministry of Science and ICT confirmed plans to co-fund clean-room testing labs in collaboration with top engineering universities to nurture the next cohort of chip architects.</p>",
+      bn: "<p>দেশের উচ্চপ্রযুক্তি হার্ডওয়্যার শিল্পের জন্য এক অনন্য ইতিহাস সৃষ্টি করে একটি দেশীয় ফ্যাবলেস সেমিকন্ডাক্টর ডিজাইন প্রতিষ্ঠান আন্তর্জাতিক বৈদ্যুতিক গাড়ি প্রস্তুতকারকের সাথে চিপ সরবরাহের চুক্তি স্বাক্ষর করেছে।</p><p>প্রতিষ্ঠানটির তরুণ প্রকৌশলীরা ব্যাটারি ম্যানেজমেন্টের জন্য স্বল্প ক্ষমতার অথচ অত্যন্ত দক্ষ একটি মাইক্রোকন্ট্রোলার ডিজাইন করেছেন, যা জার্মানির ল্যাবে সফলভাবে তাপ সহনশীলতার পরীক্ষায় উত্তীর্ণ হয়েছে।</p><p>বিজ্ঞান ও তথ্যপ্রযুক্তি মন্ত্রণালয় জানিয়েছে, দেশে দক্ষ চিপ ডিজাইনার গড়ে তুলতে বিশ্ববিদ্যালয়গুলোর ল্যাবে বিশেষ অনুদান প্রদান করা হবে।</p>"
+    },
+    excerpt: {
+      en: "Local fabless microchip firm designs breakthrough battery management controller for global electric vehicles.",
+      bn: "আন্তর্জাতিক বৈদ্যুতিক গাড়ির জন্য উন্নত মাইক্রোচিপ তৈরির চুক্তি জিতে ইতিহাস গড়ল দেশীয় প্রতিষ্ঠান।"
+    },
+    category: "technology",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Computer code on programmer display screen in dark mode",
+        bn: "কম্পিউটার স্ক্রিনে সফটওয়্যার প্রোগ্রামিং ও কোডিংয়ের দৃশ্য"
+      }
+    },
+    tags: [
+      { en: "Semiconductors", bn: "সেমিকন্ডাক্টর" },
+      { en: "Hardware", bn: "হার্ডওয়্যার" },
+      { en: "EV", bn: "বৈদ্যুতিক গাড়ি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(27),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1180,
+    likes: 104,
+    shares: 36,
+    metaTitle: {
+      en: "Semiconductor Firm Wins Global EV Microchip Contract",
+      bn: "সেমিকন্ডাক্টর চিপ তৈরিতে বৈশ্বিক চুক্তি লাভ"
+    },
+    metaDescription: {
+      en: "Domestic chip designers achieve international breakthrough with proprietary automotive microcontroller architecture.",
+      bn: "আন্তর্জাতিক অটোমোবাইল বাজারে স্থান করে নিয়েছে দেশের সেমিকন্ডাক্টর উদ্ভাবন।"
+    },
+    metaKeywords: ["semiconductor", "microchips", "hardware", "ev"]
+  },
+  {
+    title: {
+      en: "Next-Gen Open-Source LLM Architecture Released with Full Bilingual Bengali-English Benchmark",
+      bn: "বাংলা ও ইংরেজি ভাষার শক্তিশালী বাইলিঙ্গুয়াল ওপেন-সোর্স লার্জ ল্যাঙ্গুয়েজ মডেল প্রকাশ"
+    },
+    slug: "next-gen-open-source-llm-architecture-released-with-full-bilingual-bengali-english-benchmark",
+    content: {
+      en: "<p>A collective of independent AI researchers and university labs has open-sourced an 8-billion parameter bilingual language model designed specifically for low-resource South Asian linguistic nuances.</p><p>The model outperforms mainstream frontier proprietary models on complex Bengali reasoning, grammar translation, and legal document summarization while running efficiently on consumer-grade workstation GPUs.</p><p>Developers across the country have already begun integrating the open weights into local enterprise chatbots, legal research assistants, and educational tutoring platforms.</p>",
+      bn: "<p>দেশের কৃত্রিম বুদ্ধিমত্তা গবেষক ও বিভিন্ন বিশ্ববিদ্যালয়ের যৌথ উদ্যোগে ৮ বিলিয়ন প্যারামিটারের একটি সম্পূর্ণ ওপেন-সোর্স লার্জ ল্যাঙ্গুয়েজ মডেল (এলএলএম) উন্মুক্ত করা হয়েছে।</p><p>বাংলা ভাষার জটিল ব্যাকরণ, ভাবার্থ অনুবাদ এবং আইনি নথি সংক্ষেপণে মডেলটি বিশ্বখ্যাত অনেক বাণিজ্যিক এআই মডেলকে ছাড়িয়ে গেছে এবং এটি সাধারণ কম্পিউটারেও কাজ করতে সক্ষম।</p><p>দেশীয় সফটওয়্যার নির্মাতারা ইতিমধ্যেই গ্রাহক সেবা, আইনি সহায়তা ও শিক্ষামূলক অ্যাপে এই মডেলের ব্যবহার শুরু করেছেন।</p>"
+    },
+    excerpt: {
+      en: "Open-source 8B parameter language model delivers benchmark-leading Bengali reasoning and translation capabilities.",
+      bn: "বাংলা ভাষা ও সাহিত্যের নির্ভুল অনুধাবনে যুগান্তকারী ওপেন-সোর্স এআই মডেল উন্মুক্ত করেছে গবেষকরা।"
+    },
+    category: "technology",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Engineering team collaborating around laptops in modern tech office",
+        bn: "প্রযুক্তি প্রতিষ্ঠানের আধুনিক অফিসে প্রকৌশলীদের কর্মব্যস্ততা"
+      }
+    },
+    tags: [
+      { en: "Open Source", bn: "ওপেন সোর্স" },
+      { en: "LLM", bn: "ভাষা মডেল" },
+      { en: "AI", bn: "এআই" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(37),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1450,
+    likes: 130,
+    shares: 45,
+    metaTitle: {
+      en: "Open-Source Bilingual LLM Released by Local Researchers",
+      bn: "বাংলা ও ইংরেজির জন্য নতুন ওপেন-সোর্স এআই মডেল"
+    },
+    metaDescription: {
+      en: "New 8-billion parameter language model sets new accuracy benchmark for South Asian NLP applications.",
+      bn: "প্রাকৃতিক ভাষা প্রক্রিয়াকরণে নতুন মাইলফলক সৃষ্টি করল দেশীয় গবেষকদের এআই মডেল।"
+    },
+    metaKeywords: ["open source", "llm", "ai", "bilingual model"]
+  },
+  {
+    title: {
+      en: "Renewable Microgrids with AI Smart Distribution Transform Energy Reliability in River Islands",
+      bn: "নদীমাতৃক চরাঞ্চলে এআই চালিত সৌর মাইক্রোগ্রিড: ঘরে ঘরে পৌঁছেছে নিরবচ্ছিন্ন বিদ্যুৎ"
+    },
+    slug: "renewable-microgrids-with-ai-smart-distribution-transform-energy-reliability-in-river-islands",
+    content: {
+      en: "<p>Isolated riverine char communities once entirely disconnected from the national transmission grid are now powered 24/7 by modular floating solar micro-grids managed by automated battery optimization software.</p><p>The system dynamically balances battery charging cycles during peak monsoon cloud cover, prioritizing electricity for community vaccine clinics, primary school computers, and household lighting.</p><p>International sustainable development agencies cited the decentralized deployment as an ideal replicable model for off-grid coastal regions worldwide.</p>",
+      bn: "<p>মূল ভূখণ্ড থেকে বিচ্ছিন্ন দুর্গম চরাঞ্চলে স্বয়ংক্রিয় এআই পরিচালিত ভাসমান সৌর মাইক্রোগ্রিডের মাধ্যমে শতভাগ পরিবারে সার্বক্ষণিক বিদ্যুৎ সুবিধা নিশ্চিত করা হয়েছে।</p><p>মেঘলা আবহাওয়াতেও এই স্মার্ট সিস্টেম স্বয়ংক্রিয়ভাবে বিদ্যুতের প্রবাহ সমন্বয় করে গ্রামীণ ক্লিনিকের টিকা সংরক্ষণ হিমাগার, বিদ্যালয়ের কম্পিউটার ও ঘরে ঘরে আলো জ্বালাতে পারে।</p><p>আন্তর্জাতিক টেকসই উন্নয়ন সংস্থাগুলো দুর্গম উপকূলীয় অঞ্চলের জন্য এই মডেলটিকে অনুকরণীয় দৃষ্টান্ত হিসেবে স্বীকৃতি দিয়েছে।</p>"
+    },
+    excerpt: {
+      en: "Smart floating solar microgrids provide uninterrupted 24/7 clean energy to previously off-grid riverine communities.",
+      bn: "আধুনিক সৌরপ্রযুক্তির কল্যাণে দুর্গম চরাঞ্চলের মানুষের জীবনযাত্রায় এসেছে বৈপ্লবিক পরিবর্তন।"
+    },
+    category: "technology",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Sleek modern laptop computer glowing in dark high-tech environment",
+        bn: "উন্নত প্রযুক্তির ল্যাপটপ ও আধুনিক গ্যাজেটের প্রতীকী ছবি"
+      }
+    },
+    tags: [
+      { en: "Clean Energy", bn: "সবুজ শক্তি" },
+      { en: "Solar", bn: "সৌরবিদ্যুৎ" },
+      { en: "Smart Grid", bn: "স্মার্ট গ্রিড" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(49),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 810,
+    likes: 72,
+    shares: 20,
+    metaTitle: {
+      en: "Smart Solar Microgrids Power Off-Grid River Islands",
+      bn: "চরাঞ্চলে এআই পরিচালিত সৌর মাইক্রোগ্রিড"
+    },
+    metaDescription: {
+      en: "Decentralized floating solar arrays with smart energy storage bring uninterrupted clean power to remote communities.",
+      bn: "নদীমাতৃক চরের মানুষের জীবনমানের উন্নয়ন ঘটাচ্ছে আধুনিক সবুজ শক্তি।"
+    },
+    metaKeywords: ["microgrid", "solar", "clean energy", "technology"]
+  },
+
+  // ==========================================
+  // INTERNATIONAL (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "Global Climate Summit Adopts Unprecedented $100 Billion Loss and Damage Compact",
+      bn: "জলবায়ু শীর্ষ সম্মেলনে ১০০ বিলিয়ন ডলারের ঐতিহাসিক 'ক্ষয়ক্ষতি তহবিল' অনুমোদন"
+    },
+    slug: "global-climate-summit-adopts-unprecedented-100-billion-loss-and-damage-compact",
+    content: {
+      en: "<p>Delegates from nearly two hundred nations at the United Nations Climate Conference concluded marathon negotiations by officially adopting a landmark $100 billion loss and damage framework for vulnerable developing states.</p><p>The treaty mandates industrialized donor countries to disburse unconditional adaptation grants directly to nations confronting sea-level rise, catastrophic typhoons, and agricultural desertification.</p><p>Chief negotiators representing climate-vulnerable river delta nations praised the consensus as a hard-won victory for climate justice and equitable ecological responsibility.</p>",
+      bn: "<p>জাতিসংঘের আন্তর্জাতিক জলবায়ু সম্মেলনে ম্যারাথন আলোচনার পর বিশ্বের প্রায় ২০০টি দেশের সর্বসম্মত সম্মতিতে ১০০ বিলিয়ন ডলারের ঐতিহাসিক 'লস অ্যান্ড ড্যামেজ' তহবিল অনুমোদিত হয়েছে।</p><p>চুক্তির আওতায় জলবায়ু ঝুঁকিতে থাকা দেশগুলোতে সমুদ্রপৃষ্ঠের উচ্চতা বৃদ্ধি ও প্রাকৃতিক দুর্যোগ মোকাবেলায় অনুদানভিত্তিক অর্থ সরাসরি ছাড় করতে হবে উন্নত দেশগুলোকে।</p><p>উপকূলীয় ও ঝুঁকিপূর্ণ দেশগুলোর প্রতিনিধিরা এই চুক্তিকে জলবায়ু ন্যায়বিচার এবং বৈশ্বিক সমতার ক্ষেত্রে এক ঐতিহাসিক মাইলফলক হিসেবে অভিহিত করেছেন।</p>"
+    },
+    excerpt: {
+      en: "UN Climate Summit concludes with landmark $100B direct grant treaty supporting nations hit by rising sea levels.",
+      bn: "জলবায়ু পরিবর্তনের ঝুঁকি মোকাবেলায় উন্নয়নশীল দেশগুলোর জন্য ১০০ বিলিয়ন ডলারের অনুদান চুক্তি পাশ।"
+    },
+    category: "international",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "World globe map representing international diplomacy and global summits",
+        bn: "বিশ্ব মানচিত্র ও আন্তর্জাতিক কূটনীতির প্রতীকী রূপ"
+      }
+    },
+    tags: [
+      { en: "Climate", bn: "জলবায়ু" },
+      { en: "UN", bn: "জাতিসংঘ" },
+      { en: "Summit", bn: "শীর্ষ সম্মেলন" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(5),
+    isFeatured: true,
+    isBreaking: true,
+    isTrending: true,
+    views: 2280,
+    likes: 198,
+    shares: 72,
+    metaTitle: {
+      en: "UN Climate Summit Passes $100B Loss & Damage Treaty",
+      bn: "জলবায়ু সম্মেলনে ১০০ বিলিয়ন ডলারের ঐতিহাসিক তহবিল অনুমোদন"
+    },
+    metaDescription: {
+      en: "Global leaders finalize direct adaptation financing mechanism for vulnerable river deltas and island nations.",
+      bn: "জলবায়ু পরিবর্তনের ক্ষতিপূরণ হিসেবে উন্নয়নশীল দেশগুলো পাবে সরাসরি আর্থিক অনুদান।"
+    },
+    metaKeywords: ["climate change", "cop", "united nations", "loss and damage"]
+  },
+  {
+    title: {
+      en: "United Nations General Assembly Passes Landmark Resolution on Global Artificial Intelligence Governance",
+      bn: "কৃত্রিম বুদ্ধিমত্তা ব্যবহারে বৈশ্বিক নীতিমালা প্রণয়নে জাতিসংঘে ঐতিহাসিক প্রস্তাব পাস"
+    },
+    slug: "united-nations-general-assembly-passes-landmark-resolution-on-global-artificial-intelligence-governance",
+    content: {
+      en: "<p>The United Nations General Assembly has unanimously passed a historic global resolution establishing standard ethical guidelines, human oversight, and data sovereignty safeguards for generative artificial intelligence.</p><p>The accord calls for preventing the weaponization of autonomous algorithms, ensuring fair access to frontier compute infrastructure for developing nations, and establishing international technical evaluation benchmarks.</p><p>Diplomatic delegations emphasized that collaborative international standards will ensure transformative technologies benefit all humanity without entrenching digital inequality.</p>",
+      bn: "<p>কৃত্রিম বুদ্ধিমত্তার নিরাপদ ও মানবিক ব্যবহার নিশ্চিত করতে জাতিসংঘ সাধারণ পরিষদে সর্বসম্মতিক্রমে একটি ঐতিহাসিক বৈশ্বিক প্রস্তাব পাস হয়েছে।</p><p>এতে স্বয়ংক্রিয় অস্ত্রের অপব্যবহার রোধ, উন্নয়নশীল দেশগুলোর জন্য সুপারকম্পিউটিং সুবিধা নিশ্চিতকরণ এবং ডেটা সুরক্ষার ওপর সুনির্দিষ্ট দিকনির্দেশনা দেওয়া হয়েছে।</p><p>জাতিসংঘের প্রতিনিধিরা বলেন, বৈশ্বিক এই ঐকমত্য প্রযুক্তির বৈষম্য দূর করতে এবং মানবজাতির কল্যাণে এআই প্রযুক্তিকে পরিচালিত করতে গুরুত্বপূর্ণ ভূমিকা রাখবে।</p>"
+    },
+    excerpt: {
+      en: "UNGA adopts unanimous consensus framework on AI ethics, human-in-the-loop oversight, and sovereign data rights.",
+      bn: "কৃত্রিম বুদ্ধিমত্তার অপব্যবহার রোধ ও বৈশ্বিক সমতা প্রতিষ্ঠায় জাতিসংঘের গুরুত্বপূর্ণ সিদ্ধান্ত।"
+    },
+    category: "international",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "International logistics transit and global container cargo ship",
+        bn: "আন্তর্জাতিক বাণিজ্যের পণ্যবাহী জাহাজ ও বিশ্বায়নের দৃশ্য"
+      }
+    },
+    tags: [
+      { en: "UN", bn: "জাতিসংঘ" },
+      { en: "AI Policy", bn: "এআই নীতিমালা" },
+      { en: "Diplomacy", bn: "কূটনীতি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(12),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 1620,
+    likes: 145,
+    shares: 41,
+    metaTitle: {
+      en: "UN Passes Historic Global AI Governance Resolution",
+      bn: "জাতিসংঘে এআই সংক্রান্ত বৈশ্বিক প্রস্তাব পাস"
+    },
+    metaDescription: {
+      en: "General Assembly creates international benchmark for ethical artificial intelligence and data fairness.",
+      bn: "বিশ্বজুড়ে এআই প্রযুক্তির সঠিক ও মানবিক ব্যবহারে তৈরি হলো আন্তর্জাতিক নীতিমালা।"
+    },
+    metaKeywords: ["united nations", "ai governance", "technology", "diplomacy"]
+  },
+  {
+    title: {
+      en: "Cross-Border Railway Corridor Reconnects Historic Regional Trade Routes",
+      bn: "ঐতিহাসিক বাণিজ্যিক রেল করিডোর চালুর মাধ্যমে নতুন দিগন্তের সূচনা"
+    },
+    slug: "cross-border-railway-corridor-reconnects-historic-regional-trade-routes",
+    content: {
+      en: "<p>The prime ministers of three neighboring regional powers jointly flagged off the maiden freight train along the restored 380-kilometer cross-border electrified railway corridor.</p><p>The modernized line reduces overland container cargo transit times from five days to less than twenty-four hours, connecting inland agricultural valleys directly with deep-sea container ports.</p><p>Trade ministers projected that the corridor will lower logistics costs by 35%, stimulating bilateral commerce and regional supply chain integration.</p>",
+      bn: "<p>প্রতিবেশী তিন দেশের যৌথ উদ্যোগে ৩৮০ কিলোমিটার দীর্ঘ আন্তঃসীমান্ত বৈদ্যুতিক রেলপথে নিয়মিত পণ্যবাহী ট্রেন চলাচল শুরু হয়েছে।</p><p>এই আধুনিক রেলপথের কারণে পণ্য পরিবহনে আগের পাঁচ দিনের বদলে সময় লাগবে মাত্র ২৪ ঘণ্টারও কম, যা সরাসরি গভীর সমুদ্রবন্দরের সাথে যুক্ত করেছে বিভিন্ন অঞ্চলকে।</p><p>বাণিজ্য মন্ত্রীরা আশা প্রকাশ করেন যে, এই করিডোরের ফলে পণ্য পরিবহন খরচ ৩৫ শতাংশ কমবে এবং আঞ্চলিক বাণিজ্য উল্লেখযোগ্যভাবে সম্প্রসারিত হবে।</p>"
+    },
+    excerpt: {
+      en: "380km electrified freight line connects regional agricultural heartlands directly to coastal maritime ports.",
+      bn: "রেল করিডোর চালুর ফলে পরিবহন খরচ কমবে ৩৫ শতাংশ এবং বাড়বে আঞ্চলিক বাণিজ্য।"
+    },
+    category: "international",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Container shipping port with cranes and international cargo terminals",
+        bn: "আন্তর্জাতিক বন্দর ও পণ্য পরিবহন টার্মিনালের দৃশ্য"
+      }
+    },
+    tags: [
+      { en: "Trade Corridor", bn: "বাণিজ্য করিডোর" },
+      { en: "Railway", bn: "রেলপথ" },
+      { en: "Regional", bn: "আঞ্চলিক বাণিজ্য" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(21),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1100,
+    likes: 88,
+    shares: 25,
+    metaTitle: {
+      en: "Regional Cross-Border Railway Corridor Inaugurated",
+      bn: "আন্তঃসীমান্ত বাণিজ্যিক রেল করিডোর উদ্বোধন"
+    },
+    metaDescription: {
+      en: "Electrified 380km rail line slashes freight transit times and enhances bilateral supply chains.",
+      bn: "নতুন রেল করিডোর আঞ্চলিক বাণিজ্যে দ্রুততা ও সাশ্রয়ী সমাধান নিয়ে এসেছে।"
+    },
+    metaKeywords: ["railway", "trade", "transit", "logistics"]
+  },
+  {
+    title: {
+      en: "International Monetary Forum Proposes Debt-for-Climate Swaps for Developing Economies",
+      bn: "উন্নয়নশীল দেশগুলোর জন্য আন্তর্জাতিক আর্থিক ফোরামের 'ক্লাইমেট-ডেট সোয়াপ' প্রস্তাব"
+    },
+    slug: "international-monetary-forum-proposes-debt-for-climate-swaps-for-developing-economies",
+    content: {
+      en: "<p>At the conclusion of the Spring Economic Assembly, global multilateral lenders and finance ministers agreed to expand innovative debt-for-climate restructuring instruments.</p><p>Under the mechanism, a portion of sovereign external debts will be forgiven or converted into local currency investments dedicated to mangrove reforestation, seawall construction, and clean energy grids.</p><p>Leading international economists called the instrument an essential lifeline for fiscal breathing room while advancing critical environmental resilience targets.</p>",
+      bn: "<p>আন্তর্জাতিক অর্থনৈতিক সম্মেলনে বহুপাক্ষিক ঋণদাতা সংস্থাগুলো উন্নয়নশীল দেশগুলোর জন্য নতুন 'ঋণ-জলবায়ু বিনিময়' কাঠামো চালুর প্রস্তাব দিয়েছে।</p><p>এই পদ্ধতির আওতায় নেওয়া বিদেশি ঋণের একটি অংশ মওকুফ করে তা স্থানীয় মুদ্রায় উপকূলীয় বনায়ন, বাঁধ নির্মাণ ও সৌরবিদ্যুৎ প্রকল্পে সরাসরি বিনিয়োগ করা যাবে।</p><p>অর্থনীতিবিদরা একে উন্নয়নশীল দেশগুলোর বৈদেশিক ঋণের চাপ কমানো এবং পরিবেশ সুরক্ষার দ্বিমুখী কার্যকর সমাধান বলে স্বাগত জানিয়েছেন।</p>"
+    },
+    excerpt: {
+      en: "Global finance assembly agrees on sovereign debt restructuring tied directly to coastal reforestation and clean energy.",
+      bn: "ঋণ মওকুফ করে তা উপকূলীয় বাঁধ ও পরিবেশ প্রকল্পে রূপান্তরের নতুন বৈশ্বিক চুক্তি।"
+    },
+    category: "international",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1569974498991-d3c12a504f95?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "European parliament flags and diplomatic institution building",
+        bn: "আন্তর্জাতিক সংস্থা ও সম্মেলন ভবনের জাতীয় পতাকা"
+      }
+    },
+    tags: [
+      { en: "Finance", bn: "অর্থায়ন" },
+      { en: "Debt Relief", bn: "ঋণ মওকুফ" },
+      { en: "Climate", bn: "জলবায়ু" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(33),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 890,
+    likes: 74,
+    shares: 19,
+    metaTitle: {
+      en: "Debt-for-Climate Swaps Approved at Global Economic Assembly",
+      bn: "ঋণ ও জলবায়ু রূপান্তরের বৈশ্বিক প্রস্তাব অনুমোদন"
+    },
+    metaDescription: {
+      en: "Multilateral creditors greenlight debt conversion into coastal mangrove and clean energy investments.",
+      bn: "উন্নয়নশীল দেশের জন্য স্বস্তিদায়ক ঋণ পুনর্গঠন পরিকল্পনা গৃহীত হয়েছে।"
+    },
+    metaKeywords: ["debt swap", "climate finance", "monetary fund", "development"]
+  },
+  {
+    title: {
+      en: "World Health Assembly Adopts Comprehensive Pandemic Treaty to Accelerate Vaccine Equity",
+      bn: "ভ্যাকসিন সমতা নিশ্চিতে বিশ্ব স্বাস্থ্য সংস্থায় ঐতিহাসিক প্যানডেমিক চুক্তি পাস"
+    },
+    slug: "world-health-assembly-adopts-comprehensive-pandemic-treaty-to-accelerate-vaccine-equity",
+    content: {
+      en: "<p>Member states of the World Health Organization have formally concluded the adoption of a legally binding global pandemic preparedness convention designed to guarantee prompt and equitable distribution of life-saving medical supplies.</p><p>The landmark accord establishes automated pathogen-sharing protocols linked with guaranteed patent waivers, enabling regional manufacturing hubs to produce diagnostics and vaccines simultaneously during global health emergencies.</p><p>Public health leaders commended the accord, affirming that medical innovation must never again be restricted by geography during cross-border health crises.</p>",
+      bn: "<p>বিশ্ব স্বাস্থ্য সংস্থার সদস্য দেশগুলো জরুরি স্বাস্থ্য সংকটে জীবন রক্ষাকারী ওষুধ ও টিকার সুষম বণ্টন নিশ্চিতে একটি বাধ্যতামূলক বৈশ্বিক চুক্তি গ্রহণ করেছে।</p><p>এই চুক্তির আওতায় জরুরি পরিস্থিতিতে পেটেন্ট মওকুফ করে আঞ্চলিক কেন্দ্রগুলোতে ওষুধ ও প্রতিষেধক তৈরির সুযোগ রাখা হয়েছে, যাতে কোনো দেশ পিছিয়ে না থাকে।</p><p>জনস্বাস্থ্য বিশেষজ্ঞরা এই চুক্তিকে স্বাগত জানিয়ে বলেন, ভবিষ্যৎ মহামারীতে ধনী-গরিব সব দেশের মানুষ সমান সুরক্ষা পাওয়ার নিশ্চয়তা পেল।</p>"
+    },
+    excerpt: {
+      en: "WHO accord institutes automatic patent waivers and regional production mandates during public health emergencies.",
+      bn: "মহামারীতে দ্রুত টিকা ও ওষুধ উৎপাদন নিশ্চিতে বিশ্ব স্বাস্থ্য সংস্থার বাধ্যতামূলক আন্তর্জাতিক চুক্তি।"
+    },
+    category: "international",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "United Nations flags flying outside the Geneva headquarters",
+        bn: "জেনেভায় জাতিসংঘের প্রধান কার্যালয়ের সামনে সদস্য দেশগুলোর পতাকা"
+      }
+    },
+    tags: [
+      { en: "WHO", bn: "হু" },
+      { en: "Health Equity", bn: "স্বাস্থ্য সমতা" },
+      { en: "Pandemic Treaty", bn: "প্যানডেমিক চুক্তি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(43),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 940,
+    likes: 81,
+    shares: 23,
+    metaTitle: {
+      en: "WHO Adopts Global Pandemic Preparedness Treaty",
+      bn: "বিশ্ব স্বাস্থ্য সংস্থার আন্তর্জাতিক প্যানডেমিক চুক্তি"
+    },
+    metaDescription: {
+      en: "Landmark agreement mandates vaccine patent waivers and decentralized production during health emergencies.",
+      bn: "ভ্যাকসিন বৈষম্য দূর করতে ঐতিহাসিক আন্তর্জাতিক চুক্তিতে সম্মত হয়েছে বিশ্ব।"
+    },
+    metaKeywords: ["who", "pandemic treaty", "vaccine equity", "global health"]
+  },
+  {
+    title: {
+      en: "International Maritime Clean Fuel Corridor Launched to Decarbonize Global Ocean Freight",
+      bn: "মহাসাগরের পরিবেশ রক্ষায় চালু হলো আন্তর্জাতিক গ্রিন শিপিং ও ক্লিন ফুয়েল করিডোর"
+    },
+    slug: "international-maritime-clean-fuel-corridor-launched-to-decarbonize-global-ocean-freight",
+    content: {
+      en: "<p>Twenty-two major port authorities and international shipping alliances have inaugurated the first zero-emission trans-oceanic green shipping corridor, utilizing green methanol and hydrogen bunkering.</p><p>The initiative mandates reduced docking tariffs for container vessels operating on zero-emission fuels, alongside shared shore-to-ship renewable electricity connections while berthed in harbors.</p><p>Maritime economists calculate that scaling these green routes could eliminate up to 45 million metric tons of greenhouse gas emissions annually by the end of the decade.</p>",
+      bn: "<p>বিশ্বের ২২টি শীর্ষ বন্দর কর্তৃপক্ষ এবং আন্তর্জাতিক শিপিং সংস্থা যৌথভাবে প্রথম কার্বনমুক্ত আন্তর্জাতিক গ্রিন শিপিং করিডোর চালু করেছে।</p><p>এই উদ্যোগে পরিবেশবান্ধব মিথানল ও হাইড্রোজেন চালিত জাহাজের জন্য বন্দর মাশুল ছাড় এবং ঘাটে নোঙর করা অবস্থায় সৌরবিদ্যুৎ সরবরাহের ব্যবস্থা রাখা হয়েছে।</p><p>সামুদ্রিক বাণিজ্য বিশেষজ্ঞদের মতে, এই উদ্যোগ পূর্ণমাত্রায় চালু হলে প্রতি বছর কোটি কোটি টন কার্বন নিঃসরণ হ্রাস পাবে এবং মহাসাগরের জীববৈচিত্র্য রক্ষা পাবে।</p>"
+    },
+    excerpt: {
+      en: "Global shipping alliance introduces clean fuel bunkering and port incentives to cut maritime carbon footprints.",
+      bn: "কার্বন নিঃসরণ কমাতে পরিবেশবান্ধব জ্বালানি চালিত জাহাজের জন্য চালু হলো আন্তর্জাতিক গ্রিন করিডোর।"
+    },
+    category: "international",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Global network connectivity over planet earth from orbit",
+        bn: "মহাকাশ থেকে পৃথিবীর দৃশ্য ও আন্তর্জাতিক নেটওয়ার্কের প্রতীক"
+      }
+    },
+    tags: [
+      { en: "Shipping", bn: "শিপিং" },
+      { en: "Environment", bn: "পরিবেশ" },
+      { en: "Clean Energy", bn: "সবুজ শক্তি" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(55),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 670,
+    likes: 52,
+    shares: 13,
+    metaTitle: {
+      en: "International Clean Maritime Fuel Corridor Launched",
+      bn: "আন্তর্জাতিক গ্রিন শিপিং করিডোর উদ্বোধন"
+    },
+    metaDescription: {
+      en: "Major ports establish zero-carbon shipping lanes utilizing green hydrogen and harbor electrification.",
+      bn: "মহাসাগরকে দূষণমুক্ত রাখতে চালু হয়েছে আধুনিক পরিবেশবান্ধব জাহাজ চলাচল।"
+    },
+    metaKeywords: ["maritime", "shipping", "green corridor", "clean fuel"]
+  },
+
+  // ==========================================
+  // HEALTH (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "Medical Researchers Unveil Next-Generation Cardiovascular Screening and Treatment Protocol",
+      bn: "হৃদরোগের ঝুঁকি আগেভাগেই শনাক্তে চিকিৎসকদের নতুন আধুনিক স্ক্রিনিং পদ্ধতি উদ্ভাবন"
+    },
+    slug: "medical-researchers-unveil-next-generation-cardiovascular-screening-and-treatment-protocol",
+    content: {
+      en: "<p>Cardiologists at the National Heart Foundation and university research hospitals have completed extensive multi-year trials of a low-cost, biomarker-based cardiovascular risk index tailored to South Asian populations.</p><p>The test integrates routine lipid metrics with micro-vascular ultrasound parameters, accurately detecting early arterial plaque buildup up to seven years before traditional symptoms manifest.</p><p>Public health authorities announced that pilot clinics will offer the subsidized test across public community health centers to expand early lifestyle and pharmacological interventions.</p>",
+      bn: "<p>জাতীয় হৃদরোগ ইনস্টিটিউট ও মেডিকেল বিশ্ববিদ্যালয়ের গবেষকরা দক্ষিণ এশিয়ার মানুষের উপযোগী একটি অত্যন্ত সাশ্রয়ী ও আধুনিক কার্ডিওভাসকুলার স্ক্রিনিং পদ্ধতি উদ্ভাবন করেছেন।</p><p>এই পরীক্ষার মাধ্যমে রক্তে চর্বির পরিমাণ এবং রক্তনালীর আল্ট্রাসাউন্ড বিশ্লেষণ করে লক্ষণ প্রকাশের প্রায় সাত বছর আগেই হৃদরোগের ঝুঁকি শনাক্ত করা সম্ভব।</p><p>স্বাস্থ্য অধিদপ্তর জানিয়েছে, দেশের সব উপজেলা স্বাস্থ্য কমপ্লেক্সে নামমাত্র মূল্যে এই পরীক্ষা চালুর উদ্যোগ নেওয়া হয়েছে, যা অকাল হৃদরোগ প্রতিরোধে বড় ভূমিকা রাখবে।</p>"
+    },
+    excerpt: {
+      en: "Low-cost biomarker test detects arterial plaque risks up to seven years early, expanding preventative cardiac care.",
+      bn: "হৃদরোগের লক্ষণ প্রকাশের সাত বছর আগেই ঝুঁকি শনাক্ত করতে নতুন সাশ্রয়ী পরীক্ষা চালু করল চিকিৎসকরা।"
+    },
+    category: "health",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Doctor listening to patient heart with stethoscope in modern clinic",
+        bn: "হাসপাতালে অভিজ্ঞ চিকিৎসক ও আধুনিক চিকিৎসা সেবা"
+      }
+    },
+    tags: [
+      { en: "Cardiology", bn: "হৃদরোগ" },
+      { en: "Health", bn: "স্বাস্থ্য" },
+      { en: "Medicine", bn: "চিকিৎসা" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(3),
+    isFeatured: true,
+    isBreaking: false,
+    isTrending: true,
+    views: 2540,
+    likes: 220,
+    shares: 75,
+    metaTitle: {
+      en: "New Cardiovascular Screening Protocol Discovered",
+      bn: "হৃদরোগ শনাক্তে নতুন স্ক্রিনিং পদ্ধতি উদ্ভাবন"
+    },
+    metaDescription: {
+      en: "Medical researchers launch affordable early biomarker screening to prevent sudden cardiac events.",
+      bn: "হৃদরোগের প্রাথমিক ঝুঁকি নির্ণয়ে দেশের চিকিৎসকদের নতুন সাফল্য।"
+    },
+    metaKeywords: ["cardiology", "heart health", "screening", "medicine"]
+  },
+  {
+    title: {
+      en: "National Workplace Mental Health Initiative Mandates Counseling and Well-Being Standards",
+      bn: "কর্মক্ষেত্রে মানসিক স্বাস্থ্য সুরক্ষায় জাতীয় নীতিমালা ও কাউন্সেলিং সেবা চালুর নির্দেশ"
+    },
+    slug: "national-workplace-mental-health-initiative-mandates-counseling-and-well-being-standards",
+    content: {
+      en: "<p>The Ministry of Labour and Employment, in partnership with national psychiatric associations, has promulgated comprehensive workplace mental health regulations for corporate and industrial employers.</p><p>The directives mandate confidential mental health counseling hotlines, reasonable accommodations for clinical stress conditions, and structured supervisor empathy training to prevent occupational burnout.</p><p>Human resources federations welcomed the framework, presenting data showing that proactive well-being initiatives reduce absenteeism and elevate overall workplace productivity.</p>",
+      bn: "<p>শ্রম ও কর্মসংস্থান মন্ত্রণালয় এবং জাতীয় মনোরোগ বিশেষজ্ঞদের যৌথ উদ্যোগে প্রাতিষ্ঠানিক ও শিল্প প্রতিষ্ঠানে মানসিক স্বাস্থ্য সুরক্ষায় নতুন নীতিমালা জারি করা হয়েছে।</p><p>নীতিমালায় কর্মীদের জন্য বিনামূল্যে গোপনীয় কাউন্সেলিং সুবিধা, মানসিক চাপের সময়ে ছুটির ব্যবস্থা এবং কর্মকর্তাদের জন্য বিশেষ প্রশিক্ষণ বাধ্যতামূলক করা হয়েছে।</p><p>ব্যবসায়িক নেতৃবৃন্দ এই সিদ্ধান্তকে স্বাগত জানিয়ে বলেন, কর্মীর মানসিক স্বাস্থ্যের যত্ন নিলে কর্মক্ষেত্রে উৎপাদনশীলতা বৃদ্ধি পায় এবং সুস্থ পরিবেশ বজায় থাকে।</p>"
+    },
+    excerpt: {
+      en: "Labour ministry establishes required workplace counseling hotlines and burnout prevention standards across employers.",
+      bn: "কর্মক্ষেত্রে মানসিক প্রশান্তি ও মানসিক চাপ কমাতে সব প্রতিষ্ঠানে কাউন্সেলিং সেবা বাধ্যতামূলক করা হয়েছে।"
+    },
+    category: "health",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Meditation and peaceful mental health wellness practice",
+        bn: "মানসিক প্রশান্তি ও ইয়োগা মেডিটেশনের সুন্দর মুহূর্ত"
+      }
+    },
+    tags: [
+      { en: "Mental Health", bn: "মানসিক স্বাস্থ্য" },
+      { en: "Well-Being", bn: "সুস্থতা" },
+      { en: "Workplace", bn: "কর্মক্ষেত্র" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(10),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 1820,
+    likes: 155,
+    shares: 48,
+    metaTitle: {
+      en: "Workplace Mental Health Guidelines Mandated",
+      bn: "কর্মক্ষেত্রে মানসিক স্বাস্থ্য সুরক্ষায় নতুন নীতিমালা"
+    },
+    metaDescription: {
+      en: "New labour regulations require employers to support employee well-being and stress prevention.",
+      bn: "কর্মীদের মানসিক চাপ কমাতে প্রাতিষ্ঠানিক কাউন্সেলিং নিশ্চিত করার নির্দেশ।"
+    },
+    metaKeywords: ["mental health", "workplace", "well-being", "counseling"]
+  },
+  {
+    title: {
+      en: "Child Nutrition Campaign Achieves Stunting Reduction Milestones in Rural Districts",
+      bn: "গ্রামীণ শিশুদের পুষ্টি নিশ্চিতকরণে বড় সাফল্য: খর্বকায় হওয়ার হার দ্রুত হ্রাস"
+    },
+    slug: "child-nutrition-campaign-achieves-stunting-reduction-milestones-in-rural-districts",
+    content: {
+      en: "<p>A five-year integrated maternal and child nutrition initiative spanning twenty-eight river basin districts has recorded a remarkable 12% drop in childhood stunting and micronutrient deficiency rates.</p><p>Community health workers distributed fortified egg, legume, and micro-nutrient paste supplements while conducting door-to-door breastfeeding advocacy and clean water sanitation workshops.</p><p>International development observers lauded the community-driven delivery model, recommending its nationwide expansion across urban informal settlements.</p>",
+      bn: "<p>দেশের ২৮টি নদীতীরবর্তী অঞ্চলে পরিচালিত ৫ বছর মেয়াদী মা ও শিশু পুষ্টি প্রকল্পের আওতায় শিশুদের খর্বকায় হওয়ার হার উল্লেখযোগ্যভাবে ১২ শতাংশ হ্রাস পেয়েছে।</p><p>কমিউনিটি স্বাস্থ্যকর্মীরা বাড়ি বাড়ি গিয়ে পুষ্টিকর খাবার, ডিম ও আয়রন সাপ্লিমেন্ট বিতরণের পাশাপাশি সঠিক খাদ্যাভ্যাস ও বিশুদ্ধ পানির ব্যবহার সম্পর্কে মায়েদের সচেতন করছেন।</p><p>আন্তর্জাতিক পর্যবেক্ষকরা এই সফল কমিউনিটি মডেলের প্রশংসা করে দেশের অন্যান্য অঞ্চলেও এটি দ্রুত ছড়িয়ে দেওয়ার পরামর্শ দিয়েছেন।</p>"
+    },
+    excerpt: {
+      en: "Targeted maternal and infant nutrition drives reduce childhood stunting by 12% across river basin communities.",
+      bn: "মা ও শিশুর সঠিক পুষ্টি নিশ্চিত করায় গ্রামীণ শিশুদের অপুষ্টি ও শারীরিক খর্বতা অনেকটাই দূর হয়েছে।"
+    },
+    category: "health",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Healthcare professional consulting with patient in medical clinic",
+        bn: "হাসপাতালে চিকিৎসক ও রোগীর স্বাস্থ্য পরামর্শের মুহূর্ত"
+      }
+    },
+    tags: [
+      { en: "Nutrition", bn: "পুষ্টি" },
+      { en: "Child Health", bn: "শিশু স্বাস্থ্য" },
+      { en: "Community", bn: "জনস্বাস্থ্য" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(19),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1150,
+    likes: 92,
+    shares: 26,
+    metaTitle: {
+      en: "Child Nutrition Project Records Significant Progress",
+      bn: "শিশু পুষ্টি কার্যক্রমে উল্লেখযোগ্য সাফল্য অর্জন"
+    },
+    metaDescription: {
+      en: "Community health initiatives deliver 12% reduction in childhood stunting across twenty-eight districts.",
+      bn: "শিশুদের সুস্বাস্থ্য নিশ্চিতে পুষ্টি ক্যাম্পেইন কার্যকর ভূমিকা রাখছে।"
+    },
+    metaKeywords: ["nutrition", "child health", "stunting", "healthcare"]
+  },
+  {
+    title: {
+      en: "Medical University Launches Advanced Pediatric Oncology and Bone Marrow Unit",
+      bn: "মেডিকেল বিশ্ববিদ্যালয়ে আধুনিক শিশু ক্যান্সার ও বোন ম্যারো ট্রান্সপ্ল্যান্ট ইউনিট উদ্বোধন"
+    },
+    slug: "medical-university-launches-advanced-pediatric-oncology-and-bone-marrow-unit",
+    content: {
+      en: "<p>The premier state medical university has inaugurated an ultra-modern 60-bed pediatric cancer pavilion equipped with specialized HEPA-filtered bone marrow transplantation suites and precision chemotherapy labs.</p><p>Funded jointly through public health grants and philanthropic trusts, the facility will provide subsidized treatment to hundreds of children with leukemia and lymphoma who previously faced overseas medical travel costs.</p><p>Leading pediatric oncologists noted that international academic twinning partnerships will ensure nursing staff maintain global infection-control protocols.</p>",
+      bn: "<p>দেশের শীর্ষ মেডিকেল বিশ্ববিদ্যালয়ে ৬০ শয্যাবিশিষ্ট অত্যাধুনিক শিশু ক্যান্সার ও বোন ম্যারো ট্রান্সপ্ল্যান্ট ইউনিটের আনুষ্ঠানিক উদ্বোধন করা হয়েছে।</p><p>সরকারি অনুদান ও দাতব্য তহবিলের সহায়তায় নির্মিত এই ইউনিটে অত্যন্ত কম খরচে লিউকেমিয়া ও ক্যান্সারে আক্রান্ত শিশুদের সর্বাধুনিক চিকিৎসা প্রদান করা হবে।</p><p>চিকিৎসকরা জানান, এই ইউনিট চালু হওয়ায় এখন আর চিকিৎসার জন্য শিশুদের বিদেশে নিয়ে যাওয়ার প্রয়োজন হবে না এবং পরিবারগুলোর বিপুল অর্থ সাশ্রয় হবে।</p>"
+    },
+    excerpt: {
+      en: "New 60-bed oncology wing with specialized bone marrow suites opens subsidized treatment for pediatric leukemia patients.",
+      bn: "শিশুদের ক্যান্সারের উন্নত ও সাশ্রয়ী চিকিৎসায় চালু হলো অত্যাধুনিক বোন ম্যারো ইউনিট।"
+    },
+    category: "health",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Advanced hospital laboratory equipment and scientific diagnostic research",
+        bn: "আধুনিক হাসপাতালের রোগ নির্ণয় ল্যাব ও উন্নত যন্ত্রপাতি"
+      }
+    },
+    tags: [
+      { en: "Pediatrics", bn: "শিশু চিকিৎসা" },
+      { en: "Oncology", bn: "ক্যান্সার" },
+      { en: "Hospital", bn: "হাসপাতাল" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(29),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1280,
+    likes: 110,
+    shares: 32,
+    metaTitle: {
+      en: "Pediatric Oncology & Bone Marrow Unit Opened",
+      bn: "শিশু ক্যান্সার ও বোন ম্যারো ট্রান্সপ্ল্যান্ট ইউনিট চালু"
+    },
+    metaDescription: {
+      en: "Modern 60-bed oncology facility provides accessible bone marrow transplants for young patients.",
+      bn: "দেশের শিশু চিকিৎসায় নতুন মাইলফলক হিসেবে যুক্ত হলো আধুনিক অনকোলজি বিভাগ।"
+    },
+    metaKeywords: ["pediatric", "oncology", "bone marrow", "hospital"]
+  },
+  {
+    title: {
+      en: "Satellite Telemedicine Network Connects Remote Coastlines with Super-Specialist Clinics",
+      bn: "স্যাটেলাইট টেলিমেডিসিন নেটওয়ার্ক: প্রত্যন্ত উপকূলের মানুষ পাচ্ছেন বিশেষজ্ঞ চিকিৎসকের পরামর্শ"
+    },
+    slug: "satellite-telemedicine-network-connects-remote-coastlines-with-super-specialist-clinics",
+    content: {
+      en: "<p>A mobile satellite telemedicine service has begun daily operations across isolated coastal islands, enabling rural patients to consult senior cardiologists, dermatologists, and neurologists via high-definition video links.</p><p>Trained medical officers at solar-powered clinics operate digital diagnostic peripherals, instantly streaming digital stethoscopes, ECG waveforms, and dermatoscopic close-ups directly to specialist monitors in the capital.</p><p>Over twelve thousand consultations have been completed during the first sixty days of deployment, significantly curbing costly emergency transfers to tertiary hospitals.</p>",
+      bn: "<p>স্যাটেলাইট সংযোগের সহায়তায় প্রত্যন্ত দ্বীপ ও উপকূলীয় অঞ্চলের রোগীরা এখন রাজধানীর বিশেষজ্ঞ চিকিৎসকদের সাথে সরাসরি ভিডিও কলে পরামর্শ নিচ্ছেন।</p><p>স্থানীয় ক্লিনিকগুলোতে ডিজিটাল ইসিজি ও ডায়াগনস্টিক যন্ত্রপাতির মাধ্যমে তাৎক্ষণিকভাবে তথ্য পাঠিয়ে অভিজ্ঞ চিকিৎসকের প্রেসক্রিপশন সংগ্রহ করছেন রোগীরা।</p><p>প্রথম দুই মাসেই ১২ হাজারেরও বেশি মানুষ এই সেবার মাধ্যমে বিনামূল্যে বিশেষজ্ঞ পরামর্শ পেয়েছেন, যা চিকিৎসা খরচ ও দুর্ভোগ ব্যাপকভাবে কমিয়েছে।</p>"
+    },
+    excerpt: {
+      en: "Satellite-linked clinics bring live ECG, digital stethoscopes, and specialist video consults to remote island communities.",
+      bn: "ডিজিটাল টেলিমেডিসিনের মাধ্যমে প্রত্যন্ত দ্বীপের রোগীরা সহজেই পাচ্ছেন বিশেষজ্ঞ চিকিৎসাসেবা।"
+    },
+    category: "health",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Doctor examining medical test results and digital scans in laboratory",
+        bn: "চিকিৎসক রোগীর ডিজিটাল স্ক্যান ও চিকিৎসার রিপোর্ট পর্যালোচনা করছেন"
+      }
+    },
+    tags: [
+      { en: "Telemedicine", bn: "টেলিমেডিসিন" },
+      { en: "Digital Health", bn: "ডিজিটাল স্বাস্থ্য" },
+      { en: "Remote Care", bn: "প্রান্তিক চিকিৎসা" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(39),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 890,
+    likes: 74,
+    shares: 21,
+    metaTitle: {
+      en: "Satellite Telemedicine Reaches Isolated Coastal Islands",
+      bn: "উপকূলীয় দ্বীপে স্যাটেলাইট টেলিমেডিসিন সেবা চালু"
+    },
+    metaDescription: {
+      en: "Digital diagnostics connect remote villages directly with metropolitan specialist hospitals.",
+      bn: "টেলিমেডিসিনের কল্যাণে ঘরে বসেই বিশেষজ্ঞ চিকিৎসাসেবা পাচ্ছেন উপকূলবাসী।"
+    },
+    metaKeywords: ["telemedicine", "digital health", "remote care", "satellite"]
+  },
+  {
+    title: {
+      en: "Public Health Drive Accelerates Seasonal Influenza and Respiratory Vaccination Across All Age Groups",
+      bn: "মৌসুমী ফ্লু ও শ্বাসকষ্টজনিত রোগ প্রতিরোধে দেশব্যাপী বিশেষ টিকাদান কর্মসূচি শুরু"
+    },
+    slug: "public-health-drive-accelerates-seasonal-influenza-and-respiratory-vaccination-across-all-age-groups",
+    content: {
+      en: "<p>The Directorate General of Health Services has commenced its annual respiratory health defense campaign, deploying three thousand mobile vaccination centers to immunize senior citizens, children, and vulnerable workers against circulating flu strains.</p><p>Supplies of quadrivalent influenza vaccines have been stockpiled in cold-chain depots across all municipalities, with electronic appointments available via the national citizen portal.</p><p>Epidemiologists reiterated that pre-winter immunization drastically cuts hospital ICU admissions and secondary bacterial pneumonia complications.</p>",
+      bn: "<p>শীতকালীন মৌসুমে ফ্লু ও শ্বাসকষ্টের প্রকোপ কমাতে দেশজুড়ে তিন হাজার ভ্রাম্যমাণ টিকাদান কেন্দ্রের মাধ্যমে বিশেষ কর্মসূচি শুরু করেছে স্বাস্থ্য অধিদপ্তর।</p><p>বয়োজ্যেষ্ঠ নাগরিক ও শিশুদের অগ্রাধিকার দিয়ে সব পৌরসভা ও উপজেলায় টিকার পর্যাপ্ত মজুদ নিশ্চিত করা হয়েছে। নাগরিকরা অনলাইনেই টিকার রেজিস্ট্রেশন সম্পন্ন করতে পারছেন।</p><p>বিশেষজ্ঞরা জানান, যথাসময়ে ফ্লুর টিকা গ্রহণ করলে নিউমোনিয়া ও হাসপাতালে ভর্তির ঝুঁকি ৮০ শতাংশ পর্যন্ত হ্রাস পায়।</p>"
+    },
+    excerpt: {
+      en: "Three thousand mobile hubs provide pre-winter influenza immunization to seniors and children nationwide.",
+      bn: "শীত মৌসুম শুরুর আগেই শ্বাসকষ্ট ও ফ্লুর প্রকোপ প্রতিরোধে দেশজুড়ে বিশেষ টিকাদান ক্যাম্পেইন শুরু।"
+    },
+    category: "health",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1584516150909-c43483ee7932?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Nurse preparing vaccine syringe in medical clinic",
+        bn: "হাসপাতালে টিকাদান প্রস্তুতি ও স্বাস্থ্য সুরক্ষার দৃশ্য"
+      }
+    },
+    tags: [
+      { en: "Vaccination", bn: "টিকাদান" },
+      { en: "Influenza", bn: "ফ্লু" },
+      { en: "Public Health", bn: "জনস্বাস্থ্য" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(51),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 740,
+    likes: 60,
+    shares: 16,
+    metaTitle: {
+      en: "Nationwide Influenza Vaccination Campaign Launched",
+      bn: "দেশব্যাপী মৌসুমী ফ্লুর টিকাদান কর্মসূচি শুরু"
+    },
+    metaDescription: {
+      en: "Mobile healthcare centers administer quadrivalent influenza vaccines ahead of seasonal winter shifts.",
+      bn: "রোগ প্রতিরোধে সময়মতো ফ্লুর টিকা নেওয়ার আহ্বান চিকিৎসকদের।"
+    },
+    metaKeywords: ["vaccine", "influenza", "immunization", "public health"]
+  },
+
+  // ==========================================
+  // EDUCATION (6 articles)
+  // ==========================================
+  {
+    title: {
+      en: "Higher Education Commission Unveils Modernized National STEM and AI University Curriculum",
+      bn: "বিশ্ববিদ্যালয়গুলোতে এআই ও আধুনিক বিজ্ঞান শিক্ষা নিশ্চিতে নতুন জাতীয় স্টেম কারিকুলাম প্রণয়ন"
+    },
+    slug: "higher-education-commission-unveils-modernized-national-stem-and-ai-university-curriculum",
+    content: {
+      en: "<p>The University Grants Commission has finalized an overhauled curriculum framework for public and private institutions, mandating integrated courses in applied artificial intelligence, data ethics, clean robotics, and quantum computing.</p><p>Developed in consultation with global academia and industry leaders, the curriculum replaces rote theoretical memorization with hands-on capstone project laboratories and compulsory corporate internships.</p><p>Education officials affirmed that competitive research endowment grants will be allocated to universities based on peer-reviewed international publications and registered patents.</p>",
+      bn: "<p>বিশ্ববিদ্যালয় মঞ্জুরী কমিশন দেশের সব সরকারি ও বেসরকারি বিশ্ববিদ্যালয়ের জন্য একটি যুগোপযোগী উচ্চশিক্ষা পাঠ্যক্রম চূড়ান্ত করেছে। এতে ফলিত কৃত্রিম বুদ্ধিমত্তা, ডেটা সায়েন্স ও রোবোটিক্সকে বাধ্যতামূলক অন্তর্ভুক্ত করা হয়েছে।</p><p>মুখস্থবিদ্যার বদলে শিক্ষার্থীদের ব্যবহারিক প্রজেক্ট, ল্যাবরেটরি গবেষণা এবং শিল্প প্রতিষ্ঠানে ইন্টার্নশিপকে সর্বোচ্চ গুরুত্ব দেওয়া হয়েছে এই নতুন কাঠামোতে।</p><p>ইউজিসি জানিয়েছে, গবেষণা প্রবন্ধ প্রকাশনা ও আন্তর্জাতিক পেটেন্ট অর্জনের ওপর ভিত্তি করে বিশ্ববিদ্যালয়গুলোকে বিশেষ তহবিল প্রদান করা হবে।</p>"
+    },
+    excerpt: {
+      en: "Higher education curriculum emphasizes applied AI, clean robotics, project labs, and industry co-op placements.",
+      bn: "উচ্চশিক্ষায় মুখস্থবিদ্যার বদলে গবেষণা ও ব্যবহারিক ল্যাবভিত্তিক আধুনিক কারিকুলাম চালু করা হচ্ছে।"
+    },
+    category: "education",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Diverse university students collaborating with books and laptops in library",
+        bn: "বিশ্ববিদ্যালয়ের গ্রন্থাগারে ল্যাপটপ ও বই নিয়ে অধ্যয়নরত শিক্ষার্থীরা"
+      }
+    },
+    tags: [
+      { en: "Higher Ed", bn: "উচ্চশিক্ষা" },
+      { en: "STEM", bn: "স্টেম শিক্ষা" },
+      { en: "Curriculum", bn: "পাঠ্যক্রম" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(4),
+    isFeatured: true,
+    isBreaking: false,
+    isTrending: true,
+    views: 2310,
+    likes: 215,
+    shares: 68,
+    metaTitle: {
+      en: "New University STEM and AI Curriculum Unveiled",
+      bn: "বিশ্ববিদ্যালয়গুলোতে নতুন স্টেম ও এআই কারিকুলাম"
+    },
+    metaDescription: {
+      en: "University Grants Commission introduces project-focused STEM curriculum aligned with modern industry needs.",
+      bn: "ব্যবহারিক শিক্ষার মানোন্নয়নে বিশ্ববিদ্যালয় পর্যায়ে নতুন সিলেবাস প্রবর্তন।"
+    },
+    metaKeywords: ["stem", "education", "curriculum", "higher education"]
+  },
+  {
+    title: {
+      en: "Smart Classroom Network Reaches Ten Thousand Rural Primary Schools with Interactive Learning",
+      bn: "১০ হাজার গ্রামীণ প্রাথমিক বিদ্যালয়ে চালু হলো স্মার্ট ও ইন্টারঅ্যাক্টিভ ডিজিটাল ক্লাসরুম"
+    },
+    slug: "smart-classroom-network-reaches-ten-thousand-rural-primary-schools-with-interactive-learning",
+    content: {
+      en: "<p>The Ministry of Primary and Mass Education has celebrated a landmark digital milestone, completing the installation of solar-powered interactive touchscreens and offline educational tablets across 10,000 rural community schools.</p><p>The animated bilingual learning modules feature gamified mathematics, early phonics, and environmental science lessons created by master educators, drawing enthusiastic student engagement in remote villages.</p><p>Independent monitoring reports reveal that student attendance has risen by 18% in participating institutions while early literacy comprehension metrics have improved substantially.</p>",
+      bn: "<p>প্রাথমিক ও গণশিক্ষা মন্ত্রণালয় দেশের প্রত্যন্ত অঞ্চলের ১০ হাজার প্রাথমিক বিদ্যালয়ে সৌরচালিত স্মার্ট টাচস্ক্রিন ও ইন্টারঅ্যাক্টিভ ডিজিটাল ল্যাব স্থাপন সম্পন্ন করেছে।</p><p>শিক্ষার্থীদের জন্য অ্যানিমেশনভিত্তিক গণিত, বিজ্ঞান ও ভাষার পাঠ তৈরি করা হয়েছে, যা শিশুদের খেলার ছলে শেখার আনন্দ দিচ্ছে এবং বিদ্যালয়ে তাদের উপস্থিতি ১৮ শতাংশ বাড়িয়েছে।</p><p>অভিভাবক ও শিক্ষকরা জানান, প্রযুক্তির সঠিক ব্যবহারের ফলে গ্রামীণ শিক্ষার্থীদের পড়ালেখার প্রতি আগ্রহ ও মেধার লক্ষণীয় বিকাশ ঘটছে।</p>"
+    },
+    excerpt: {
+      en: "Solar-powered interactive screens and gamified learning software boost rural attendance by 18%.",
+      bn: "অ্যানিমেশন ও প্রযুক্তির সাহায্যে আনন্দের সাথে শিক্ষা গ্রহণে গ্রামীণ স্কুলে উপস্থিতি ১৮ শতাংশ বৃদ্ধি পেয়েছে।"
+    },
+    category: "education",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Engaged primary students learning in classroom with teacher",
+        bn: "শ্রেণিকক্ষে শিক্ষক ও শিক্ষার্থীদের প্রাণবন্ত আনন্দঘন পাঠদান"
+      }
+    },
+    tags: [
+      { en: "Primary Ed", bn: "প্রাথমিক শিক্ষা" },
+      { en: "EdTech", bn: "শিক্ষা প্রযুক্তি" },
+      { en: "Smart Schools", bn: "স্মার্ট স্কুল" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(13),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: true,
+    views: 1540,
+    likes: 138,
+    shares: 39,
+    metaTitle: {
+      en: "10,000 Rural Schools Equipped with Smart Classrooms",
+      bn: "১০ হাজার গ্রামীণ স্কুলে স্মার্ট ক্লাসরুম চালু"
+    },
+    metaDescription: {
+      en: "Digital literacy milestone delivers interactive bilingual education tech to remote primary school students.",
+      bn: "প্রযুক্তিভিত্তিক শিক্ষার ছোঁয়ায় গ্রামীণ বিদ্যালয়ে নতুন প্রাণচাঞ্চল্য।"
+    },
+    metaKeywords: ["smart school", "edtech", "primary education", "literacy"]
+  },
+  {
+    title: {
+      en: "Vocational Technical Institutes Expand Dual Apprenticeship Model with Leading Industrial Conglomerates",
+      bn: "কারিগরি শিক্ষায় শিল্প প্রতিষ্ঠানের সাথে যৌথ শিক্ষানবিস কর্মসূচি সম্প্রসারণ"
+    },
+    slug: "vocational-technical-institutes-expand-dual-apprenticeship-model-with-leading-industrial-conglomerates",
+    content: {
+      en: "<p>The Technical and Madrasah Education Division has formalized agreements with sixty prominent manufacturing corporations, guaranteeing six-month paid factory apprenticeships for polytechnic diploma graduates.</p><p>Trainees in electrical engineering, computer numerical control (CNC) machining, and automated mechatronics will receive industry-certified credentials and direct pathways to full-time technical careers.</p><p>Employers noted that closing the vocational skills deficit enhances manufacturing productivity while lowering youth underemployment across industrial manufacturing zones.</p>",
+      bn: "<p>কারিগরি ও মাদ্রাসা শিক্ষা বিভাগ দেশের ৬০টি শীর্ষ শিল্প প্রতিষ্ঠানের সাথে পলিটেকনিক শিক্ষার্থীদের জন্য ছয় মাসের বেতনযুক্ত শিক্ষানবিস চুক্তির সমঝোতা স্মারক স্বাক্ষর করেছে।</p><p>বৈদ্যুতিক প্রকৌশল, অটোমেশন এবং সিএনসি মেশিনিংয়ে শিক্ষার্থীরা আধুনিক কারখানায় হাতে-কলমে প্রশিক্ষণ নিয়ে সরাসরি স্থায়ী চাকরিতে যোগদানের সুযোগ পাবেন।</p><p>উদ্যোক্তারা জানান, এই বাস্তবমুখী প্রশিক্ষণ শিল্প খাতের দক্ষ জনশক্তির সংকট দূর করবে এবং তরুণদের জন্য সম্মানজনক কর্মসংস্থান সৃষ্টি করবে।</p>"
+    },
+    excerpt: {
+      en: "Sixty manufacturing giants sign agreements providing paid six-month factory apprenticeships to polytechnic graduates.",
+      bn: "পলিটেকনিকের শিক্ষার্থীদের জন্য ৬০টি বড় শিল্প কারখানায় পেইড ইন্টার্নশিপ ও চাকরির সুযোগ নিশ্চিত হলো।"
+    },
+    category: "education",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Lecturer teaching students in modern academic lecture theatre",
+        bn: "বিশ্ববিদ্যালয়ের আধুনিক লেকচার থিয়েটারে পাঠদানরত শিক্ষক"
+      }
+    },
+    tags: [
+      { en: "Vocational", bn: "কারিগরি শিক্ষা" },
+      { en: "Apprenticeship", bn: "শিক্ষানবিস" },
+      { en: "Skills", bn: "দক্ষতা" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(23),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 1040,
+    likes: 85,
+    shares: 24,
+    metaTitle: {
+      en: "Vocational Institutes Expand Corporate Apprenticeship Model",
+      bn: "কারিগরি শিক্ষায় শিল্প খাতের সাথে যৌথ কর্মসূচি"
+    },
+    metaDescription: {
+      en: "Dual technical education model guarantees hands-on manufacturing apprenticeships for polytechnic scholars.",
+      bn: "হাতে-কলমে শিক্ষার মাধ্যমে তরুণদের দক্ষ জনশক্তিতে রূপান্তরের উদ্যোগ।"
+    },
+    metaKeywords: ["vocational", "apprenticeship", "technical education", "skills"]
+  },
+  {
+    title: {
+      en: "National Science Foundation Awards Landmark Research Grants to Young Academic Scholars",
+      bn: "তরুণ গবেষকদের জন্য জাতীয় বিজ্ঞান ফাউন্ডেশনের বড় অঙ্কের গবেষণা অনুদান ঘোষণা"
+    },
+    slug: "national-science-foundation-awards-landmark-research-grants-to-young-academic-scholars",
+    content: {
+      en: "<p>The National Science Foundation has announced its annual flagship research grants, allocating $12 million across fifty promising faculty-led projects focusing on environmental biotechnology, solar storage, and water purification.</p><p>Early-career scientists and postdoctoral fellows under age thirty-five secured sixty percent of the awards, selected through a blind international peer-review process.</p><p>The foundation chair stated that sustained research funding is vital to nurturing domestic scientific self-reliance and commercializing home-grown technological patents.</p>",
+      bn: "<p>জাতীয় বিজ্ঞান ফাউন্ডেশন পরিবেশবান্ধব বায়োটেকনোলজি, সৌরশক্তি ও পানি পরিশোধনের মতো ৫০টি গবেষণার জন্য ১২ মিলিয়ন ডলারের বার্ষিক অনুদান ঘোষণা করেছে।</p><p>আন্তর্জাতিক মূল্যায়নে নির্বাচিত গবেষকদের ৬০ শতাংশই ৩৫ বছরের কম বয়সী তরুণ বিজ্ঞানী ও পোস্ট-ডক্টরাল গবেষক।</p><p>ফাউন্ডেশনের সভাপতি জানান, টেকসই বৈজ্ঞানিক স্বনির্ভরতা অর্জন এবং দেশীয় উদ্ভাবনের আন্তর্জাতিক পেটেন্ট নিশ্চিতে ধারাবাহিক গবেষণা অনুদান অপরিহার্য।</p>"
+    },
+    excerpt: {
+      en: "$12 million in competitive grants awarded to early-career scientists advancing clean energy and water purification.",
+      bn: "পানি পরিশোধন ও সৌরবিদ্যুৎ গবেষণায় তরুণ বিজ্ঞানীদের ১২ মিলিয়ন ডলারের বিশেষ গবেষণা অনুদান প্রদান।"
+    },
+    category: "education",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Student holding books in school corridor walking to class",
+        bn: "বিদ্যালয়ের করিডোরে বই হাতে ক্লাসের দিকে এগিয়ে চলা শিক্ষার্থী"
+      }
+    },
+    tags: [
+      { en: "Research", bn: "গবেষণা" },
+      { en: "Grants", bn: "অনুদান" },
+      { en: "Science", bn: "বিজ্ঞান" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(34),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 920,
+    likes: 77,
+    shares: 22,
+    metaTitle: {
+      en: "National Science Foundation Awards $12M in Grants",
+      bn: "বিজ্ঞান গবেষণায় ১২ মিলিয়ন ডলার অনুদান প্রদান"
+    },
+    metaDescription: {
+      en: "Early-career university researchers receive grants for climate tech, biotechnology, and clean water solutions.",
+      bn: "উদ্ভাবনী গবেষণায় তরুণ বিজ্ঞানীদের বড় অঙ্কের সহায়তা দিচ্ছে সরকার।"
+    },
+    metaKeywords: ["research", "grants", "science foundation", "academia"]
+  },
+  {
+    title: {
+      en: "Public University Consortium Launches Open Digital Library with Over One Million Scholarly Works",
+      bn: "১০ লাখের বেশি বই ও গবেষণা নিয়ে উন্মুক্ত ডিজিটাল লাইব্রেরি চালু করল পাবলিক বিশ্ববিদ্যালয়গুলো"
+    },
+    slug: "public-university-consortium-launches-open-digital-library-with-over-one-million-scholarly-works",
+    content: {
+      en: "<p>A collective of twenty-four public universities has launched an open-access digital knowledge archive, making over 1.2 million digitized manuscripts, peer-reviewed journals, and rare historical archives accessible free of cost.</p><p>The cloud repository features full-text bilingual search, audio-described accessibility for visually impaired readers, and high-resolution document scanners in regional university libraries.</p><p>Librarians celebrated the milestone, noting that open scholarly repositories democratize academic inquiry for students in peripheral districts without requiring expensive subscription fees.</p>",
+      bn: "<p>২৪টি সরকারি বিশ্ববিদ্যালয়ের যৌথ উদ্যোগে একটি উন্মুক্ত ডিজিটাল লাইব্রেরি পোর্টাল চালু করা হয়েছে, যেখানে ১২ লাখের বেশি বই, জার্নাল ও দুর্লভ পাণ্ডুলিপি সম্পূর্ণ বিনামূল্যে পড়ার সুযোগ রয়েছে।</p><p>এই পোর্টালে বাংলা ও ইংরেজিতে পূর্ণাঙ্গ সার্চ সুবিধা এবং দৃষ্টিপ্রতিবন্ধীদের জন্য অডিও রিডার সুবিধা যুক্ত করা হয়েছে।</p><p>শিক্ষাবিদরা জানান, এই উদ্যোগের ফলে দেশের প্রান্তিক শিক্ষার্থীরা কোনো ফি ছাড়াই বিশ্বের সেরা সব গবেষণা ও ঐতিহাসিক বইয়ের তথ্য এক ক্লিকেই পাবে।</p>"
+    },
+    excerpt: {
+      en: "Twenty-four universities provide free open-access digital access to 1.2 million scholarly manuscripts and research journals.",
+      bn: "১২ লাখের বেশি বই ও গবেষণাপত্র সম্পূর্ণ বিনামূল্যে পড়ার সুবিধা নিয়ে এলো নতুন ডিজিটাল লাইব্রেরি।"
+    },
+    category: "education",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "Stack of colorful academic books in university library",
+        bn: "গ্রন্থাগারে সাজানো গবেষণার বই ও শিক্ষার উন্মুক্ত পরিবেশ"
+      }
+    },
+    tags: [
+      { en: "Library", bn: "গ্রন্থাগার" },
+      { en: "Open Access", bn: "উন্মুক্ত জ্ঞান" },
+      { en: "Academic", bn: "একাডেমিক" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(44),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 860,
+    likes: 72,
+    shares: 18,
+    metaTitle: {
+      en: "Public Universities Launch Open Digital Library",
+      bn: "পাবলিক বিশ্ববিদ্যালয়ের উন্মুক্ত ডিজিটাল লাইব্রেরি"
+    },
+    metaDescription: {
+      en: "Over 1.2 million academic texts and historical archives made accessible to all students free of cost.",
+      bn: "শিক্ষার্থীদের জন্য উন্মুক্ত হলো দেশের বৃহত্তম ডিজিটাল লাইব্রেরি।"
+    },
+    metaKeywords: ["digital library", "open access", "university", "research"]
+  },
+  {
+    title: {
+      en: "Teacher Training Academies Modernize Pedagogical Methods with Focus on Critical Inquiry and Ethics",
+      bn: "শিক্ষক প্রশিক্ষণ একাডেমিতে মুখস্থবিদ্যার বদলে যুক্তিবোধ ও মূল্যবোধ চর্চায় জোর"
+    },
+    slug: "teacher-training-academies-modernize-pedagogical-methods-with-focus-on-critical-inquiry-and-ethics",
+    content: {
+      en: "<p>The National Institute of Education Management has completed the first cohort training of four thousand secondary school headmasters and senior educators under a modernized interactive pedagogical program.</p><p>The training modules emphasize inquiry-driven discussion, collaborative group problem-solving, digital literacy safety, and inclusive classroom communication techniques.</p><p>Participating educators highlighted that replacing rigid traditional lectures with conversational inquiry encourages students to ask probing questions and build analytical confidence.</p>",
+      bn: "<p>জাতীয় শিক্ষা ব্যবস্থাপনা একাডেমি চার হাজার মাধ্যমিক প্রধান শিক্ষক ও অভিজ্ঞ শিক্ষকদের জন্য আধুনিক শিক্ষাদান পদ্ধতির বিশেষ প্রশিক্ষণ সম্পন্ন করেছে।</p><p>এই প্রশিক্ষণে মুখস্থ করার পুরনো পদ্ধতির বদলে দলগত সমস্যা সমাধান, গঠনমূলক প্রশ্ন করার অভ্যাস এবং শ্রেণিকক্ষে অন্তর্ভুক্তিমূলক শিক্ষার ওপর আলোকপাত করা হয়েছে।</p><p>শিক্ষকরা জানান, নতুন এই পদ্ধতি ক্লাসরুমে শিশুদের আত্মবিশ্বাস বাড়াবে এবং যুক্তিবাদী চিন্তাশীল নাগরিক হিসেবে গড়ে তুলতে সাহায্য করবে।</p>"
+    },
+    excerpt: {
+      en: "Four thousand secondary educators complete training shifting classrooms from traditional lectures to inquiry-based discussions.",
+      bn: "শিক্ষার্থীদের সৃজনশীলতা ও প্রশ্ন করার আগ্রহ বাড়াতে শিক্ষকদের দেওয়া হলো আধুনিক পাঠদান প্রশিক্ষণ।"
+    },
+    category: "education",
+    featuredImage: {
+      url: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1200&q=80",
+      alt: {
+        en: "College students smiling and learning in outdoor campus seminar",
+        bn: "ক্যাম্পাসের মনোরম পরিবেশে আনন্দঘন মুহূর্তে পাঠরত শিক্ষার্থীরা"
+      }
+    },
+    tags: [
+      { en: "Teachers", bn: "শিক্ষক" },
+      { en: "Pedagogy", bn: "শিক্ষাদান পদ্ধতি" },
+      { en: "Training", bn: "প্রশিক্ষণ" }
+    ],
+    status: "published",
+    publishedAt: getPublishedDate(56),
+    isFeatured: false,
+    isBreaking: false,
+    isTrending: false,
+    views: 680,
+    likes: 55,
+    shares: 14,
+    metaTitle: {
+      en: "Teacher Training Overhauled for Inquiry-Based Learning",
+      bn: "শিক্ষক প্রশিক্ষণে আধুনিক শিক্ষাদান পদ্ধতি"
+    },
+    metaDescription: {
+      en: "National education institute trains educators to foster student inquiry, ethical debate, and teamwork.",
+      bn: "শ্রেণিকক্ষে আনন্দদায়ক ও যুক্তিনির্ভর শিক্ষার পরিবেশ তৈরিতে শিক্ষকদের বিশেষ প্রশিক্ষণ।"
+    },
+    metaKeywords: ["teacher training", "pedagogy", "education", "schools"]
+  }
+];
+
+// Write to backend article-seed.json
+const targetPath = path.resolve('article-seed.json');
+fs.writeFileSync(targetPath, JSON.stringify(articles, null, 2), 'utf-8');
+
+console.log('✅ Successfully generated', articles.length, 'articles into', targetPath);
+const categories = {};
+articles.forEach(a => categories[a.category] = (categories[a.category] || 0) + 1);
+console.log('Category breakdown:', categories);

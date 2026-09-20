@@ -33,8 +33,11 @@ class DashboardService {
       publishedArticles,
       draftArticles,
       totalUsers,
+      userRoleGroups,
       totalCategories,
       totalAds,
+      activeAds,
+      inactiveAds,
       totalMedia,
       recentArticles,
       viewStats,
@@ -43,8 +46,14 @@ class DashboardService {
       prisma.article.count({ where: { status: 'published' } }),
       prisma.article.count({ where: { status: 'draft' } }),
       prisma.user.count({ where: { isActive: true } }),
+      prisma.user.groupBy({
+        by: ['role'],
+        _count: { id: true },
+      }),
       prisma.category.count({ where: { isActive: true } }),
+      prisma.advertisement.count(),
       prisma.advertisement.count({ where: { isActive: true } }),
+      prisma.advertisement.count({ where: { isActive: false } }),
       prisma.media.count(),
       prisma.article.findMany({
         where: { status: 'published' },
@@ -58,16 +67,33 @@ class DashboardService {
       prisma.article.aggregate({ _sum: { views: true } }),
     ]);
 
+    const userStats = {
+      total: totalUsers,
+    };
+    userRoleGroups.forEach((group) => {
+      userStats[group.role] = group._count.id;
+    });
+
+    const adStats = {
+      total: totalAds,
+      active: activeAds,
+      inactive: inactiveAds,
+    };
+
     return {
       articles: {
         total: totalArticles,
         published: publishedArticles,
         draft: draftArticles,
       },
-      users: totalUsers,
+      users: userStats,
       categories: totalCategories,
+      ads: adStats,
       advertisements: totalAds,
-      media: totalMedia,
+      media: {
+        total: totalMedia,
+        library: totalMedia,
+      },
       totalViews: viewStats._sum.views || 0,
       recentArticles: recentArticles.map((article) => this.formatArticleSummary(article)),
     };

@@ -24,8 +24,33 @@ export const createAdvertisementValidation = [
   body('image.url')
     .notEmpty()
     .withMessage('Image URL is required')
-    .isURL()
-    .withMessage('Invalid image URL'),
+    .custom((value) => {
+      if (!value || typeof value !== 'string') {
+        throw new Error('Invalid image URL');
+      }
+      const trimmed = value.trim();
+      if (!trimmed) {
+        throw new Error('Image URL is required');
+      }
+      if (
+        trimmed.startsWith('/') ||
+        trimmed.startsWith('uploads/') ||
+        trimmed.startsWith('http://') ||
+        trimmed.startsWith('https://') ||
+        trimmed.startsWith('data:image/')
+      ) {
+        return true;
+      }
+      try {
+        new URL(trimmed);
+        return true;
+      } catch {
+        if (/^[a-zA-Z0-9_\-./%?=&#+@]+$/.test(trimmed)) {
+          return true;
+        }
+        throw new Error('Invalid image URL');
+      }
+    }),
 
   body('linkUrl')
     .notEmpty()

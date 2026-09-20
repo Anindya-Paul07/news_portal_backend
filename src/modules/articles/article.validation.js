@@ -28,7 +28,34 @@ export const createArticleValidation = [
 
   body('status').optional().isIn(Object.values(ARTICLE_STATUS)).withMessage('Invalid status'),
 
-  body('featuredImage.url').optional().isURL().withMessage('Invalid featured image URL'),
+  body('featuredImage.url')
+    .optional({ nullable: true, checkFalsy: true })
+    .custom((value) => {
+      if (!value) return true;
+      if (typeof value !== 'string') {
+        throw new Error('Invalid featured image URL');
+      }
+      const trimmed = value.trim();
+      if (!trimmed) return true;
+      if (
+        trimmed.startsWith('/') ||
+        trimmed.startsWith('uploads/') ||
+        trimmed.startsWith('http://') ||
+        trimmed.startsWith('https://') ||
+        trimmed.startsWith('data:image/')
+      ) {
+        return true;
+      }
+      try {
+        new URL(trimmed);
+        return true;
+      } catch {
+        if (/^[a-zA-Z0-9_\-./%?=&#+@]+$/.test(trimmed)) {
+          return true;
+        }
+        throw new Error('Invalid featured image URL');
+      }
+    }),
 ];
 
 export const updateArticleValidation = [
@@ -49,6 +76,35 @@ export const updateArticleValidation = [
   body('category').optional().isUUID().withMessage('Invalid category ID'),
 
   body('status').optional().isIn(Object.values(ARTICLE_STATUS)).withMessage('Invalid status'),
+
+  body('featuredImage.url')
+    .optional({ nullable: true, checkFalsy: true })
+    .custom((value) => {
+      if (!value) return true;
+      if (typeof value !== 'string') {
+        throw new Error('Invalid featured image URL');
+      }
+      const trimmed = value.trim();
+      if (!trimmed) return true;
+      if (
+        trimmed.startsWith('/') ||
+        trimmed.startsWith('uploads/') ||
+        trimmed.startsWith('http://') ||
+        trimmed.startsWith('https://') ||
+        trimmed.startsWith('data:image/')
+      ) {
+        return true;
+      }
+      try {
+        new URL(trimmed);
+        return true;
+      } catch {
+        if (/^[a-zA-Z0-9_\-./%?=&#+@]+$/.test(trimmed)) {
+          return true;
+        }
+        throw new Error('Invalid featured image URL');
+      }
+    }),
 ];
 
 export const articleIdentifierValidation = [

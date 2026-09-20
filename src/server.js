@@ -1,4 +1,6 @@
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -118,14 +120,30 @@ app.use(`/api/${API_VERSION}/analytics`, analyticsRoutes);
 app.use(`/api/${API_VERSION}/reels`, reelRoutes);
 app.use(`/api/${API_VERSION}/settings`, settingsRoutes);
 
-// Static files for uploads (if not using cloud storage)
-app.use('/uploads', express.static('uploads'));
+// Static files for uploads (with fallback for raw or decoded filenames)
+app.use(
+  '/uploads',
+  (req, res, next) => {
+    const cleanUrl = req.url.replace(/^[/\\]+/, '');
+    const directPath = path.join(process.cwd(), 'uploads', cleanUrl);
+    if (fs.existsSync(directPath)) {
+      return res.sendFile(directPath);
+    }
+    try {
+      const decoded = decodeURIComponent(cleanUrl);
+      const decodedPath = path.join(process.cwd(), 'uploads', decoded);
+      if (fs.existsSync(decodedPath)) {
+        return res.sendFile(decodedPath);
+      }
+    } catch {}
+    next();
+  },
+  express.static('uploads')
+);
 
 // Error handling middleware
 app.use(notFound);
 app.use(errorHandler);
-
-// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`

@@ -18,25 +18,53 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    const name = path.basename(file.originalname, ext);
-    cb(null, `${name}-${uniqueSuffix}${ext}`);
+    const ext = path.extname(file.originalname).toLowerCase();
+    // Sanitize base name: strip %2F and unsafe characters to prevent URL 404 issues
+    let cleanName = path.basename(file.originalname, ext)
+      .replace(/%2[fF]/gi, '-')
+      .replace(/[^a-zA-Z0-9_\-\.]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    if (!cleanName) cleanName = 'media';
+    cb(null, `${cleanName}-${uniqueSuffix}${ext}`);
   },
 });
 
+const isImageFile = (file) => {
+  return (
+    ALLOWED_FILE_TYPES.IMAGE.includes(file.mimetype) ||
+    file.mimetype.startsWith('image/') ||
+    /\.(jpe?g|png|webp|avif|gif|svg|bmp|tiff?|ico|heic|heif|apng)$/i.test(file.originalname)
+  );
+};
+
+const isVideoFile = (file) => {
+  return (
+    ALLOWED_FILE_TYPES.VIDEO.includes(file.mimetype) ||
+    file.mimetype.startsWith('video/') ||
+    /\.(mp4|webm|ogg|mov|mkv|avi)$/i.test(file.originalname)
+  );
+};
+
+const isDocumentFile = (file) => {
+  return (
+    ALLOWED_FILE_TYPES.DOCUMENT.includes(file.mimetype) ||
+    file.mimetype.includes('pdf') ||
+    file.mimetype.includes('document') ||
+    /\.(pdf|docx?|xlsx?|pptx?|txt)$/i.test(file.originalname)
+  );
+};
+
 // File filter
 const fileFilter = (req, file, cb) => {
-  const allowedTypes = [
-    ...ALLOWED_FILE_TYPES.IMAGE,
-    ...ALLOWED_FILE_TYPES.VIDEO,
-    ...ALLOWED_FILE_TYPES.DOCUMENT,
-  ];
-
-  if (allowedTypes.includes(file.mimetype)) {
+  if (isImageFile(file) || isVideoFile(file) || isDocumentFile(file)) {
     cb(null, true);
   } else {
     cb(
-      new AppError('Invalid file type. Only images, videos, and documents are allowed.', 400),
+      new AppError(
+        'Invalid file type. Only images (including AVIF, WEBP, PNG, JPG, SVG), videos, and documents are allowed.',
+        400
+      ),
       false
     );
   }
@@ -55,10 +83,10 @@ export const upload = multer({
 export const uploadImage = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
-    if (ALLOWED_FILE_TYPES.IMAGE.includes(file.mimetype)) {
+    if (isImageFile(file)) {
       cb(null, true);
     } else {
-      cb(new AppError('Only image files are allowed', 400), false);
+      cb(new AppError('Only image files are allowed (JPEG, PNG, WEBP, AVIF, GIF, SVG, etc.)', 400), false);
     }
   },
   limits: { fileSize: UPLOAD_LIMITS.IMAGE_MAX_SIZE },

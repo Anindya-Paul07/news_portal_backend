@@ -104,14 +104,18 @@ const seedArticles = async () => {
           gallery: articleItem.gallery || null,
           tags: articleItem.tags || null,
           status: articleItem.status || 'draft',
-          publishedAt: articleItem.status === 'published' ? new Date() : null,
+          publishedAt: articleItem.publishedAt
+            ? new Date(articleItem.publishedAt)
+            : articleItem.status === 'published'
+              ? new Date()
+              : null,
           scheduledAt: articleItem.scheduledAt ? new Date(articleItem.scheduledAt) : null,
           isFeatured: articleItem.isFeatured || false,
           isBreaking: articleItem.isBreaking || false,
           isTrending: articleItem.isTrending || false,
-          views: 0,
-          likes: 0,
-          shares: 0,
+          views: typeof articleItem.views === 'number' ? articleItem.views : 0,
+          likes: typeof articleItem.likes === 'number' ? articleItem.likes : 0,
+          shares: typeof articleItem.shares === 'number' ? articleItem.shares : 0,
           readTime,
           metaTitleEn: articleItem.metaTitle?.en || articleItem.title.en,
           metaTitleBn: articleItem.metaTitle?.bn || articleItem.title.bn,
