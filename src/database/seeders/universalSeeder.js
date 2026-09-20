@@ -16,6 +16,7 @@ const DEFAULT_PASSWORD = '123456';
 const LAYOUT_SETTINGS_KEY = 'layout';
 const RESET_USER_PASSWORDS = process.env.SEED_RESET_USER_PASSWORDS === 'true';
 const SEED_ARTICLES = process.env.SEED_ARTICLES !== 'false';
+const SEED_CLEAN_ARTICLES = process.env.SEED_CLEAN_ARTICLES !== 'false';
 const SEED_SAMPLE_ADS = process.env.SEED_SAMPLE_ADS !== 'false';
 const SEED_REELS = process.env.SEED_REELS !== 'false';
 
@@ -29,68 +30,124 @@ const defaultLayoutSettings = {
 
 const defaultCategories = [
   {
+    nameEn: 'Explainer',
+    nameBn: 'এক্সপ্লেইনার',
+    slug: 'explainer',
+    descriptionEn: 'In-depth explainers and context on major issues',
+    descriptionBn: 'গুরুত্বপূর্ণ বিষয়ের বিশদ ও সহজবোধ্য ব্যাখ্যা',
+    order: 1,
+  },
+  {
     nameEn: 'Politics',
     nameBn: 'রাজনীতি',
     slug: 'politics',
-    descriptionEn: 'Political news and updates',
-    descriptionBn: 'রাজনৈতিক সংবাদ এবং আপডেট',
-    order: 1,
+    descriptionEn: 'Political news, parliament, and governance',
+    descriptionBn: 'রাজনৈতিক সংবাদ, সংসদ ও শাসন ব্যবস্থা',
+    order: 2,
   },
   {
     nameEn: 'Business',
     nameBn: 'ব্যবসা',
     slug: 'business',
-    descriptionEn: 'Business and economy news',
-    descriptionBn: 'ব্যবসা এবং অর্থনীতি সংবাদ',
-    order: 2,
+    descriptionEn: 'Business, finance, trade, and economy',
+    descriptionBn: 'ব্যবসা, অর্থায়ন, বাণিজ্য ও অর্থনীতি',
+    order: 3,
   },
   {
-    nameEn: 'Sports',
-    nameBn: 'খেলাধুলা',
-    slug: 'sports',
-    descriptionEn: 'Sports news and updates',
-    descriptionBn: 'খেলাধুলার সংবাদ এবং আপডেট',
-    order: 3,
+    nameEn: 'Bangladesh',
+    nameBn: 'বাংলাদেশ',
+    slug: 'bangladesh',
+    descriptionEn: 'National and regional news across Bangladesh',
+    descriptionBn: 'সারাদেশের জাতীয় ও আঞ্চলিক সংবাদ',
+    order: 4,
+  },
+  {
+    nameEn: 'International',
+    nameBn: 'ইন্টারন্যাশনাল',
+    slug: 'international',
+    descriptionEn: 'Global affairs, geopolitics, and international news',
+    descriptionBn: 'আন্তর্জাতিক সংবাদ ও বিশ্ব পরিস্থিতি',
+    order: 5,
+  },
+  {
+    nameEn: 'Opinion',
+    nameBn: 'মতামত',
+    slug: 'opinion',
+    descriptionEn: 'Editorials, columns, and analytical commentary',
+    descriptionBn: 'সম্পাদকীয়, মতামত ও মন্তব্য কলাম',
+    order: 6,
+  },
+  {
+    nameEn: 'Social Media',
+    nameBn: 'সোশ্যাল মিডিয়া',
+    slug: 'social-media',
+    descriptionEn: 'Trending conversations, viral topics, and digital culture',
+    descriptionBn: 'সামাজিক যোগাযোগ মাধ্যমের আলোচিত বিষয় ও ট্রেন্ডিং খবর',
+    order: 7,
   },
   {
     nameEn: 'Entertainment',
     nameBn: 'বিনোদন',
     slug: 'entertainment',
-    descriptionEn: 'Entertainment and celebrity news',
-    descriptionBn: 'বিনোদন এবং সেলিব্রিটি সংবাদ',
-    order: 4,
+    descriptionEn: 'Cinema, music, theatre, and pop culture',
+    descriptionBn: 'চলচ্চিত্র, নাটক, সঙ্গীত ও সংস্কৃতি',
+    order: 8,
+  },
+  {
+    nameEn: 'Feature',
+    nameBn: 'ফিচার',
+    slug: 'feature',
+    descriptionEn: 'Special stories, human interest, and lifestyle features',
+    descriptionBn: 'বিশেষ প্রতিবেদন, জীবনযাত্রা ও মানবিক গল্প',
+    order: 9,
+  },
+  {
+    nameEn: 'Literature - Dhumketu',
+    nameBn: 'সাহিত্য- ধূমকেতু',
+    slug: 'literature-dhumketu',
+    descriptionEn: 'Literary essays, poems, book reviews, and creative arts',
+    descriptionBn: 'সাহিত্য, কবিতা, বই পর্যালোচনা ও সৃজনশীল রচনা',
+    order: 10,
+  },
+  {
+    nameEn: 'Fact Check',
+    nameBn: 'ফ্যাক্টচেক',
+    slug: 'fact-check',
+    descriptionEn: 'Fact verification, misinformation analysis, and myth busting',
+    descriptionBn: 'তথ্য যাচাই ও সঠিক তথ্যের অনুসন্ধান',
+    order: 11,
+  },
+  {
+    nameEn: 'Sports',
+    nameBn: 'খেলাধুলা',
+    slug: 'sports',
+    descriptionEn: 'Sports news, cricket, football, and tournaments',
+    descriptionBn: 'খেলাধুলার সংবাদ, ক্রিকেট, ফুটবল ও টুর্নামেন্ট',
+    order: 12,
   },
   {
     nameEn: 'Technology',
     nameBn: 'প্রযুক্তি',
     slug: 'technology',
-    descriptionEn: 'Technology and innovation news',
-    descriptionBn: 'প্রযুক্তি এবং উদ্ভাবন সংবাদ',
-    order: 5,
-  },
-  {
-    nameEn: 'International',
-    nameBn: 'আন্তর্জাতিক',
-    slug: 'international',
-    descriptionEn: 'International news',
-    descriptionBn: 'আন্তর্জাতিক সংবাদ',
-    order: 6,
+    descriptionEn: 'Technology, gadgets, AI, and digital innovation',
+    descriptionBn: 'প্রযুক্তি, উদ্ভাবন, গ্যাজেট ও ডিজিটাল জগৎ',
+    order: 13,
   },
   {
     nameEn: 'Health',
     nameBn: 'স্বাস্থ্য',
     slug: 'health',
-    descriptionEn: 'Health and wellness news',
-    descriptionBn: 'স্বাস্থ্য এবং সুস্থতা সংবাদ',
-    order: 7,
+    descriptionEn: 'Health, wellness, medical advances, and fitness',
+    descriptionBn: 'স্বাস্থ্যসেবা, সুস্থতা ও চিকিৎসা বিজ্ঞানের খবর',
+    order: 14,
   },
   {
     nameEn: 'Education',
     nameBn: 'শিক্ষা',
     slug: 'education',
-    descriptionEn: 'Education news and updates',
-    descriptionBn: 'শিক্ষা সংবাদ এবং আপডেট',
-    order: 8,
+    descriptionEn: 'Schools, universities, research, and career insights',
+    descriptionBn: 'শিক্ষা সংবাদ, বিশ্ববিদ্যালয় ও ক্যারিয়ার ভাবনা',
+    order: 15,
   },
 ];
 
@@ -114,6 +171,24 @@ const defaultReels = [
     isActive: true,
   },
   {
+    title: 'Tech Pulse: AI Revolution in 60s',
+    url: 'https://www.youtube.com/shorts/kJQP7kiw5Fk',
+    description: 'Rapid overview of modern machine learning breakthroughs.',
+    isActive: true,
+  },
+  {
+    title: 'Culture Beat: Behind the Scenes at Festival',
+    url: 'https://www.youtube.com/shorts/fJ9rUzIMcZQ',
+    description: 'Exclusive look at backstage festival performances.',
+    isActive: true,
+  },
+  {
+    title: 'Nature Watch: River Delta Wildlife',
+    url: 'https://www.youtube.com/shorts/L_LUpnjgPso',
+    description: 'Short documentary clip of coastal ecosystem and mangroves.',
+    isActive: true,
+  },
+  {
     title: 'Draft Reel: Internal Promo',
     url: 'https://www.youtube.com/shorts/ScMzIvxBSi4',
     description: 'Inactive reel that should appear in admin lists but not public lists.',
@@ -126,8 +201,8 @@ const defaultAdvertisements = [
     name: 'Seed Top Banner',
     titleEn: 'Top Banner Advertisement',
     titleBn: 'টপ ব্যানার বিজ্ঞাপন',
-    descriptionEn: 'Default top banner for homepage testing.',
-    descriptionBn: 'হোমপেজ পরীক্ষার জন্য ডিফল্ট টপ ব্যানার।',
+    descriptionEn: 'Default top banner for homepage and category testing.',
+    descriptionBn: 'হোমপেজ ও ক্যাটাগরি পরীক্ষার জন্য ডিফল্ট টপ ব্যানার।',
     type: 'banner',
     position: 'top',
     image: {
@@ -142,7 +217,7 @@ const defaultAdvertisements = [
     priority: 100,
     displayPages: ['home', 'all'],
     isActive: true,
-    categorySlugs: ['business'],
+    categorySlugs: ['business', 'politics'],
   },
   {
     name: 'Seed Sidebar Sponsor',
@@ -165,6 +240,50 @@ const defaultAdvertisements = [
     displayPages: ['home', 'category', 'all'],
     isActive: true,
     categorySlugs: ['international', 'entertainment'],
+  },
+  {
+    name: 'Seed In-Content Sponsor',
+    titleEn: 'Health and Tech Innovation Sponsor',
+    titleBn: 'স্বাস্থ্য ও প্রযুক্তি উদ্ভাবনী স্পনসর',
+    descriptionEn: 'In-content native advertisement for article reading experience.',
+    descriptionBn: 'নিউজ আর্টিকেলের ভেতরে প্রদর্শনের জন্য নেটিভ বিজ্ঞাপন।',
+    type: 'in_content',
+    position: 'middle',
+    image: {
+      url: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80',
+      alt: {
+        en: 'Modern team collaboration and technology sponsor',
+        bn: 'আধুনিক টিম ও প্রযুক্তি স্পনসর বিজ্ঞাপন',
+      },
+    },
+    linkUrl: 'https://thecontemporary.news',
+    openInNewTab: true,
+    priority: 70,
+    displayPages: ['article', 'all'],
+    isActive: true,
+    categorySlugs: ['technology', 'health'],
+  },
+  {
+    name: 'Seed Bottom Banner',
+    titleEn: 'Education & Global Forum Banner',
+    titleBn: 'শিক্ষা ও আন্তর্জাতিক ফোরাম ব্যানার',
+    descriptionEn: 'Bottom placement banner for page footers.',
+    descriptionBn: 'পেজের নিচের অংশের জন্য পূর্ণ ব্যানার বিজ্ঞাপন।',
+    type: 'banner',
+    position: 'bottom',
+    image: {
+      url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80',
+      alt: {
+        en: 'Creative learning and education forum banner',
+        bn: 'সৃজনশীল শিক্ষা ও একাডেমি ফোরাম ব্যানার',
+      },
+    },
+    linkUrl: 'https://thecontemporary.news',
+    openInNewTab: true,
+    priority: 60,
+    displayPages: ['home', 'category', 'all'],
+    isActive: true,
+    categorySlugs: ['education', 'sports'],
   },
 ];
 
@@ -288,6 +407,11 @@ const buildArticleRecord = (articleItem, categoryId, authorId) => {
   const wordCount = articleItem.content.en.split(/\s+/).length;
   const readTime = Math.ceil(wordCount / 200);
   const status = articleItem.status || 'draft';
+  const publishedAt = articleItem.publishedAt
+    ? new Date(articleItem.publishedAt)
+    : status === 'published'
+      ? new Date()
+      : null;
 
   return {
     titleEn: articleItem.title.en,
@@ -301,10 +425,14 @@ const buildArticleRecord = (articleItem, categoryId, authorId) => {
     gallery: articleItem.gallery || null,
     tags: articleItem.tags || null,
     status,
+    publishedAt,
     scheduledAt: articleItem.scheduledAt ? new Date(articleItem.scheduledAt) : null,
     isFeatured: articleItem.isFeatured || false,
     isBreaking: articleItem.isBreaking || false,
     isTrending: articleItem.isTrending || false,
+    views: typeof articleItem.views === 'number' ? articleItem.views : 0,
+    likes: typeof articleItem.likes === 'number' ? articleItem.likes : 0,
+    shares: typeof articleItem.shares === 'number' ? articleItem.shares : 0,
     readTime,
     metaTitleEn: articleItem.metaTitle?.en || articleItem.title.en,
     metaTitleBn: articleItem.metaTitle?.bn || articleItem.title.bn,
@@ -332,6 +460,15 @@ const seedArticles = async () => {
     return { skipped: true, created: 0, updated: 0, reason: 'no active content author found' };
   }
 
+  if (SEED_CLEAN_ARTICLES) {
+    const existingCount = await prisma.article.count();
+    if (existingCount > 0) {
+      console.log(`Cleaning ${existingCount} existing articles before seeding fresh dataset...`);
+      await prisma.article.deleteMany({});
+      console.log('Existing articles cleared.');
+    }
+  }
+
   const articleSeedData = JSON.parse(fs.readFileSync(articleDataPath, 'utf-8'));
   let created = 0;
   let updated = 0;
@@ -356,20 +493,13 @@ const seedArticles = async () => {
         where: { slug },
         data: {
           ...data,
-          publishedAt:
-            data.status === 'published' ? existing.publishedAt || new Date() : existing.publishedAt,
+          publishedAt: data.publishedAt || existing.publishedAt,
         },
       });
       updated++;
     } else {
       await prisma.article.create({
-        data: {
-          ...data,
-          publishedAt: data.status === 'published' ? new Date() : null,
-          views: 0,
-          likes: 0,
-          shares: 0,
-        },
+        data,
       });
       created++;
     }

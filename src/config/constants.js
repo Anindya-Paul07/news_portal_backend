@@ -97,18 +97,35 @@ export const PAGINATION = {
 
 // File upload limits
 export const UPLOAD_LIMITS = {
-  IMAGE_MAX_SIZE: 5 * 1024 * 1024, // 5MB
-  VIDEO_MAX_SIZE: 50 * 1024 * 1024, // 50MB
-  DOCUMENT_MAX_SIZE: 10 * 1024 * 1024, // 10MB
+  IMAGE_MAX_SIZE: 20 * 1024 * 1024, // 20MB
+  VIDEO_MAX_SIZE: 100 * 1024 * 1024, // 100MB
+  DOCUMENT_MAX_SIZE: 25 * 1024 * 1024, // 25MB
 };
 
 // Allowed file types
 export const ALLOWED_FILE_TYPES = {
-  IMAGE: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'],
-  VIDEO: ['video/mp4', 'video/webm', 'video/ogg'],
+  IMAGE: [
+    'image/jpeg',
+    'image/jpg',
+    'image/png',
+    'image/webp',
+    'image/avif',
+    'image/gif',
+    'image/svg+xml',
+    'image/bmp',
+    'image/tiff',
+    'image/x-icon',
+    'image/vnd.microsoft.icon',
+    'image/heic',
+    'image/heif',
+    'image/apng',
+  ],
+  VIDEO: ['video/mp4', 'video/webm', 'video/ogg', 'video/quicktime', 'video/x-matroska'],
   DOCUMENT: [
     'application/pdf',
     'application/msword',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/vnd.ms-excel',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   ],
 };
