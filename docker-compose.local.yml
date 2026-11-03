@@ -40,8 +40,9 @@ services:
       - .:/app
       - backend-node-modules:/app/node_modules
       - backend-uploads:/app/uploads
+    # Schema migrations and seeding are explicit maintenance tasks, not startup steps.
     command: >
-      sh -c "if [ ! -d node_modules ]; then npm ci; fi && npx prisma generate && npx prisma migrate deploy && npm run seed && npm run dev"
+      sh -c "if [ ! -d node_modules ]; then npm ci; fi && npx prisma generate && exec npm run dev"
     networks:
       - newsportal-backend-local
 

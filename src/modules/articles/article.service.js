@@ -1,3 +1,4 @@
+import { hasArticleText, normalizeArticleText } from '../../utils/articleText.js';
 import { prisma } from '../../config/database.js';
 import { AppError } from '../../middleware/errorHandler.js';
 import { getPaginationParams, buildSortObject } from '../../utils/queryUtils.js';
@@ -98,10 +99,10 @@ class ArticleService {
     const data = {
       titleEn: articleData.title?.en,
       titleBn: articleData.title?.bn,
-      excerptEn: articleData.excerpt?.en,
-      excerptBn: articleData.excerpt?.bn,
-      contentEn: articleData.content?.en,
-      contentBn: articleData.content?.bn,
+      excerptEn: articleData.excerpt?.en === undefined ? undefined : normalizeArticleText(articleData.excerpt.en),
+      excerptBn: articleData.excerpt?.bn === undefined ? undefined : normalizeArticleText(articleData.excerpt.bn),
+      contentEn: articleData.content?.en === undefined ? undefined : normalizeArticleText(articleData.content.en),
+      contentBn: articleData.content?.bn === undefined ? undefined : normalizeArticleText(articleData.content.bn),
       featuredImage: articleData.featuredImage,
       gallery: articleData.gallery,
       tags: articleData.tags,
@@ -126,8 +127,8 @@ class ArticleService {
       data.authorId = authorId;
     }
 
-    if (articleData.content?.en) {
-      data.readTime = calculateReadTime(articleData.content.en);
+    if (articleData.content) {
+      data.readTime = calculateReadTime(normalizeArticleText(articleData.content.en) || normalizeArticleText(articleData.content.bn));
     }
 
     if (articleData.status === ARTICLE_STATUS.PUBLISHED && !articleData.publishedAt) {
@@ -235,6 +236,11 @@ class ArticleService {
 
   // Create article
   async createArticle(articleData, authorId) {
+    for (const field of ['excerpt', 'content']) {
+      if (!hasArticleText(articleData[field]?.en) && !hasArticleText(articleData[field]?.bn)) {
+        throw new AppError(`${field === 'excerpt' ? 'Excerpt' : 'Content'} is required in English or Bangla`, 400);
+      }
+    }
     const baseSlug = createSlug(articleData.title.en);
     const slug = await createUniqueSlug('article', baseSlug);
     const data = this.buildArticleData(articleData, authorId);
@@ -242,6 +248,8 @@ class ArticleService {
     const article = await prisma.article.create({
       data: {
         ...data,
+        contentEn: data.contentEn ?? '',
+        contentBn: data.contentBn ?? '',
         slug,
         metaKeywords: articleData.metaKeywords || [],
       },
@@ -272,7 +280,19 @@ class ArticleService {
       throw new AppError('You do not have permission to update this article', 403);
     }
 
-    const data = this.buildArticleData(updates);
+    const mergedUpdates = { ...updates };
+    for (const field of ['excerpt', 'content']) {
+      if (updates[field] === undefined) continue;
+      const translations = {
+        en: updates[field].en === undefined ? article[`${field}En`] : updates[field].en,
+        bn: updates[field].bn === undefined ? article[`${field}Bn`] : updates[field].bn,
+      };
+      if (!hasArticleText(translations.en) && !hasArticleText(translations.bn)) {
+        throw new AppError(`${field === 'excerpt' ? 'Excerpt' : 'Content'} is required in English or Bangla`, 400);
+      }
+      mergedUpdates[field] = translations;
+    }
+    const data = this.buildArticleData(mergedUpdates);
 
     if (updates.title?.en && updates.title.en !== article.titleEn) {
       const baseSlug = createSlug(updates.title.en);

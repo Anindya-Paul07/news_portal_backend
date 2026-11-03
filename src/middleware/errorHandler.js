@@ -12,6 +12,16 @@ export class AppError extends Error {
 }
 
 export const errorHandler = (err, req, res, next) => {
+  if (err.name === 'MulterError') {
+    err = new AppError(
+      err.code === 'LIMIT_FILE_SIZE'
+        ? 'File is too large. Media uploads must be smaller than 20 MB.'
+        : err.code === 'LIMIT_UNEXPECTED_FILE'
+          ? 'Unexpected upload field or too many files.'
+          : 'Invalid upload request.',
+      err.code === 'LIMIT_FILE_SIZE' ? 413 : 400
+    );
+  }
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 

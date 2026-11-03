@@ -25,13 +25,13 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      # Keep uploads on the VPS filesystem so image files survive app rebuilds/recreates.
       - ./uploads:/app/uploads
     depends_on:
       backend-db:
         condition: service_healthy
+    # Schema migrations and seeding are explicit maintenance tasks, not startup steps.
     command: >
-      sh -c "npx prisma generate && npx prisma migrate deploy && npm run seed && node src/server.js"
+      sh -c "npx prisma generate && exec node src/server.js"
 
 volumes:
   backend-postgres-data:

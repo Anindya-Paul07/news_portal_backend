@@ -1,4 +1,5 @@
 import { body, param } from 'express-validator';
+import { hasArticleText, validArticleTextPair } from '../../utils/articleText.js';
 import { ARTICLE_STATUS } from '../../config/constants.js';
 
 export const createArticleValidation = [
@@ -16,9 +17,10 @@ export const createArticleValidation = [
     .isLength({ max: 200 })
     .withMessage('Title cannot exceed 200 characters'),
 
-  body('content.en').trim().notEmpty().withMessage('English content is required'),
-
-  body('content.bn').trim().notEmpty().withMessage('Bangla content is required'),
+  ...['excerpt', 'content'].map((field) => body(field)
+    .custom((value) => validArticleTextPair(value)
+      && (hasArticleText(value.en) || hasArticleText(value.bn)))
+    .withMessage(`${field === 'excerpt' ? 'Excerpt' : 'Content'} is required in English or Bangla`)),
 
   body('category')
     .notEmpty()
@@ -59,6 +61,11 @@ export const createArticleValidation = [
 ];
 
 export const updateArticleValidation = [
+  // The service validates the merged translations for partial updates.
+  ...['excerpt', 'content'].map((field) => body(field).optional()
+    .custom(validArticleTextPair)
+    .withMessage(`${field} must contain English or Bangla text fields`)),
+
   param('id').isUUID().withMessage('Invalid article ID'),
 
   body('title.en')
