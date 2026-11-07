@@ -29,9 +29,7 @@ services:
     depends_on:
       backend-db:
         condition: service_healthy
-    # Schema migrations and seeding are explicit maintenance tasks, not startup steps.
-    command: >
-      sh -c "npx prisma generate && exec node src/server.js"
+    # The Dockerfile starts the API only after pending migrations succeed.
 
 volumes:
   backend-postgres-data:

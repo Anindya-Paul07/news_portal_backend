@@ -289,6 +289,8 @@ class CategoryService {
       slug: article.slug,
       excerpt: { en: article.excerptEn, bn: article.excerptBn },
       content: { en: article.contentEn, bn: article.contentBn },
+      authorName: article.authorName,
+      authorPhoto: article.authorPhoto,
       featuredImage: article.featuredImage,
       category: this.mapCategory(category, { includeChildren: false }),
       author: article.author,

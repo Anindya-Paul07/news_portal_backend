@@ -2,7 +2,23 @@ import { body, param } from 'express-validator';
 import { hasArticleText, validArticleTextPair } from '../../utils/articleText.js';
 import { ARTICLE_STATUS } from '../../config/constants.js';
 
+const authorBylineValidation = () => [
+  body('authorName').optional({ nullable: true }).isString().bail().trim()
+    .isLength({ max: 200 }).withMessage('Author name cannot exceed 200 characters'),
+  body('authorPhoto').optional({ nullable: true }).isString().bail().trim()
+    .isLength({ max: 2048 }).bail()
+    .custom((value) => {
+      if (!value) return true;
+      if (/^(?:\/(?!\/)|uploads\/)/.test(value)) return true;
+      try {
+        const url = new URL(value);
+        return ['http:', 'https:'].includes(url.protocol);
+      } catch { return false; }
+    }).withMessage('Author photo must be an image path or HTTP(S) URL'),
+];
+
 export const createArticleValidation = [
+  ...authorBylineValidation(),
   body('title.en')
     .trim()
     .notEmpty()
@@ -61,6 +77,7 @@ export const createArticleValidation = [
 ];
 
 export const updateArticleValidation = [
+  ...authorBylineValidation(),
   // The service validates the merged translations for partial updates.
   ...['excerpt', 'content'].map((field) => body(field).optional()
     .custom(validArticleTextPair)

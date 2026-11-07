@@ -94,6 +94,8 @@ model Article {
   excerptBn         String?
   contentEn         String
   contentBn         String
+  authorName        String?
+  authorPhoto       String?
   featuredImage     Json?
   gallery           Json?
   tags              Json?

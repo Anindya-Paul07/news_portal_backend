@@ -284,6 +284,8 @@ Each article object contains:
   "slug": "breaking-news-title",
   "excerpt": { "en": "Short summary", "bn": "সংক্ষিপ্ত সারাংশ" },
   "content": { "en": "Article body...", "bn": "নিবন্ধ..." },
+  "authorName": null,
+  "authorPhoto": null,
   "featuredImage": {
     "url": "https://cdn.example.com/news/breaking.jpg",
     "alt": { "en": "Image description", "bn": "ছবির বর্ণনা" }
@@ -329,6 +331,8 @@ Each article object contains:
   "title": { "en": "Breaking News Title", "bn": "ব্রেকিং নিউজ শিরোনাম" },
   "excerpt": { "en": "Short summary", "bn": "সংক্ষিপ্ত সারাংশ" },
   "content": { "en": "Article content...", "bn": "বাংলা বিষয়বস্তু..." },
+  "authorName": "Reporter Name",
+  "authorPhoto": "/uploads/reporter.jpg",
   "category": "c248c8f5-46f0-4eee-8b4c-1f31d4007c31",
   "featuredImage": {
     "url": "https://cdn.example.com/news/breaking.jpg",
@@ -352,6 +356,12 @@ Each article object contains:
 ```
 
 Response returns the full article object (slug auto-generated; published articles get `publishedAt` if omitted).
+
+`authorName` and `authorPhoto` are optional, independent article byline overrides returned in article and category article responses. `authorName` accepts up to 200 characters; `authorPhoto` accepts an HTTP(S) URL or local image path (`/uploads/...` or `uploads/...`), up to 2048 characters. Upload photos through the existing media API and send the resulting URL here.
+
+Values are trimmed. Empty strings, whitespace, or `null` clear the override, allowing the frontend to display its default name/photo. Omitting a field on update preserves its current value. These fields do not change the author account or article ownership.
+
+Deployment requires the `20261105000000_add_article_byline` migration (`npx prisma migrate deploy`) and a regenerated Prisma client (`npx prisma generate`). Existing articles receive `null` for both fields and retain the frontend defaults.
 
 ### Update / Delete
 

@@ -339,6 +339,18 @@ FRONTEND_URL=http://localhost:3000
 docker compose up -d --build
 ```
 
+The production image generates Prisma Client during the build and runs `prisma migrate deploy` on each container startup before starting the API. Only pending migrations are applied; if a migration fails, the API does not start. Seeding remains a manual operation.
+
+For subsequent VPS deployments, push the schema and migration files along with the application code, then run:
+
+```bash
+git pull
+docker compose up -d --build
+docker compose logs --tail=50 app
+```
+
+The optional `authorName` and `authorPhoto` migration preserves existing articles, initially leaving both fields `null`. Existing articles can be edited to set or clear these fields; empty values retain the frontend's default author display.
+
 #### Step 3: Seed Database (Optional)
 
 Run seeder inside container:

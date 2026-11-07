@@ -8,3 +8,6 @@ logs/
 temp/
 .vscode/
 .idea/
+
+# Empty, unapplied legacy directory; Prisma requires migration.sql in each folder.
+prisma/migrations/20260628000000_add_article_context_banner/
